@@ -10,13 +10,13 @@ import { AsbUser } from '../../models/asbuser.model';
 })
 export class PrivateComponent implements OnInit {
 
-  public user: String;
+  public user: AsbUser;
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
-    this.user = localStorage.getItem('user');
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   logout() {
