@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PrivateComponent } from './components/private/private.component';
+import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PrivateComponent
+    PrivateComponent,
+    SwimLanesComponent
   ],
   imports: [
     BrowserModule,
