@@ -1,25 +1,18 @@
 <div>
   <div>
-      Welcome
+      <h3>Please Login</h3>
   </div>
   <div>
-      <div>
           <div>
               <input [(ngModel)]="user.username" id="username" 
                   type="text">
               <label for="username">Username</label>
           </div>
-      </div>
-
-      <div>
           <div>
               <input [(ngModel)]="user.password" id="password" 
                   type="password">
               <label for="password">Password</label>
           </div>
-      </div>
-
-      
       <button (click)="login()" 
           type="submit" name="action">Login</button>
           <br>

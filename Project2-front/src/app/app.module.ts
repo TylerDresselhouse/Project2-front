@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PrivateComponent } from './components/private/private.component';
+import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './nav/nav.component';
 
@@ -19,6 +20,7 @@ import { AuthenticationService } from './services/authentication.service';
     AppComponent,
     LoginComponent,
     PrivateComponent,
+    SwimLanesComponent
     HomeComponent,
     NavComponent
   ],
