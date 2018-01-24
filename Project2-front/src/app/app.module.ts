@@ -12,6 +12,7 @@ import { NavComponent } from './nav/nav.component';
 
 // Services
 import { BoardService } from './services/board.service';
+import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { InviteComponent } from './components/invite/invite.component';
 
@@ -31,7 +32,7 @@ import { InviteComponent } from './components/invite/invite.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [BoardService, AuthenticationService],
+  providers: [BoardService, SwimLaneService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
