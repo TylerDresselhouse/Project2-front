@@ -14,7 +14,9 @@ import { NavComponent } from './nav/nav.component';
 import { BoardService } from './services/board.service';
 import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
 import { InviteComponent } from './components/invite/invite.component';
+
 
 
 @NgModule({
@@ -26,11 +28,13 @@ import { InviteComponent } from './components/invite/invite.component';
     HomeComponent,
     NavComponent,
     InviteComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [BoardService, SwimLaneService, AuthenticationService],
   bootstrap: [AppComponent]
