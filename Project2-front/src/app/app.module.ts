@@ -13,6 +13,7 @@ import { NavComponent } from './nav/nav.component';
 // Services
 import { BoardService } from './services/board.service';
 import { AuthenticationService } from './services/authentication.service';
+import { InviteComponent } from './components/invite/invite.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthenticationService } from './services/authentication.service';
     PrivateComponent,
     SwimLanesComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    InviteComponent
   ],
   imports: [
     BrowserModule,
