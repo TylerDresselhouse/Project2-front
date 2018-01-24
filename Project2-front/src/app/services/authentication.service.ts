@@ -4,11 +4,12 @@ import { AsbUser } from '../models/asbuser.model';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
-  new AsbUser(2, 'Bobbert', 'password', 'Bob', 'Bert'),
+  new AsbUser(2, 'Bobbert', '123', 'Bob', 'Bert'),
 ];
 
 @Injectable()
 export class AuthenticationService {
+  url = `http://localhost:8080/api/v1/login`;
 
   constructor(private router: Router) { }
 
@@ -21,7 +22,7 @@ export class AuthenticationService {
     const authenticatedUser = users.find(u => u.username === user.username);
     if (authenticatedUser && authenticatedUser.password === user.password) {
       localStorage.setItem('user', JSON.stringify(authenticatedUser));
-      this.router.navigate(['private']);
+      this.router.navigate(['home']);
       return true;
     }
     return false;

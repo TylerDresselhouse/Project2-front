@@ -6,20 +6,33 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PrivateComponent } from './components/private/private.component';
+import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './nav/nav.component';
+
+// Services
+import { BoardService } from './services/board.service';
+import { SwimLaneService } from './services/swim-lane.service';
+import { AuthenticationService } from './services/authentication.service';
+import { InviteComponent } from './components/invite/invite.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PrivateComponent
+    PrivateComponent,
+    SwimLanesComponent,
+    HomeComponent,
+    NavComponent,
+    InviteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [BoardService, SwimLaneService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
