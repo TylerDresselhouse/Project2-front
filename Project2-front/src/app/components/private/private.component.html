@@ -1,6 +1,6 @@
 <div>
   <div>
-      <h1>Congratulations, <span>{{ user.firstName }}</span> you have successfully logged in!!</h1>
+      <h1>Congratulations, <span *ngIf="user">{{ user.firstName }}</span> you have successfully logged in!!</h1>
       <br>
         <div *ngIf="user" >
         Username: <span>{{ user.username }}</span><br>

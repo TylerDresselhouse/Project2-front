@@ -10,7 +10,7 @@ import { AsbUser } from '../../models/asbuser.model';
 })
 export class PrivateComponent implements OnInit {
 
-  public user: AsbUser;
+  user: AsbUser;
 
   constructor(private authService: AuthenticationService) { }
 
