@@ -1,3 +1,11 @@
-<p>
-  swim-lanes works!
-</p>
+<div>
+  List of Swim Lanes:
+</div>
+<div>
+  <ul *ngFor="let swimLane of swimLanes">
+    {{swimLane}}
+    <li *ngFor="let card of swimlane">
+        {{card}}
+     </li>
+  </ul>
+</div>
