@@ -15,10 +15,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.authService.checkCredentials();
+    this.getBoards();
   }
 
   getBoards(): void {
-    this.boards = this.boardService.getBoards();
+    this.boardService.getBoards()
+    .subscribe((daboards: Board[]) => {
+            // do stuff with our data here.
+            // ....
+            // asign data to our class property in the end
+            // so it will be available to our template
+      this.boards = daboards;
+    });
   }
 
 }

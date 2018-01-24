@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Http, Response } from '@angular/http';
 import { Board } from '../models/board.model';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-const boards = [
-  new Board(1, 'Board Numero Uno'),
-  new Board(2, 'Board Number'),
-];
 
 @Injectable()
 export class BoardService {
+    private url = 'http://localhost:8080/get/boards';
 
-    private url;
+    constructor(private http: Http) { }
 
-    constructor(private router: Router) { }
-
-    getBoards(): Board[] {
-        return boards;
+    getBoards(): Observable<Board[]> {
+        return this.http
+        .get(this.url)
+        .map((response: Response) => {
+            return <Board[]> response.json();
+        });
     }
 }
 
