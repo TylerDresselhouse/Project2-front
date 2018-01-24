@@ -13,6 +13,7 @@ import { NavComponent } from './nav/nav.component';
 // Services
 import { BoardService } from './services/board.service';
 import { AuthenticationService } from './services/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,12 +23,13 @@ import { AuthenticationService } from './services/authentication.service';
     PrivateComponent,
     SwimLanesComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [BoardService, AuthenticationService],
   bootstrap: [AppComponent]
