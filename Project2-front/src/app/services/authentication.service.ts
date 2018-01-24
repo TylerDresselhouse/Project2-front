@@ -9,6 +9,7 @@ const users = [
 
 @Injectable()
 export class AuthenticationService {
+  url = `http://localhost:8080/api/v1/login`;
 
   constructor(private router: Router) { }
 
