@@ -20,7 +20,7 @@ import { AuthenticationService } from './services/authentication.service';
     AppComponent,
     LoginComponent,
     PrivateComponent,
-    SwimLanesComponent
+    SwimLanesComponent,
     HomeComponent,
     NavComponent
   ],
