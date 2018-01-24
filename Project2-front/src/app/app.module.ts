@@ -12,8 +12,11 @@ import { NavComponent } from './nav/nav.component';
 
 // Services
 import { BoardService } from './services/board.service';
+import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { InviteComponent } from './components/invite/invite.component';
+
 
 
 @NgModule({
@@ -24,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     SwimLanesComponent,
     HomeComponent,
     NavComponent,
+    InviteComponent
+
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [BoardService, AuthenticationService],
+  providers: [BoardService, SwimLaneService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

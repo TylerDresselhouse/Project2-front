@@ -1,11 +1,27 @@
 <div>
   List of Swim Lanes:
 </div>
+
+<!-- <div>
+  <table>
+    <ng-container *ngFor="let swimLane of swimLanes">
+      <tr *ngFor="let card of swimLane">
+        
+          {{card}}
+        
+      </tr>
+    </ng-container>
+  </table>
+</div> -->
 <div>
-  <ul *ngFor="let swimLane of swimLanes">
-    {{swimLane}}
-    <li *ngFor="let card of swimlane">
-        {{card}}
-     </li>
-  </ul>
+  <table border="1px solid black">
+    <th *ngFor="let swimLane of swimLanes">
+      {{swimLane.slId}}
+    </th>
+    <tr>
+      <td *ngFor="let swimLane of swimLanes">
+        {{swimLane.slName}}
+      </td>
+    </tr>
+  </table>
 </div>
