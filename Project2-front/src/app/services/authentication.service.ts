@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
@@ -17,6 +18,12 @@ const httpOptions = {
 
 @Injectable()
 export class AuthenticationService {
+  /* private loggedIn = false;
+
+  get isLoggedIn() {
+    return this.loggedIn;
+  } */
+
   loginUrl = `http://localhost:8080/api/v1/login`;
 
   public authenticatedUser: AsbUser;
@@ -25,30 +32,36 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('user');
+    //this.appComponent.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 
   login(user) {
     this.http.post<AsbUser>(this.loginUrl, user, httpOptions)
       .subscribe(
-        (data => this.authenticatedUser = data),
-        (err => console.log('error: ', err)),
-        ( () => { if ( this.authenticatedUser ) {
-                    localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
-                    this.router.navigate(['home']);
-                    return true;
-                 } else { console.log('USERNAME + PASSWORD IS INCORRECT');
-                          return false; }
-        })
-        );
+      (data => this.authenticatedUser = data),
+      (err => console.log('error: ', err)),
+      (() => {
+        if (this.authenticatedUser) {
+          localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
+          this.router.navigate(['home']);
+          //this.appComponent.isLoggedIn = true;
+          return true;
+        } else {
+          console.log('USERNAME + PASSWORD IS INCORRECT');
+          return false;
+        }
+      })
+      );
   }
 
-   checkCredentials() {
+  checkCredentials() {
     if (localStorage.getItem('user') === null) {
-        this.router.navigate(['login']);
+      //this.appComponent.isLoggedIn = false;
+      this.router.navigate(['login']);
     }
 
-}
+  }
 
 }
 
