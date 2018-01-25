@@ -1,28 +1,27 @@
 <div card>
   <div inner body>
     <div>
-      <input [(ngModel)]="card.cTitle" id="title" type="text" value="Title">
+      <input [(ngModel)]="card.title" id="title" type="text" placeholder="Title">
     </div>
     <div>
-      <input [(ngModel)]="card.difficulty" id="difficulty" type="number">
+      <input [(ngModel)]="card.difficulty" id="difficulty" type="number" min=1 max=10 placeholder=1>
     </div>
     <br>
     <br>
     <div>
-      <input [(ngModel)]="card.cDescription" id="description" type="text" value="Description">
+      <input [(ngModel)]="card.description" id="description" type="text" placeholder="Description">
     </div>
-
-      <!-- <ul *ngFor="let task of tasks">
+      <ul *ngFor="let task of tasks">
         <li >{{task.name}}</li>
-      </ul> -->
+      </ul>
 
-    
-<!-- 
     <div>
-    <input [(NgModel)]="task.description" id="task" type="task">
-    </div>
-    <div> -->
-      <button (click)="newCard()">Save</button> 
+    <input [(ngModel)]="task.description" id="task" type="task">
+    </div> 
+    <div>
+      <div>
+      <button (click)="createCard()">Save</button> 
+      </div>
   </div>
 </div>
 

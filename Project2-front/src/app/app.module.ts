@@ -27,6 +27,8 @@ import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 
+import { AngularBasicModalModule } from 'angular-basic-modal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { AlertService } from './services/alert.service';
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularBasicModalModule
    ],
  
   providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
