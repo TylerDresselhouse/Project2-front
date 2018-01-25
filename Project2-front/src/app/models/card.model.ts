@@ -1,17 +1,17 @@
 import { Task } from './task.model';
 
 export class Card {
-    cId: number;
+    id: number;
     difficulty: number;
-    cTitle: string;
-    cDescription: string;
+    title: string;
+    description: string;
     tasks: Task[];
 
-    constructor(cId: number, difficulty: number, cTitle: string, cDescription: string, tasks: Task[]) {
-        this.cId = cId;
+    constructor(id: number, difficulty: number, title: string, description: string, tasks: Task[]) {
+        this.id = id;
         this.difficulty = difficulty;
-        this.cTitle = cTitle;
-        this.cDescription = cDescription;
+        this.title = title;
+        this.description = description;
         this.tasks = tasks;
     }
 }
