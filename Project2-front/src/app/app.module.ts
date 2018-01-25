@@ -15,6 +15,7 @@ import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { InviteComponent } from './components/invite/invite.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { InviteComponent } from './components/invite/invite.component';
 
 // Services
 import { BoardService } from './services/board.service';
@@ -43,6 +44,7 @@ import { AlertService } from './services/alert.service';
     HttpModule,
     HttpClientModule
    ],
+
   providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService],
 
   bootstrap: [AppComponent]

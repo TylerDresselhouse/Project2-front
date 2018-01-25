@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AlertService } from './alert.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
@@ -18,6 +19,12 @@ const httpOptions = {
 
 @Injectable()
 export class AuthenticationService {
+  /* private loggedIn = false;
+
+  get isLoggedIn() {
+    return this.loggedIn;
+  } */
+
   loginUrl = `http://localhost:8080/api/v1/login`;
   registerUrl = `http://localhost:8080/api/v1/register`;
 
@@ -27,6 +34,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('user');
+    //this.appComponent.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 
@@ -56,11 +64,13 @@ export class AuthenticationService {
   }
 
    checkCredentials() {
+
     if (localStorage.getItem('user') === null) {
-        this.router.navigate(['login']);
+      //this.appComponent.isLoggedIn = false;
+      this.router.navigate(['login']);
     }
 
-}
+  }
 
 }
 
