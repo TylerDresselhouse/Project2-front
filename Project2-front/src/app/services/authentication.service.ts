@@ -18,6 +18,7 @@ const httpOptions = {
 @Injectable()
 export class AuthenticationService {
   loginUrl = `http://localhost:8080/api/v1/login`;
+  registerUrl = `http://localhost:8080/api/v1/register`;
 
   public authenticatedUser: AsbUser;
 
@@ -41,6 +42,11 @@ export class AuthenticationService {
                           return false; }
         })
         );
+  }
+
+  register(user) {
+      return this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
+      .subscribe( newUser => console.log(newUser));
   }
 
    checkCredentials() {
