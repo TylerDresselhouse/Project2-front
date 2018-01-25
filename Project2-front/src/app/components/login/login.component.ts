@@ -16,9 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthenticationService) { }
 
   login() {
-    if (!this.authService.login(this.user)) {
-      this.errorMsg = 'Login failed';
-    }
+    this.authService.login(this.user);
   }
 
   ngOnInit() {
