@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AlertService } from './alert.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
@@ -17,14 +19,22 @@ const httpOptions = {
 
 @Injectable()
 export class AuthenticationService {
+  /* private loggedIn = false;
+
+  get isLoggedIn() {
+    return this.loggedIn;
+  } */
+
   loginUrl = `http://localhost:8080/api/v1/login`;
+  registerUrl = `http://localhost:8080/api/v1/register`;
 
   public authenticatedUser: AsbUser;
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
   logout() {
     localStorage.removeItem('user');
+    //this.appComponent.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 
@@ -33,22 +43,38 @@ export class AuthenticationService {
       .subscribe(
         (data => this.authenticatedUser = data),
         (err => console.log('error: ', err)),
-        ( () => { if ( this.authenticatedUser ) {
+        ( () => { if (this.authenticatedUser) {
                     localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
                     this.router.navigate(['home']);
                     return true;
-                 } else { console.log('USERNAME + PASSWORD IS INCORRECT');
+                 } else { this.alertService.error('Invalid username/password');
                           return false; }
         })
         );
   }
 
+  register(user): boolean {
+      this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
+      .subscribe( newUser => { console.log(newUser);
+                                if (newUser) {
+                                  this.alertService.success('Successfully registered');
+                                  return true;
+                                } else {
+                                  this.alertService.error('That username already exists');
+                                }
+                              }
+                );
+      return false;
+  }
+
    checkCredentials() {
+
     if (localStorage.getItem('user') === null) {
-        this.router.navigate(['login']);
+      //this.appComponent.isLoggedIn = false;
+      this.router.navigate(['login']);
     }
 
-}
+  }
 
 }
 
