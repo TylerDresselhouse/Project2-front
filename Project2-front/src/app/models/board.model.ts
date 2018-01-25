@@ -1,9 +1,12 @@
+import { SwimLane } from './swimlane.model';
+
 export class Board {
     id: number;
-    boardName: string;
+    name: string;
+    swimLanes: SwimLane[];
 
-    constructor(id: number, boardName: string) {
+    constructor(id: number, name: string) {
         this.id = id;
-        this.boardName = boardName;
+        this.name = name;
     }
 }

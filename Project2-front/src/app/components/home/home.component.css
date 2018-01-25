@@ -1,4 +1,4 @@
-  @media (max-width: 600px) {
+  @media (max-width: 720px) {
     .module {
       font-size: 10px;
       max-height: 75px; }
@@ -10,4 +10,22 @@
     .module {
       min-width: 60px;
     }
+  }
+  .BoardSelector {
+    background-color: #007bff;
+    /* padding: 1em; */
+    border-radius: 100%;
+    text-align: center;
+    padding: 2em;
+    margin-bottom: 1.5em;
+  }
+
+  .BoardSelectorContainer {
+    margin: auto;
+    color: white;
+    width: 80%;
+  }
+
+  button {
+    margin: auto;
   }

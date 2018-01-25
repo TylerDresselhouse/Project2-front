@@ -10,6 +10,7 @@ import { PrivateComponent } from './components/private/private.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './nav/nav.component';
+import { HttpModule } from '@angular/http';
 import { RegisterComponent } from './components/register/register.component';
 
 // Services
@@ -34,6 +35,7 @@ import { InviteComponent } from './components/invite/invite.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpModule,
     HttpClientModule
   ],
   providers: [BoardService, SwimLaneService, AuthenticationService],
