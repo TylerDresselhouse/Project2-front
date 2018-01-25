@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PrivateComponent } from './components/private/private.component';
@@ -10,8 +12,10 @@ import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './nav/nav.component';
-import { HttpModule } from '@angular/http';
 import { RegisterComponent } from './components/register/register.component';
+import { InviteComponent } from './components/invite/invite.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { InviteComponent } from './components/invite/invite.component';
 
 // Services
 import { BoardService } from './services/board.service';
@@ -20,6 +24,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
 import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,8 @@ import { InviteService } from './services/invite.service';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    InviteComponent
+    InviteComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,8 @@ import { InviteService } from './services/invite.service';
     HttpModule,
     HttpClientModule
    ],
-  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, InviteService],
+  
+  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
 
   bootstrap: [AppComponent]
 })
