@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.removeItem('user');
+
     this.user = new AsbUser(null, null, null, null, null);
   }
 
