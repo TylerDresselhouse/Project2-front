@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AsbUser } from '../models/asbuser.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
   new AsbUser(2, 'Bobbert', '123', 'Bob', 'Bert'),
 ];
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 export class AuthenticationService {
-  url = `http://localhost:8080/api/v1/login`;
+  loginUrl = `http://localhost:8080/api/v1/login`;
 
-  constructor(private router: Router) { }
+  public authenticatedUser: AsbUser;
+
+  constructor(private router: Router, private http: HttpClient) { }
 
   logout() {
     localStorage.removeItem('user');
@@ -19,14 +29,18 @@ export class AuthenticationService {
   }
 
   login(user) {
-    const authenticatedUser = users.find(u => u.username === user.username);
-    if (authenticatedUser && authenticatedUser.password === user.password) {
-      localStorage.setItem('user', JSON.stringify(authenticatedUser));
-      this.router.navigate(['home']);
-      return true;
-    }
-    return false;
-
+    this.http.post<AsbUser>(this.loginUrl, user, httpOptions)
+      .subscribe(
+        (data => this.authenticatedUser = data),
+        (err => console.log('error: ', err)),
+        ( () => { if ( this.authenticatedUser ) {
+                    localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
+                    this.router.navigate(['home']);
+                    return true;
+                 } else { console.log('USERNAME + PASSWORD IS INCORRECT');
+                          return false; }
+        })
+        );
   }
 
    checkCredentials() {

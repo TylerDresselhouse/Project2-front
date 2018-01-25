@@ -11,22 +11,17 @@ import { AsbUser } from '../../models/asbuser.model';
 export class LoginComponent implements OnInit {
 
   public user: AsbUser;
-  public errorMsg: String;
 
   constructor(private authService: AuthenticationService) { }
 
   login() {
-    if (!this.authService.login(this.user)) {
-      this.errorMsg = 'Login failed';
-    }
+    this.authService.login(this.user);
   }
 
   ngOnInit() {
-    if (localStorage.length === 1) {
-      localStorage.removeItem('user');
-    }
+    localStorage.removeItem('user');
+
     this.user = new AsbUser(null, null, null, null, null);
-    this.errorMsg = '';
   }
 
 }

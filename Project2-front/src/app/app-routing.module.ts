@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 import { InviteComponent } from './components/invite/invite.component';
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'swim-lanes', component: SwimLanesComponent },
     { path: 'card', component: CardComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent},
     { path: 'invite', component: InviteComponent}
 ];
 @NgModule({

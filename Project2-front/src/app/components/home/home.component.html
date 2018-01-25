@@ -1,8 +1,10 @@
 <h1>Welcome to home view!!!!</h1>
-<div>
-  <a *ngFor="let board of boards" class="" routerLink="/board/{{board.id}}">
-  <div>
-    <h4>{{board.title}}</h4>
+<div class="BoardSelectorContainer">
+  <div *ngFor="let board of boards" class="BoardSelector">
+    <div>
+      {{board.name}}
+    </div>
   </div>
-</a>
+  <input type="text" ([ngModel])="newBoard.name">
+  <button type="button" class="btn btn-primary" (click)="createBoard()">New Board</button>
 </div>
