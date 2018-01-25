@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwimLaneService } from '../../services/swim-lane.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { SwimLane } from '../../models/swimlane.model';
 
 @Component({
   selector: 'app-swim-lanes',
@@ -8,7 +10,7 @@ import { SwimLaneService } from '../../services/swim-lane.service';
 })
 export class SwimLanesComponent implements OnInit {
 
-  swimLanes = this.swimLaneService.getSwimLanes();
+  swimLanes = this.swimLaneService.getSwimLanes(0);
 
 /*   lane1 = ['card1', 'card2', 'card3'];
   lane2 = [];
@@ -16,9 +18,19 @@ export class SwimLanesComponent implements OnInit {
   lane4 = ['card5', 'card6']; */
   // swimLanes = [this.lane1, this.lane2, this.lane3, this.lane4]; // this is where we would grab all the lanes from the DB
 
-  constructor(private swimLaneService: SwimLaneService) { }
+  constructor(private swimLaneService: SwimLaneService, private authService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authService.checkCredentials();
+    this.getSwimLanes(0);
+  }
+
+  getSwimLanes(lane: number): void {
+     this.swimLaneService.getSwimLanes(lane);
+/*    .subscribe((daswimlanes: SwimLane[]) => {
+      this.swimLanes = daswimlanes;
+      console.log(this.swimLanes);
+    }); */
   }
 
 }
