@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AsbUser } from '../../models/asbuser.model';
+import { AuthenticationService } from '../../services/authentication.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,25 @@ export class RegisterComponent implements OnInit {
 
   public user: AsbUser;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService, private alertService: AlertService) { }
 
-  register() { }
+  register() {
+    if (this.user.firstName === '' || this.user.firstName === null) {
+      this.alertService.warn('Please enter a first name');
+      return;
+    } else if (this.user.lastName === '' || this.user.lastName === null) {
+      this.alertService.warn('Please enter a last name');
+      return;
+    } else if (this.user.username === '' || this.user.username === null) {
+      this.alertService.warn('Please enter a username');
+      return;
+    } else if (this.user.password === '' || this.user.password === null) {
+      this.alertService.warn('Please enter a password');
+      return;
+    } else {
+      this.authService.register(this.user);
+    }
+  }
 
   ngOnInit() {
     this.user = new AsbUser(null, null, null, null, null);
