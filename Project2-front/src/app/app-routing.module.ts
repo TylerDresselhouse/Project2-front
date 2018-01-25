@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
+import { InviteComponent } from './components/invite/invite.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -13,7 +14,8 @@ export const routes: Routes = [
     { path: 'private', component: PrivateComponent },
     { path: 'swim-lanes', component: SwimLanesComponent },
     { path: 'card', component: CardComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'invite', component: InviteComponent}
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

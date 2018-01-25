@@ -11,9 +11,11 @@ import { NavComponent } from './nav/nav.component';
 
 // Services
 import { BoardService } from './services/board.service';
+import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InviteComponent } from './components/invite/invite.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +25,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SwimLanesComponent,
     CardComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    InviteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
    ],
-  providers: [BoardService, AuthenticationService, CardService],
+  providers: [BoardService, AuthenticationService, CardService, SwimLaneService],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
