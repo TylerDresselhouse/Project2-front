@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BoardService } from '../../services/board.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Board } from '../../models/board.model';
@@ -10,28 +10,26 @@ import { Board } from '../../models/board.model';
 })
 export class HomeComponent implements OnInit {
   boards: Board[] = [];
-  newBoard: Board;
+  @Input() newBoard: Board;
 
   constructor(private boardService: BoardService, private authService: AuthenticationService) { }
 
   ngOnInit() {
+    this.newBoard = new Board(0, null);
     this.authService.checkCredentials();
     this.getBoards();
   }
 
   getBoards(): void {
-    this.boardService.getBoards()
-    .subscribe((daboards: Board[]) => {
-            // do stuff with our data here.
-            // ....
-            // asign data to our class property in the end
-            // so it will be available to our template
-      this.boards = daboards;
-      console.log(this.boards);
-    });
+     this.boardService.getBoards().subscribe(
+       data => {this.boards = data; },
+       err => console.log('Error getting boards')
+     );
+     console.log('component board: ' + this.boards);
   }
 
   createBoard(): void {
+    console.log(this.newBoard);
     this.boardService.createBoard(this.newBoard);
   }
 

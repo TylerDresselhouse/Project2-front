@@ -12,14 +12,11 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { HttpModule } from '@angular/http';
 import { RegisterComponent } from './components/register/register.component';
-
-// Services
 import { BoardService } from './services/board.service';
 import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
-import { HttpClientModule } from '@angular/common/http';
 import { CardService } from './services/card.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { InviteComponent } from './components/invite/invite.component';
 
 @NgModule({
@@ -42,7 +39,6 @@ import { InviteComponent } from './components/invite/invite.component';
     HttpClientModule
    ],
   providers: [BoardService, AuthenticationService, CardService, SwimLaneService],
-  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
