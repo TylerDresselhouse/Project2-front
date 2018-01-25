@@ -1,0 +1,55 @@
+<div card>
+  <div inner body>
+    <div>
+      <input [(ngModel)]="card.cTitle" id="title" type="text" value="Title">
+    </div>
+    <div>
+      <input [(ngModel)]="card.difficulty" id="difficulty" type="number">
+    </div>
+    <br>
+    <br>
+    <div>
+      <input [(ngModel)]="card.cDescription" id="description" type="text" value="Description">
+    </div>
+
+      <!-- <ul *ngFor="let task of tasks">
+        <li >{{task.name}}</li>
+      </ul> -->
+
+    
+<!-- 
+    <div>
+    <input [(NgModel)]="task.description" id="task" type="task">
+    </div>
+    <div> -->
+      <button (click)="newCard()">Save</button> 
+  </div>
+</div>
+
+<!-- <div>
+  List of Cards:
+</div> -->
+
+<!-- <div>
+  <table>
+    <ng-container *ngFor="let swimLane of swimLanes">
+      <tr *ngFor="let card of swimLane">
+        
+          {{card}}
+        
+      </tr>
+    </ng-container>
+  </table>
+</div> -->
+<!-- <div>
+  <table border="1px solid black">
+    <th *ngFor="let card of cards">
+      {{swimLane.slId}}
+    </th>
+    <tr>
+      <td *ngFor="let card of cards">
+        {{card.cTitle}}
+      </td>
+    </tr>
+  </table>
+</div> -->
