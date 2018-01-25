@@ -9,6 +9,7 @@ import { PrivateComponent } from './components/private/private.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './nav/nav.component';
+import { HttpModule } from '@angular/http';
 
 // Services
 import { BoardService } from './services/board.service';
@@ -27,7 +28,8 @@ import { AuthenticationService } from './services/authentication.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [BoardService, AuthenticationService],
   bootstrap: [AppComponent]

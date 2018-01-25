@@ -10,6 +10,7 @@ import { Board } from '../../models/board.model';
 })
 export class HomeComponent implements OnInit {
   boards: Board[] = [];
+  newBoard: Board;
 
   constructor(private boardService: BoardService, private authService: AuthenticationService) { }
 
@@ -26,7 +27,12 @@ export class HomeComponent implements OnInit {
             // asign data to our class property in the end
             // so it will be available to our template
       this.boards = daboards;
+      console.log(this.boards);
     });
+  }
+
+  createBoard(): void {
+    this.boardService.createBoard(this.newBoard);
   }
 
 }
