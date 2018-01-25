@@ -30,16 +30,17 @@ export class AuthenticationService {
 
   login(user) {
     this.http.post<AsbUser>(this.loginUrl, user, httpOptions)
-      .subscribe(data => {
-         this.authenticatedUser = data;
-         console.log(this.authenticatedUser);
-         if ( this.authenticatedUser ) {
-          localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
-          this.router.navigate(['home']);
-          return true;
-
-        } else { return false; }
-        });
+      .subscribe(
+        (data => this.authenticatedUser = data),
+        (err => console.log('error: ', err)),
+        ( () => { if ( this.authenticatedUser ) {
+                    localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
+                    this.router.navigate(['home']);
+                    return true;
+                 } else { console.log('USERNAME + PASSWORD IS INCORRECT');
+                          return false; }
+        })
+        );
   }
 
    checkCredentials() {
