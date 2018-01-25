@@ -45,14 +45,18 @@ export class AuthenticationService {
         );
   }
 
-  register(user) {
-      return this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
+  register(user): boolean {
+      this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
       .subscribe( newUser => { console.log(newUser);
                                 if (newUser) {
                                   this.alertService.success('Successfully registered');
-                                } else { this.alertService.error('That username already exists'); }
+                                  return true;
+                                } else {
+                                  this.alertService.error('That username already exists');
+                                }
                               }
                 );
+      return false;
   }
 
    checkCredentials() {
