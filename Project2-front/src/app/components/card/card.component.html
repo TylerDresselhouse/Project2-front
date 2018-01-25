@@ -1,35 +1,34 @@
-<!-- <div card>
+<div card>
   <div inner body>
     <div>
-      <input [(NgModel)]="card.cTitle" id="title" type="text">
+      <input [(ngModel)]="card.cTitle" id="title" type="text" value="Title">
     </div>
     <div>
-      <input [(NgModel)]="card.difficulty" id="difficulty" type="number">
+      <input [(ngModel)]="card.difficulty" id="difficulty" type="number">
     </div>
     <br>
     <br>
     <div>
-      <input [(NgModel)]="card.cDescription" id="description" type="text">
+      <input [(ngModel)]="card.cDescription" id="description" type="text" value="Description">
     </div>
 
-      <ul *ngFor="let task of tasks">
+      <!-- <ul *ngFor="let task of tasks">
         <li >{{task.name}}</li>
-      </ul>
+      </ul> -->
 
     
-
+<!-- 
     <div>
     <input [(NgModel)]="task.description" id="task" type="task">
     </div>
-    <div>
-      <button (click)="newTask()">New Task</button> 
+    <div> -->
+      <button (click)="newCard()">Save</button> 
   </div>
-  </div>
-</div> -->
-
-<div>
-  List of Cards:
 </div>
+
+<!-- <div>
+  List of Cards:
+</div> -->
 
 <!-- <div>
   <table>
@@ -42,7 +41,7 @@
     </ng-container>
   </table>
 </div> -->
-<div>
+<!-- <div>
   <table border="1px solid black">
     <th *ngFor="let card of cards">
       {{swimLane.slId}}
@@ -53,4 +52,4 @@
       </td>
     </tr>
   </table>
-</div>
+</div> -->

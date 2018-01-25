@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 /* import { Board } from '../models/board.model'; */
 // import { SwimLane } from '../models/swimlane.model';
 import { Observable } from 'rxjs/Observable';
-import { Card } from '../models/card.model';
 import { Task } from '../models/task.model';
 
 @Injectable()
@@ -13,12 +12,12 @@ export class CardService {
 
   constructor(private router: Router) { }
 
-  // getCards(): Cards[] {
+  // getCards(): Card[] {
   //   return cards;
   // }
 
-  createCard() {
-    // create card
+  createCard(Card) {
+    console.log(Card.cTitle + ' ' + Card.difficulty + ' ' + Card.cDescription);
   }
 
   updateCard() {

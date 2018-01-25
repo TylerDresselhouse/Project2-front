@@ -22,13 +22,11 @@ export class CardComponent implements OnInit {
   lane4 = ['card5', 'card6']; */
   // swimLanes = [this.lane1, this.lane2, this.lane3, this.lane4]; // this is where we would grab all the lanes from the DB
 
-  tasks: Task[] = [];
-
    constructor(private cardService: CardService) { }
 
 
-  newTask() {
-  //  this.taskSer.createTask(); // add new task
+    newCard() {
+    this.cardService.createCard(this.card);
     }
 
   ngOnInit() {
