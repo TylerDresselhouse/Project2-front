@@ -22,6 +22,8 @@ import { BoardService } from './services/board.service';
 import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
+import { InviteComponent } from './components/invite/invite.component';
+import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 
 @NgModule({
@@ -44,8 +46,8 @@ import { AlertService } from './services/alert.service';
     HttpModule,
     HttpClientModule
    ],
-
-  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService],
+  
+  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
 
   bootstrap: [AppComponent]
 })
