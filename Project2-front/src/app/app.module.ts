@@ -13,13 +13,15 @@ import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
+import { InviteComponent } from './components/invite/invite.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 // Services
 import { BoardService } from './services/board.service';
 import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
-import { InviteComponent } from './components/invite/invite.component';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { InviteComponent } from './components/invite/invite.component';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    InviteComponent
+    InviteComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { InviteComponent } from './components/invite/invite.component';
     HttpModule,
     HttpClientModule
    ],
-  providers: [BoardService, AuthenticationService, CardService, SwimLaneService],
+  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService],
 
   bootstrap: [AppComponent]
 })
