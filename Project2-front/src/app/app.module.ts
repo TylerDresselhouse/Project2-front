@@ -19,6 +19,7 @@ import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
 import { InviteComponent } from './components/invite/invite.component';
+import { InviteService } from './services/invite.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { InviteComponent } from './components/invite/invite.component';
     HttpModule,
     HttpClientModule
    ],
-  providers: [BoardService, AuthenticationService, CardService, SwimLaneService],
+  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, InviteService],
 
   bootstrap: [AppComponent]
 })

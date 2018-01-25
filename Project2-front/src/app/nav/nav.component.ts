@@ -9,11 +9,19 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class NavComponent implements OnInit {
 
-  isLoggedIn: boolean;
+  isLoggedIn: boolean = !localStorage.getItem('user') === null;
 
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+  }
+
+  changeToLoggedIn() {
+    this.isLoggedIn = true;
+  }
+
+  changeToLoggedOut() {
+    this.isLoggedIn = false;
   }
 
 }
