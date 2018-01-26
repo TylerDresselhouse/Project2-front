@@ -24,6 +24,8 @@ import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 import { NavbarService } from './services/navbar.service';
+import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { NavbarService } from './services/navbar.service';
     FormsModule,
     HttpModule,
     HttpClientModule,
+    NgbModule.forRoot(),
    ],
 
   providers: [
