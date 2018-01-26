@@ -7,6 +7,7 @@ import { Task } from '../models/task.model';
 import { Http, Response } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SwimLane } from '../models/swimlane.model';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,8 +16,6 @@ const httpOptions = {
 @Injectable()
 export class CardService {
 
-  private url = 'http://localhost:8080/api/v1/createCard/';
-
   constructor(private router: Router, private http: HttpClient) { }
 
   // getCards(): Card[] {
@@ -24,9 +23,10 @@ export class CardService {
   // }
 
   createCard(newCard) {
-    console.log(newCard.title + ' ' + newCard.difficulty + ' ' + newCard.description);
     const slid = 1350; // dummy swim lane id
-    return this.http.post(this.url + slid, newCard, httpOptions).subscribe(
+    const createCardUrl = environment.card.save(slid);
+    console.log(newCard.title + ' ' + newCard.difficulty + ' ' + newCard.description);
+    return this.http.post(createCardUrl, newCard, httpOptions).subscribe(
         success => console.log('Success!'),
         error => console.log('Failure!')
     );

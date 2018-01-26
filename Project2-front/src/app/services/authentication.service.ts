@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AlertService } from './alert.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { environment } from '../../environments/environment.prod';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
@@ -25,9 +26,6 @@ export class AuthenticationService {
     return this.loggedIn;
   } */
 
-  loginUrl = `http://localhost:8080/api/v1/login`;
-  registerUrl = `http://localhost:8080/api/v1/register`;
-
   public authenticatedUser: AsbUser;
 
   constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
@@ -39,7 +37,8 @@ export class AuthenticationService {
   }
 
   login(user) {
-    this.http.post<AsbUser>(this.loginUrl, user, httpOptions)
+    const loginUrl = environment.user.login();
+    this.http.post<AsbUser>(loginUrl, user, httpOptions)
       .subscribe(
         (data => this.authenticatedUser = data),
         (err => console.log('error: ', err)),
@@ -55,7 +54,8 @@ export class AuthenticationService {
   }
 
   register(user): boolean {
-      this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
+    const registerUrl = environment.user.register();
+      this.http.post<AsbUser>(registerUrl, user, httpOptions)
       .subscribe( newUser => { console.log(newUser);
         if (newUser) {
             this.alertService.success('Successfully registered');
