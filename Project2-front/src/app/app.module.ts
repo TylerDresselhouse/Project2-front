@@ -11,7 +11,7 @@ import { PrivateComponent } from './components/private/private.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { InviteComponent } from './components/invite/invite.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -46,7 +46,6 @@ import { AngularBasicModalModule } from 'angular-basic-modal';
     HttpClientModule,
     AngularBasicModalModule
    ],
- 
   providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
 
   bootstrap: [AppComponent]

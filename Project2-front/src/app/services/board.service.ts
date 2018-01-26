@@ -23,7 +23,7 @@ export class BoardService {
                 return data;
             },
             err => {
-                console.log('Error in getBoards in BoardService (This only executes when the first function is not successful')
+                console.log('Error in getBoards in BoardService (This only executes when the first function is not successful');
             }
         );
     }
