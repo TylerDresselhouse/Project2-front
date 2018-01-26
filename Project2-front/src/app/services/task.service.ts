@@ -21,18 +21,21 @@ headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 
 @Injectable()
 export class TaskService {
-    private taskUrl = 'api/tasks';
+
+    private taskUrl = 'http://localhost:8009/api/v1/get/tasks/';
   // this is a service-in-service where the hero service is ue=sing the message service
   constructor(private http: HttpClient) { }
 
 
   listOfTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.taskUrl, httpOptions);
+    const cId = 1150 // dummy code
+    return this.http.get<Task[]>(this.taskUrl + cId);
+
   }
 
 
     addTask (task: Task): Observable <Task> {
-        return this.http.post<Task>(this.taskUrl, task, httpOptions);
+        return this.http.post<Task>(this.taskUrl , task, httpOptions);
     }
 
   }

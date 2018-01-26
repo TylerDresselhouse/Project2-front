@@ -6,7 +6,8 @@ import { Task } from '../../models/task.model';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
+  providers: [TaskService]
 })
 export class TaskComponent implements OnInit {
 
@@ -19,7 +20,6 @@ tasks: Task[] = [];
   ngOnInit() {
     this.getTasks();
     this.task = new Task(0, null, false);
-    this.task.tDescription = 'Balls';
   }
 
   getTasks(): void {

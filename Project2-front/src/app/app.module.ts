@@ -11,7 +11,7 @@ import { PrivateComponent } from './components/private/private.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { InviteComponent } from './components/invite/invite.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -24,6 +24,7 @@ import { CardService } from './services/card.service';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 import { AngularBasicModalModule } from 'angular-basic-modal';
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AngularBasicModalModule } from 'angular-basic-modal';
     NavComponent,
     RegisterComponent,
     InviteComponent,
+    TaskComponent,
     AlertComponent
   ],
   imports: [
@@ -47,7 +49,7 @@ import { AngularBasicModalModule } from 'angular-basic-modal';
     AngularBasicModalModule
    ],
  
-  providers: [BoardService, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
+  providers: [BoardService,TaskComponent, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
 
   bootstrap: [AppComponent]
 })
