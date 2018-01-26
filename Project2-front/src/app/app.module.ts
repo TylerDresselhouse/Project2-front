@@ -15,18 +15,14 @@ import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { InviteComponent } from './components/invite/invite.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { InviteComponent } from './components/invite/invite.component';
 
 // Services
 import { BoardService } from './services/board.service';
 import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
-import { ReactiveFormsModule } from '@angular/forms';
-import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
-
 import { AngularBasicModalModule } from 'angular-basic-modal';
 
 @NgModule({
