@@ -5,6 +5,6 @@
       {{board.name}}
     </div>
   </div>
-  <input type="text" [(ngModel)]="newBoard.name">
-  <button type="button" class="btn btn-primary" (click)="createBoard()">New Board</button>
+  <input type="text" #title>
+  <button type="button" class="btn btn-primary" (click)="createBoard(title.value)">New Board</button>
 </div>
