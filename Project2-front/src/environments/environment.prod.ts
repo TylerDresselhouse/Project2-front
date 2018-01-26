@@ -4,20 +4,18 @@ export const environment = {
   context: context,
 
   board: {
-    fetchByBatchIdByWeek: (batchId: number, week: number) => `${context}trainer/assessment/${batchId}/${week}`,
+    save: (userId: number) => `${context}create/board/${userId}`,
 
-    save: (userId: number) => `${context}api/v1/create/board/${userId}`,
-
-    get: (userId: number) => `${context}api/v1/get/boards/${userId}`,
+    get: (userId: number) => `${context}get/boards/${userId}`,
   },
 
   user: {
-    login: () => `${context}api/v1/login`,
+    login: () => `${context}login`,
 
-    register: () => `${context}api/v1/register`,
+    register: () => `${context}register`
   },
 
   card: {
-    save: (swimLaneId: number) => `${context}api/v1/createCard/${swimLaneId}`,
+    save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`
   }
 };
