@@ -36,7 +36,7 @@ import { NavbarService } from './services/navbar.service';
     NavComponent,
     RegisterComponent,
     InviteComponent,
-    AlertComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
