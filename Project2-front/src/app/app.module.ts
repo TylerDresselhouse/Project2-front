@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularBasicModalModule } from 'angular-basic-modal';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +24,6 @@ import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 import { NavbarService } from './services/navbar.service';
-import { AngularBasicModalModule } from 'angular-basic-modal';
 
 @NgModule({
   declarations: [
@@ -39,7 +37,6 @@ import { AngularBasicModalModule } from 'angular-basic-modal';
     RegisterComponent,
     InviteComponent,
     AlertComponent,
-    ModalComponent
   ],
   imports: [
     BrowserModule,

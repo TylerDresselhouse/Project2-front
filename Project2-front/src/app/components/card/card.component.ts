@@ -3,8 +3,6 @@ import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { Task } from '../../models/task.model';
 
-import { ModalComponent } from '../../modal/modal.component';
-import { ModalService } from '../../services/modal.service';
 
 
 
@@ -13,7 +11,6 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
   providers: [CardService], // AngularBasicModalModule, ModalComponent
-  moduleId: module.id,
 })
 export class CardComponent implements OnInit {
 
@@ -27,7 +24,7 @@ export class CardComponent implements OnInit {
   private bodyText: string;
   @Input() card: Card;
 
-  constructor(private cardService: CardService, private modalService: ModalService) { } // private modal: ModalComponent
+  constructor(private cardService: CardService) { } // private modal: ModalComponent
 
   createCard() {
     this.cardService.createCard(this.card);
@@ -35,15 +32,15 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.card = new Card(0, 0, null, null, null);
-    this.bodyText = 'This text can be updated in modal 1';
+    // this.bodyText = 'This text can be updated in modal 1';
   }
 
-  openModal(id: string) {
-    this.modalService.open(id);
-}
+//   openModal(id: string) {
+//     this.modalService.open(id);
+// }
 
-closeModal(id: string) {
-    this.modalService.close(id);
-}
+// closeModal(id: string) {
+//     this.modalService.close(id);
+// }
 
 }
