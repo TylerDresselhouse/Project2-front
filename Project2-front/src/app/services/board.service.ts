@@ -12,25 +12,27 @@ const httpOptions = {
 
 @Injectable()
 export class BoardService {
-    private url = 'http://localhost:8080/api/v1/get/boards';
-    private newBoardsUrl = 'http://localhost:8080/api/v1/create/board';
+    private url = 'http://localhost:8080/api/v1/get/boards/';
+    private newBoardsUrl = 'http://localhost:8080/api/v1/create/board/';
 
     constructor(private http: HttpClient) { }
 
-    getBoards() {
-        return this.http.get<Board[]>(this.url).map(
+    getBoards(userId: number) {
+        return this.http.get<Board[]>(this.url.concat(userId.toString())).map(
             data => {
                 return data;
             },
             err => {
-                console.log('Error in getBoards in BoardService (This only executes when the first function is not successful')
+                console.log('Error in getBoards in BoardService (This only executes when the first function is not successful');
             }
         );
     }
 
-    createBoard(newBoard: Board) {
-        return this.http.post<Board>(this.newBoardsUrl, newBoard, httpOptions).subscribe(
-            data => console.log('successful return of data: ' + data),
+    createBoard(newBoard: Board, userId: number) {
+        return this.http.post<Board>(this.newBoardsUrl.concat(userId.toString()), newBoard, httpOptions).map(
+            data => {
+                return data;
+            },
             err => console.log('error caught:' + err)
         );
     }

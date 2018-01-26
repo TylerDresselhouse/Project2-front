@@ -13,7 +13,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'private', component: PrivateComponent },
-    { path: 'swim-lanes', component: SwimLanesComponent },
+    { path: 'swim-lanes/:id', component: SwimLanesComponent },
     { path: 'card', component: CardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},

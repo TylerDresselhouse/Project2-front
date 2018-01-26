@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from '../../services/authentication.service';
 import { NavbarService } from '../../services/navbar.service';
 
-
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -16,4 +15,5 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }

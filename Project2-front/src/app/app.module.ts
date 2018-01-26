@@ -25,6 +25,7 @@ import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 import { NavbarService } from './services/navbar.service';
+import { AngularBasicModalModule } from 'angular-basic-modal';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NavbarService } from './services/navbar.service';
     AlertService,
     InviteService,
     NavbarService],
+
 
   bootstrap: [AppComponent]
 })
