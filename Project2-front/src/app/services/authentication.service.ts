@@ -34,7 +34,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('user');
-    //this.appComponent.isLoggedIn = false;
+    // this.appComponent.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 
@@ -43,12 +43,13 @@ export class AuthenticationService {
       .subscribe(
         (data => this.authenticatedUser = data),
         (err => console.log('error: ', err)),
-        ( () => { if (this.authenticatedUser) {
-                    localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
-                    this.router.navigate(['home']);
-                    return true;
-                 } else { this.alertService.error('Invalid username/password');
-                          return false; }
+        ( () => {
+          if (this.authenticatedUser) {
+            localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
+            this.router.navigate(['home']);
+            return true;
+          } else { this.alertService.error('Invalid username/password');
+                  return false; }
         })
         );
   }
@@ -56,13 +57,17 @@ export class AuthenticationService {
   register(user): boolean {
       this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
       .subscribe( newUser => { console.log(newUser);
-                                if (newUser) {
-                                  this.alertService.success('Successfully registered');
-                                  return true;
-                                } else {
-                                  this.alertService.error('That username already exists');
-                                }
-                              }
+        if (newUser) {
+            this.alertService.success('Successfully registered');
+            // clear input fields in register template
+            user.firstName = '';
+            user.lastName = '';
+            user.username = '';
+            user.password = '';
+        } else {
+            this.alertService.error('That username already exists');
+        }
+      }
                 );
       return false;
   }
