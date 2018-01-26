@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularBasicModalModule } from 'angular-basic-modal';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
