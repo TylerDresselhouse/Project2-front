@@ -38,7 +38,8 @@ import { AngularBasicModalModule } from 'angular-basic-modal';
     NavComponent,
     RegisterComponent,
     InviteComponent,
-    AlertComponent
+    AlertComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,6 @@ import { AngularBasicModalModule } from 'angular-basic-modal';
     FormsModule,
     HttpModule,
     HttpClientModule,
-    AngularBasicModalModule
    ],
 
   providers: [
