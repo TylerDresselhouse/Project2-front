@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
   getBoards(): void {
      this.boardService.getBoards().subscribe(
        data => {this.boards = data; },
-       err => console.log('Error getting boards')
+       err => console.log('Error getting boards'),
+       () => localStorage.setItem('boards', JSON.stringify(this.boards))
      );
      console.log('component board: ' + this.boards);
   }

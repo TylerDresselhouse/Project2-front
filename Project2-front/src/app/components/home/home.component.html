@@ -1,6 +1,6 @@
 <h1>Welcome to home view!!!!</h1>
 <div class="BoardSelectorContainer">
-  <div *ngFor="let board of boards" class="BoardSelector">
+  <div *ngFor="let board of boards" class="BoardSelector" routerLink="/swim-lanes/{{board.id}}">
     <div>
       {{board.name}}
     </div>
