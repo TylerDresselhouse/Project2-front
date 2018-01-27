@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'card', component: CardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
-    { path: 'invite', component: InviteComponent},
+    { path: 'invite/:id', component: InviteComponent}
     { path: 'burndown', component: BurndownchartComponent}
 ];
 @NgModule({
