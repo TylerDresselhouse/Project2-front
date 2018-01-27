@@ -38,7 +38,7 @@ import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavComponent,
     RegisterComponent,
     InviteComponent,
-    AlertComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
