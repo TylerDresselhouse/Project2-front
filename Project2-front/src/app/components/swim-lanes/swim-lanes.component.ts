@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { SwimLaneService } from '../../services/swim-lane.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { SwimLane } from '../../models/swimlane.model';
+import { CardComponent } from '../card/card.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { ActivatedRoute } from '@angular/router';
 import { Board } from '../../models/board.model';
 
 @Component({
   selector: 'app-swim-lanes',
   templateUrl: './swim-lanes.component.html',
-  styleUrls: ['./swim-lanes.component.css']
+  styleUrls: ['./swim-lanes.component.css'],
+  providers: [NgbModal],
 })
 export class SwimLanesComponent implements OnInit {
 
@@ -16,7 +19,7 @@ export class SwimLanesComponent implements OnInit {
   newSwimLane: SwimLane;
   id;
   constructor(private swimLaneService: SwimLaneService,
-    private authService: AuthenticationService, private route: ActivatedRoute ) { }
+    private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal ) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
@@ -41,6 +44,15 @@ export class SwimLanesComponent implements OnInit {
 
   createSwimLane(): void {
     this.swimLaneService.createSwimLane(this.newSwimLane);
+  }
+
+  open() {
+    const modalRef = this.modalService.open(CardComponent);
+//    modalRef.componentInstance.title = this.user = JSON.parse(localStorage.getItem('user'));
+
+    modalRef.componentInstance.difficulty = 8;
+    modalRef.componentInstance.description = 'desc';
+
   }
 
 }
