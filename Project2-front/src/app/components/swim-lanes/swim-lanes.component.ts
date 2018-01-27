@@ -4,7 +4,8 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { SwimLane } from '../../models/swimlane.model';
 import { CardComponent } from '../card/card.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
-
+import { ActivatedRoute } from '@angular/router';
+import { Board } from '../../models/board.model';
 
 @Component({
   selector: 'app-swim-lanes',
@@ -14,22 +15,31 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 })
 export class SwimLanesComponent implements OnInit {
 
-  swimLanes = this.swimLaneService.getSwimLanes(0);
+  swimLanes: SwimLane[];
   newSwimLane: SwimLane;
-
-  constructor(private swimLaneService: SwimLaneService, private authService: AuthenticationService, private modalService: NgbModal) { }
+  id;
+  constructor(private swimLaneService: SwimLaneService,
+    private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal ) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
-    this.getSwimLanes(0);
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.swimLanes = this.getSwimLanes(0);
   }
 
-  getSwimLanes(lane: number): void {
-     this.swimLaneService.getSwimLanes(lane);
-/*    .subscribe((daswimlanes: SwimLane[]) => {
-      this.swimLanes = daswimlanes;
-      console.log(this.swimLanes);
-    }); */
+  getSwimLanes(lane: number): SwimLane[] {
+    // this.id = JSON.parse(localStorage.getItem('id'));
+    // return swimLanes;   // CHANGE THIS TO GET THE SWIMLANES OF THE BOARD PARAMETER
+    const boards: Board[] = JSON.parse(localStorage.getItem('boards'));
+    console.log(boards);
+    for (let i = 0; i < boards.length; i++) {
+        if (boards[i].id == this.id) {
+          console.log('SUCCESS ON ' + boards[i].id);
+            return boards[i].swimLanes;
+        } else {
+          console.log('BOARD ' + boards[i].id + ' DOES NOT MATCH ID: ' + this.id);
+        }
+    }
   }
 
   createSwimLane(): void {
