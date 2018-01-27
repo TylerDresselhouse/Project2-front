@@ -23,6 +23,7 @@ headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 export class TaskService {
 
     private taskUrl = 'http://localhost:8009/api/v1/get/tasks/';
+    private delTask = 'http://localhost:8009/api/v1/delete/task/';
   // this is a service-in-service where the hero service is ue=sing the message service
   constructor(private http: HttpClient) { }
 
@@ -33,9 +34,13 @@ export class TaskService {
 
   }
 
-
     addTask (task: Task): Observable <Task> {
         return this.http.post<Task>(this.taskUrl , task, httpOptions);
+    }
+
+    deleteSpecificTask(): Observable <Task>{
+      const tId = 1350;
+      return this.http.get<Task>(this.delTask + tId);
     }
 
   }

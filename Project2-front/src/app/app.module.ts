@@ -25,6 +25,11 @@ import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 import { AngularBasicModalModule } from 'angular-basic-modal';
 import { TaskComponent } from './components/task/task.component';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+
+
 
 @NgModule({
   declarations: [
@@ -39,6 +44,7 @@ import { TaskComponent } from './components/task/task.component';
     InviteComponent,
     TaskComponent,
     AlertComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,11 @@ import { TaskComponent } from './components/task/task.component';
     FormsModule,
     HttpModule,
     HttpClientModule,
-    AngularBasicModalModule
+    AngularBasicModalModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatListModule,
+    MatInputModule
    ],
  
   providers: [BoardService,TaskComponent, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
