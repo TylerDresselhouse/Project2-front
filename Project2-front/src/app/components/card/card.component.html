@@ -1,51 +1,31 @@
-<!-- <modal id="custom-modal-1">
-  <div class="modal">
-      <div class="modal-body">
-          <h1>A Custom Modal!</h1>
-          <p>
-              Home page text: <input type="text" [(ngModel)]="bodyText" />
-          </p>
-          <button (click)="closeModal('custom-modal-1');">Close</button>
-      </div>
-  </div>
-  <div class="modal-background"></div>
-</modal>
+<div class="modal-header">
+  <h4 class="modal-title"><input [(ngModel)]="card.title" id="title" type="text" placeholder="Title">
+  </h4>
+  Difficulty:
+  <input [(ngModel)]="card.difficulty" id="difficulty" type="number" min=1 max=10 placeholder=1>
+</div>
+<div class="modal-body">
 
-<div class="col-md-6 col-md-offset-3">
-  <h1>Home</h1>
-  <p>{{bodyText}}</p>
-  <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-  <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
-</div> -->
-
-
-
-<div card>
-  <div inner body>
-    <div>
-      <input [(ngModel)]="card.title" id="title" type="text" placeholder="Title">
-    </div>
-    <div>
-      <input [(ngModel)]="card.difficulty" id="difficulty" type="number" min=1 max=10 placeholder=1>
-    </div>
-    <br>
-    <br>
-    <div>
-      <input [(ngModel)]="card.description" id="description" type="text" placeholder="Description">
-    </div>
-      <ul *ngFor="let task of tasks">
-        <li >{{task.name}}</li>
-      </ul>
-
-    <!-- <div>
-    <input [(ngModel)]="task.description" id="task" type="task">
-    </div>  -->
-    <div>
       <div>
-      <button (click)="createCard()">Save</button> 
-      </div>
+        <input [(ngModel)]="card.description" id="description" type="text" placeholder="Description">
+      <!-- </div>
+        <ul *ngFor="let task of tasks">
+          <li >{{task.name}}</li>
+        </ul>
+  
+      <div>
+      <input [(ngModel)]="task.description" id="task" type="task">
+      </div>  -->
+
+      <!-- received variable -->
+
   </div>
 </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="createCard()">Save</button>
+</div>
+
+
 
 <!-- <div>
   List of Cards:
