@@ -6,6 +6,7 @@ import { CardComponent } from '../card/card.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { ActivatedRoute } from '@angular/router';
 import { Board } from '../../models/board.model';
+import { Card } from '../../models/card.model';
 
 @Component({
   selector: 'app-swim-lanes',
@@ -17,6 +18,7 @@ export class SwimLanesComponent implements OnInit {
 
   swimLanes: SwimLane[];
   newSwimLane: SwimLane;
+  card: Card;
   id;
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal ) { }
@@ -48,8 +50,8 @@ export class SwimLanesComponent implements OnInit {
 
   open() {
     const modalRef = this.modalService.open(CardComponent);
-//    modalRef.componentInstance.title = this.user = JSON.parse(localStorage.getItem('user'));
-
+    this.card = JSON.parse(localStorage.getItem('user'));
+   // modalRef.componentInstance.title = this.user = 
     modalRef.componentInstance.difficulty = 8;
     modalRef.componentInstance.description = 'desc';
 
