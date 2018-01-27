@@ -20,6 +20,7 @@ export class SwimLanesComponent implements OnInit {
   newSwimLane: SwimLane;
   card: Card;
   id;
+  
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal ) { }
 
