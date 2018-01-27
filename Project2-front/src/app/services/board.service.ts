@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,13 +13,13 @@ const httpOptions = {
 
 @Injectable()
 export class BoardService {
-    private url = 'http://localhost:8080/api/v1/get/boards/';
-    private newBoardsUrl = 'http://localhost:8080/api/v1/create/board/';
+    private newBoardsUrl = environment.board.save;
 
     constructor(private http: HttpClient) { }
 
     getBoards(userId: number) {
-        return this.http.get<Board[]>(this.url.concat(userId.toString())).map(
+        const getBoardsUrl = environment.board.get(userId);
+        return this.http.get<Board[]>(getBoardsUrl).map(
             data => {
                 return data;
             },
@@ -29,7 +30,8 @@ export class BoardService {
     }
 
     createBoard(newBoard: Board, userId: number) {
-        return this.http.post<Board>(this.newBoardsUrl.concat(userId.toString()), newBoard, httpOptions).map(
+        const saveBoardUrl = environment.board.save(userId);
+        return this.http.post<Board>(saveBoardUrl, newBoard, httpOptions).map(
             data => {
                 return data;
             },

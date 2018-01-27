@@ -3,27 +3,35 @@
 </div>
 
 <!-- <div>
-  <table>
-    <ng-container *ngFor="let swimLane of swimLanes">
-      <tr *ngFor="let card of swimLane">
-        
-          {{card}}
-        
-      </tr>
-    </ng-container>
-  </table>
-</div> -->
-<div>
   <table border="1px solid black">
     <th *ngFor="let swimLane of swimLanes">
-      {{swimLane.slId}}
+      {{swimLane.id}}
     </th>
     <tr>
       <td *ngFor="let swimLane of swimLanes">
-        {{swimLane.slName}}
+        {{swimLane.name}}
+      </td>
+    </tr>
+  </table>
+  <input type="text" ([ngModel])="newSwimLane.name">
+  <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
+</div> -->
+
+<div>
+  <table border="1px solid black" *ngFor="let swimLane of swimLanes">
+    <th>
+      {{swimLane.name}}
+    </th>
+    <tr *ngFor="let card of swimLane.cards">
+      <td>
+        {{card.title}}
       </td>
     </tr>
   </table>
   <input type="text" ([ngModel])="newSwimLane.name">
   <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
 </div>
+
+<!-- Modal test button -->
+<button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+
