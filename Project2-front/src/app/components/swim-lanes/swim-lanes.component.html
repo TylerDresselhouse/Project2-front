@@ -3,13 +3,13 @@
 </div>
 
 <!-- <div>
-  <table border="1px solid black">
-    <th *ngFor="let swimLane of swimLanes">
-      {{swimLane.id}}
+  <table border="1px solid black" *ngFor="let swimLane of swimLanes">
+    <th>
+      {{swimLane.name}}
     </th>
-    <tr>
-      <td *ngFor="let swimLane of swimLanes">
-        {{swimLane.name}}
+    <tr *ngFor="let card of swimLane.cards">
+      <td>
+        {{card.title}}
       </td>
     </tr>
   </table>
@@ -18,13 +18,19 @@
 </div> -->
 
 <div>
-  <table border="1px solid black" *ngFor="let swimLane of swimLanes">
-    <th>
-      {{swimLane.name}}
-    </th>
-    <tr *ngFor="let card of swimLane.cards">
-      <td>
-        <button class="btn btn-lg btn-outline-primary" (click)="open(card)">{{card.title}}</button>
+  <table class="table" border="1px solid black">
+    <tr>
+      <td *ngFor="let swimLane of swimLanes">
+        <table class="table-hover" border="1px solid black">
+          <th>
+            {{swimLane.name}}
+          </th>
+          <tr *ngFor="let card of swimLane.cards">
+            <td>
+              {{card.title}}
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>
@@ -34,4 +40,10 @@
 
 </div>
 
+<!-- Modal test button -->
+
+<button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+<br>
+<button class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
+<button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart Modal</button>
 
