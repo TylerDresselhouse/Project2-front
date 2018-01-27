@@ -24,6 +24,7 @@ export class TaskService {
 
     private taskUrl = 'http://localhost:8009/api/v1/get/tasks/';
     private delTask = 'http://localhost:8009/api/v1/delete/task/';
+    private creatTaskUrl = 'http://localhost:8009/api/v1/createTask/';
   // this is a service-in-service where the hero service is ue=sing the message service
   constructor(private http: HttpClient) { }
 
@@ -34,8 +35,8 @@ export class TaskService {
 
   }
 
-    addTask (task: Task): Observable <Task> {
-        return this.http.post<Task>(this.taskUrl , task, httpOptions);
+    addNewTask (task: Task): Observable <Task> {
+        return this.http.post<Task>(this.creatTaskUrl , task, httpOptions);
     }
 
     deleteSpecificTask(): Observable <Task>{

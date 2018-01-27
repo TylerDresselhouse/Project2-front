@@ -30,6 +30,7 @@ tasks: Task[] = [];
 addTask(tDesc: string): void {
   this.task.description = tDesc;
  console.log(this.task);
+ this.taskService.addNewTask(this.task);
   this.tasks.push(this.task);
 this.task = new Task(0, null, null);
 
