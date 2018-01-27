@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { ActivatedRoute } from '@angular/router';
 import { Board } from '../../models/board.model';
 import { Card } from '../../models/card.model';
+import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
 
 @Component({
   selector: 'app-swim-lanes',
@@ -48,6 +49,10 @@ export class SwimLanesComponent implements OnInit {
 
   createSwimLane(): void {
     this.swimLaneService.createSwimLane(this.newSwimLane);
+  }
+  
+  openBurnDown() {
+    const modalRef2 = this.modalService.open(BurndownchartComponent);
   }
 
   open(card: Card) {

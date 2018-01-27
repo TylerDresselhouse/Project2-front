@@ -24,7 +24,8 @@ import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
 import { NavbarService } from './services/navbar.service';
-import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 
 
 @NgModule({
@@ -33,12 +34,13 @@ import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     PrivateComponent,
     SwimLanesComponent,
+    BurndownchartComponent,
     CardComponent,
     HomeComponent,
     NavComponent,
     RegisterComponent,
     InviteComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HttpModule,
     HttpClientModule,
     NgbModule.forRoot(),
-   ],
+  ],
 
   providers: [
     BoardService,
@@ -59,7 +61,10 @@ import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavbarService,
     NgbActiveModal],
 
-
+  entryComponents: [
+    CardComponent,
+    BurndownchartComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
