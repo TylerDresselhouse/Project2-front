@@ -13,7 +13,7 @@ import { BurndownchartComponent } from '../burndownchart/burndownchart.component
   selector: 'app-swim-lanes',
   templateUrl: './swim-lanes.component.html',
   styleUrls: ['./swim-lanes.component.css'],
-  providers: [NgbModal],
+  providers: [NgbModal, CardComponent],
 })
 export class SwimLanesComponent implements OnInit {
 
@@ -23,7 +23,8 @@ export class SwimLanesComponent implements OnInit {
   id;
 
   constructor(private swimLaneService: SwimLaneService,
-    private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal ) { }
+    private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
+    private cardComponent: CardComponent ) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
@@ -49,20 +50,16 @@ export class SwimLanesComponent implements OnInit {
   createSwimLane(): void {
     this.swimLaneService.createSwimLane(this.newSwimLane);
   }
-
+  
   openBurnDown() {
     const modalRef2 = this.modalService.open(BurndownchartComponent);
   }
 
-  open() {
+  open(card: Card) {
     const modalRef = this.modalService.open(CardComponent);
-    this.card = JSON.parse(localStorage.getItem('user'));
-   // modalRef.componentInstance.title = this.user = 
-    modalRef.componentInstance.difficulty = 8;
-    modalRef.componentInstance.description = 'desc';
-
+    modalRef.componentInstance.title = card.title;
+    modalRef.componentInstance.difficulty = card.difficulty;
+    modalRef.componentInstance.description = card.description;
   }
-
-
 
 }

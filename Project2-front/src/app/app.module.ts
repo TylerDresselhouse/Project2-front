@@ -58,7 +58,8 @@ import { BurndownchartComponent } from './components/burndownchart/burndownchart
     SwimLaneService,
     AlertService,
     InviteService,
-    NavbarService],
+    NavbarService,
+    NgbActiveModal],
 
   entryComponents: [
     CardComponent,
