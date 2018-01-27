@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Burndown Chart
+  </h4>
+  <div *ngIf="initialQuestion">
+    How many days is your sprint?
+    <input type="number" #rows/>
+    <button type="button" value="Add table" (click)="openChart(rows.value)">Generate Table</button>
+
+  </div>
+  <div *ngIf="!initialQuestion">Enter the values completed on the days they where completed below</div>
+</div>
+<div class="modal-body">
+  <div *ngIf="!initialQuestion">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Sun</th>
+          <th scope="col">Mon</th>
+          <th scope="col">Tues</th>
+          <th scope="col">Wend</th>
+          <th scope="col">Thur</th>
+          <th scope="col">Fri</th>
+          <th scope="col">Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of weeks; let i = index">
+          <td>#{{i}}</td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].sunday" />
+          </td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].monday" />
+          </td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].tuesday" />
+          </td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].wendesday" />
+          </td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].thursday" />
+          </td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].friday" />
+          </td>
+          <td>
+            <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].saturday" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" value="Add table" (click)="generateBurnDown()">Generate BurnDown Chart</button>
+  </div>
+</div>
+<div class="modal-footer">
+</div>
