@@ -24,14 +24,14 @@
     </th>
     <tr *ngFor="let card of swimLane.cards">
       <td>
-        {{card.title}}
+        <button class="btn btn-lg btn-outline-primary" (click)="open(card)">{{card.title}}</button>
       </td>
     </tr>
   </table>
   <input type="text" ([ngModel])="newSwimLane.name">
   <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
+  <button class="btn btn-lg btn-outline-primary" (click)="open(card)">New Card</button>
+
 </div>
 
-<!-- Modal test button -->
-<button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
 

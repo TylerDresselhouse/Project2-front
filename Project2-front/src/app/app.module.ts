@@ -56,7 +56,8 @@ import {NgbModal, NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     SwimLaneService,
     AlertService,
     InviteService,
-    NavbarService],
+    NavbarService,
+    NgbActiveModal],
 
 
   bootstrap: [AppComponent]
