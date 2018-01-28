@@ -6,9 +6,12 @@
     How many days is your sprint?
     <input type="number" #rows/>
     <button type="button" value="Add table" (click)="openChart(rows.value)">Generate Table</button>
-
+    <div>{{moduleAlertMsg}}</div>
   </div>
-  <div *ngIf="!initialQuestion">Enter the values completed on the days they where completed below</div>
+  <div *ngIf="!initialQuestion">Enter the values completed on the days they where completed below
+    <div>Board Total difficulty is: {{totalDifficulty}}
+    </div>
+  </div>
 </div>
 <div class="modal-body">
   <div *ngIf="!initialQuestion">
@@ -27,7 +30,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let week of weeks; let i = index">
-          <td>#{{i}}</td>
+          <td>#{{i + 1}}</td>
           <td>
             <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].sunday" />
           </td>
@@ -56,4 +59,5 @@
   </div>
 </div>
 <div class="modal-footer">
+  <canvas id="canvas">{{ lineChart }}</canvas>
 </div>
