@@ -8,10 +8,13 @@
 
       <div>
         <input value={{description}} id="description" type="text" placeholder="Description">
-      
-
-  </div>
+      </div>
+      <div hidden>
+          <input value={{id}} id="id" type="text">
+          <input value={{slid}} id="slid" type="text">
+      </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="createCard()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="deleteCard()">Delete</button>
 </div>
