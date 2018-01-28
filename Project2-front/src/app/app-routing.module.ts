@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { InviteComponent } from './components/invite/invite.component';
 import { TaskComponent } from './components/task/task.component';
+import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -18,8 +19,10 @@ export const routes: Routes = [
     { path: 'card', component: CardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
-    { path: 'invite', component: InviteComponent},
     { path: 'task', component: TaskComponent }
+    { path: 'invite/:id', component: InviteComponent},
+    { path: 'burndown', component: BurndownchartComponent}
+
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

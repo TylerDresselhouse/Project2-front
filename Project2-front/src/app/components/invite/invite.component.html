@@ -1,3 +1,17 @@
-<input type="text" ([ngModel])="newUser.username">
-<input type="number" ([ngModel])="board.id">
-<button type="button" class="btn btn-primary" (click)="inviteUser()">Invite</button>
+<h2>Invite Members to Board #{{boardId}}</h2>
+<div *ngIf="!userFound">
+<h4>Search by username</h4>
+<input #username type="text">
+<button type="button" class="btn btn-primary" (click)="searchUser(username.value)">Search</button>
+</div>
+<div *ngIf="userFound">
+    <h4>Choose User Permissions for {{invitedUser.username}}</h4>
+    <input #createC type="checkbox">Create Cards<br>
+    <input #moveC type="checkbox" >Move Cards<br>
+    <input #editC type="checkbox">Edit Cards<br>
+    <input #inviteU type="checkbox" >Invite Users<br>
+    <input #createS type="checkbox" >Create Swimlanes<br>
+    <button type="button" class="btn btn-primary" 
+        (click)="inviteUser(createC.checked,moveC.checked,
+            editC.checked,inviteU.checked,createS.checked)">Invite</button>
+</div>
