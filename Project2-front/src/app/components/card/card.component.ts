@@ -33,13 +33,13 @@ export class CardComponent implements OnInit {
     }
 
     deleteCard() {
-      const cardId = +(<HTMLInputElement>document.getElementById('id')).value;
+      this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
       this.activeModal.close('Close click');
-      this.cardService.deleteCard(cardId);
+      this.cardService.deleteCard(this.card);
     }
 
     ngOnInit() {
-      this.card = new Card(0, 0, null, null, null);
+      this.card = new Card(0, 0, null, null, null, 0);
     }
 
 }
