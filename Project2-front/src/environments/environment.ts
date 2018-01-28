@@ -25,5 +25,9 @@ export const environment = {
 
   card: {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`
+  },
+
+  boardMembers: {
+    get: (boardId: number) => `${context}get/users/${boardId}`
   }
 };

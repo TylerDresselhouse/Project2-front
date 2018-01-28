@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.authService.checkCredentials();
     this.navService.show();
+    this.navService.hideBoardMembers();
+    this.navService.hideBurndown();
     this.newBoard = new Board(0, null);
     this.getBoards();
   }
