@@ -1,3 +1,52 @@
-input[type=checkbox]:checked + label.strikethrough{
+/* .check[type=checkbox]:checked + label.strikethrough{
     text-decoration: line-through;
+} */
+
+.strikethrough:checked + td + span{
+    text-decoration:line-through
+  }
+
+
+
+
+/* #myselectform{
+    width:50px;
 }
+
+
+.mat-list-option {
+    height: 28px ;
+    /* width: 300px; */
+    /* padding: 1opx;
+    
+	line-height: 15px ;
+	font-size: 16px ;
+}
+
+.mat-selection-list {
+    line-height: 15px ;
+    width: 400px;
+}
+
+.mat-list:hover { 
+    background-color: #EEEEEE;
+}
+
+#btnTask{
+    height: 28px ;
+    width: 30px;
+}
+
+.mat-button {
+    width: 50px;
+    
+}
+
+
+
+.mat-list-option.mat-button {
+    height: 10px ;
+    width: 30px;
+   padding: 20px;
+    
+} */ 

@@ -24,10 +24,15 @@ import { CardService } from './services/card.service';
 import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
+import { TaskComponent } from './components/task/task.component';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
 import { NavbarService } from './services/navbar.service';
 import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 import { ChartModule } from 'primeng/chart';
+import { BoardMembersComponent } from './components/board-members/board-members.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,9 @@ import { ChartModule } from 'primeng/chart';
     NavComponent,
     RegisterComponent,
     InviteComponent,
-    AlertComponent,
+    BoardMembersComponent,
+    TaskComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +57,12 @@ import { ChartModule } from 'primeng/chart';
     HttpModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    ChartModule
-  ],
+    ChartModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatListModule,
+    MatInputModule
+   ],
 
   providers: [
     BoardService,
@@ -60,11 +71,14 @@ import { ChartModule } from 'primeng/chart';
     SwimLaneService,
     AlertService,
     InviteService,
-    NavbarService],
-
+    NavbarService,
+    NgbActiveModal,
+    TaskComponent],
+  
   entryComponents: [
     CardComponent,
-    BurndownchartComponent
+    BurndownchartComponent,
+    BoardMembersComponent
   ],
   bootstrap: [AppComponent]
 })

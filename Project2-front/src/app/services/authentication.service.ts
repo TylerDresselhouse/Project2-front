@@ -75,7 +75,6 @@ export class AuthenticationService {
    checkCredentials() {
 
     if (localStorage.getItem('user') === null) {
-      //this.appComponent.isLoggedIn = false;
       this.router.navigate(['login']);
     }
 

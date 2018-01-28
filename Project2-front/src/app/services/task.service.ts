@@ -21,18 +21,49 @@ headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 
 @Injectable()
 export class TaskService {
-    private taskUrl = 'api/tasks';
+
+    private taskUrl = 'http://localhost:8009/api/v1/get/tasks/';
+    private delTask = 'http://localhost:8009/api/v1/delete/task/';
+    private creatTaskUrl = 'http://localhost:8009/api/v1/createTask/';
+    private checkedUrl = 'http://localhost:8009/api/v1/checkTask/'
   // this is a service-in-service where the hero service is ue=sing the message service
   constructor(private http: HttpClient) { }
 
 
   listOfTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.taskUrl, httpOptions);
+    const cId = 1150 // dummy code
+    return this.http.get<Task[]>(this.taskUrl + cId);
+
   }
 
+    addNewTask (task: Task): Observable <Task> {
+      const cId = 1150 
+        return this.http.post<Task>(this.creatTaskUrl + cId, task, httpOptions).map(
+          data => {
+            return data;
+        },
+        err => console.log('error caught:' + err));
+    }
 
-    addTask (task: Task): Observable <Task> {
-        return this.http.post<Task>(this.taskUrl, task, httpOptions);
+    deleteSpecificTask(task: Task): Observable <Task>{
+      console.log(task);
+      return this.http.post<Task>(this.delTask , task, httpOptions ).map(
+        
+        data => {
+          return data;
+      },
+      err => console.log('error caught:' + err));
+     
+    }
+
+    completedTask( task: Task):  Observable <Task> {
+      return this.http.post<Task>(this.checkedUrl , task, httpOptions ).map(
+        
+        data => {
+          return data;
+      },
+      err => console.log('error caught:' + err));
+     
     }
 
   }

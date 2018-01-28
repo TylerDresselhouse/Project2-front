@@ -3,21 +3,6 @@
 </div>
 
 <!-- <div>
-  <table border="1px solid black">
-    <th *ngFor="let swimLane of swimLanes">
-      {{swimLane.id}}
-    </th>
-    <tr>
-      <td *ngFor="let swimLane of swimLanes">
-        {{swimLane.name}}
-      </td>
-    </tr>
-  </table>
-  <input type="text" ([ngModel])="newSwimLane.name">
-  <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
-</div> -->
-
-<div>
   <table border="1px solid black" *ngFor="let swimLane of swimLanes">
     <th>
       {{swimLane.name}}
@@ -30,9 +15,40 @@
   </table>
   <input type="text" ([ngModel])="newSwimLane.name">
   <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
+</div> -->
+
+<div>
+  <table class="table" border="1px solid black">
+    <tr>
+      <td *ngFor="let swimLane of swimLanes">
+          <div hidden>
+            <input value={{swimLane.id}} id={{swimLane.name}} type="text">
+          </div>
+        <table class="table-hover" border="1px solid black">
+          <th>
+            {{swimLane.name}}
+          </th>
+          <tr *ngFor="let card of swimLane.cards">
+            <td>
+              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
+            </td>
+          </tr>
+          <tr>
+            <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <input type="text" ([ngModel])="newSwimLane.name">
+  <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
+
 </div>
 
 <!-- Modal test button -->
+
 <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+<br>
+<button class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
 <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart Modal</button>
 

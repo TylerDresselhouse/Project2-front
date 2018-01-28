@@ -3,6 +3,8 @@ import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { Task } from '../../models/task.model';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { parse } from 'url';
 
 
 @Component({
@@ -11,29 +13,33 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./card.component.css'],
   providers: [CardService],
 })
+
 export class CardComponent implements OnInit {
 
-  // cards: Card[] = [
-  //   { id: 1, difficulty: 1, title: 'Card 1', description: 'very easy card', tasks: null },
-  //   { id: 2, difficulty: 3, title: 'Card 2', description: 'easy card', tasks: null },
-  //   { id: 3, difficulty: 6, title: 'Card 3', description: 'kinda hard card', tasks: null },
-  //   { id: 4, difficulty: 10, title: 'Card 4', description: 'very hard card', tasks: null },
-  // ];
-
-  @Input() card: Card;
-  @Input() name;
+  card: Card;
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService) {}
 
-
     createCard() {
+      this.card.title = (<HTMLInputElement>document.getElementById('title')).value;
+      this.card.difficulty = +(<HTMLInputElement>document.getElementById('difficulty')).value;
+      this.card.description = (<HTMLInputElement>document.getElementById('description')).value;
+      this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
+      const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
       this.activeModal.close('Close click');
-      this.cardService.createCard(this.card);
+      console.log('card id in card component: ' + this.card.id);
+      console.log('slid in card component: ' + slid);
+      this.cardService.createCard(this.card, slid);
+    }
+
+    deleteCard() {
+      const cardId = +(<HTMLInputElement>document.getElementById('id')).value;
+      this.activeModal.close('Close click');
+      this.cardService.deleteCard(cardId);
     }
 
     ngOnInit() {
       this.card = new Card(0, 0, null, null, null);
     }
-
 
 }
