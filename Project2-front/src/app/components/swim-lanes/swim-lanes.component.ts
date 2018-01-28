@@ -9,19 +9,23 @@ import { Board } from '../../models/board.model';
 import { Card } from '../../models/card.model';
 import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
 import { NavbarService } from '../../services/navbar.service';
+import { TaskComponent } from '../task/task.component';
+import { CardService } from '../../services/card.service';
 
 @Component({
   selector: 'app-swim-lanes',
   templateUrl: './swim-lanes.component.html',
   styleUrls: ['./swim-lanes.component.css'],
-  providers: [NgbModal, CardComponent],
+  providers: [NgbModal, CardComponent, TaskComponent, CardService],
 })
 export class SwimLanesComponent implements OnInit {
 
   swimLanes: SwimLane[];
   newSwimLane: SwimLane;
   card: Card;
+  cardService: CardService;
   swimLane: SwimLane;
+  taskComponent: TaskComponent;
   id;
 
   constructor(private swimLaneService: SwimLaneService,
@@ -71,6 +75,9 @@ export class SwimLanesComponent implements OnInit {
     modalRef.componentInstance.id = card.id;
     modalRef.componentInstance.order = card.order;
     modalRef.componentInstance.slid = slid;
+    const cardId = card.id;
+    localStorage.setItem('currCardId', String(cardId));
+
   }
 
   delete(swimlane: SwimLane) {

@@ -21,12 +21,13 @@
   <table class="table" border="1px solid black">
     <tr>
       <td *ngFor="let swimLane of swimLanes">
-          <div hidden>
-            <input value={{swimLane.id}} id={{swimLane.name}} type="text">
-          </div>
+        <div hidden>
+          <input value={{swimLane.id}} id={{swimLane.name}} type="text">
+        </div>
         <table class="table-hover" border="1px solid black">
           <th>
-            {{swimLane.name}} <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button>
+            {{swimLane.name}}
+            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button>
           </th>
           <tr *ngFor="let card of swimLane.cards">
             <td>
@@ -34,7 +35,9 @@
             </td>
           </tr>
           <tr>
-            <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
+            <td>
+              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
+            </td>
           </tr>
         </table>
       </td>
@@ -51,4 +54,3 @@
 <br>
 <button class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
 <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart Modal</button>
-
