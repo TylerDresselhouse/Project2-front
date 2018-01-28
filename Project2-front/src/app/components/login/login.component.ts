@@ -7,8 +7,7 @@ import { NavbarService } from '../../services/navbar.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [ AuthenticationService ]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -32,8 +31,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.navService.hide();
+    this.navService.hideBoardMembers();
+    this.navService.hideBurndown();
     localStorage.removeItem('user');
     localStorage.removeItem('boards');
+    localStorage.removeItem('currBoardId');
     this.user = new AsbUser(null, null, null, null, null);
   }
 

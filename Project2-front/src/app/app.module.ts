@@ -28,7 +28,9 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import { NavbarService } from './services/navbar.service';
-
+import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
+import { BoardMembersComponent } from './components/board-members/board-members.component';
 
 
 @NgModule({
@@ -37,14 +39,15 @@ import { NavbarService } from './services/navbar.service';
     LoginComponent,
     PrivateComponent,
     SwimLanesComponent,
+    BurndownchartComponent,
     CardComponent,
     HomeComponent,
     NavComponent,
     RegisterComponent,
     InviteComponent,
+    BoardMembersComponent,
     TaskComponent,
     AlertComponent
-    
   ],
   imports: [
     BrowserModule,
@@ -52,14 +55,29 @@ import { NavbarService } from './services/navbar.service';
     FormsModule,
     HttpModule,
     HttpClientModule,
+    NgbModule.forRoot(),
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
     MatInputModule
    ],
- 
-  providers: [BoardService,TaskComponent, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService,NavbarService],
 
+  providers: [
+    BoardService,
+    AuthenticationService,
+    CardService,
+    SwimLaneService,
+    AlertService,
+    InviteService,
+    NavbarService,
+    NgbActiveModal,
+    TaskComponent],
+  
+  entryComponents: [
+    CardComponent,
+    BurndownchartComponent,
+    BoardMembersComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

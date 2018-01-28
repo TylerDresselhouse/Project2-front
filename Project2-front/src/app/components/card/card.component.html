@@ -1,56 +1,20 @@
 <div class="modal-header">
-  <h4 class="modal-title"><input [(ngModel)]="card.title" id="title" type="text" placeholder="Title">
+  <h4 class="modal-title"><input value={{title}} id="title" type="text" placeholder="Title">
   </h4>
   Difficulty:
-  <input [(ngModel)]="card.difficulty" id="difficulty" type="number" min=1 max=10 placeholder=1>
+  <input value={{difficulty}} id="difficulty" type="number" min=1 max=10 placeholder=1>
 </div>
 <div class="modal-body">
 
       <div>
-        <input [(ngModel)]="card.description" id="description" type="text" placeholder="Description">
-      <!-- </div>
-        <ul *ngFor="let task of tasks">
-          <li >{{task.name}}</li>
-        </ul>
-  
-      <div>
-      <input [(ngModel)]="task.description" id="task" type="task">
-      </div>  -->
-
-      <!-- received variable -->
-
-  </div>
+        <input value={{description}} id="description" type="text" placeholder="Description">
+      </div>
+      <div hidden>
+          <input value={{id}} id="id" type="text">
+          <input value={{slid}} id="slid" type="text">
+      </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="createCard()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="deleteCard()">Delete</button>
 </div>
-
-
-
-<!-- <div>
-  List of Cards:
-</div> -->
-
-<!-- <div>
-  <table>
-    <ng-container *ngFor="let swimLane of swimLanes">
-      <tr *ngFor="let card of swimLane">
-        
-          {{card}}
-        
-      </tr>
-    </ng-container>
-  </table>
-</div> -->
-<!-- <div>
-  <table border="1px solid black">
-    <th *ngFor="let card of cards">
-      {{swimLane.slId}}
-    </th>
-    <tr>
-      <td *ngFor="let card of cards">
-        {{card.cTitle}}
-      </td>
-    </tr>
-  </table>
-</div> -->
