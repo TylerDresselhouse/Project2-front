@@ -63,14 +63,18 @@ export class SwimLanesComponent implements OnInit {
   open(card: Card, slid) {
     const modalRef = this.modalService.open(CardComponent);
     if (!card) {
-      card = new Card(0, 0, null, null, null);
+      card = new Card(0, 0, null, null, null, 0);
     }
     modalRef.componentInstance.title = card.title;
     modalRef.componentInstance.difficulty = card.difficulty;
     modalRef.componentInstance.description = card.description;
     modalRef.componentInstance.id = card.id;
+    modalRef.componentInstance.order = card.order;
     modalRef.componentInstance.slid = slid;
-    console.log('slid in swim-lane component: ' + slid);
+  }
+
+  delete(swimlane: SwimLane) {
+    console.log('An attempt to delete ' + swimlane.slName + ' has been made');
   }
 
 }
