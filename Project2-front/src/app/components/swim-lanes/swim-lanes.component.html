@@ -21,14 +21,20 @@
   <table class="table" border="1px solid black">
     <tr>
       <td *ngFor="let swimLane of swimLanes">
+          <div hidden>
+            <input value={{swimLane.id}} id={{swimLane.name}} type="text">
+          </div>
         <table class="table-hover" border="1px solid black">
           <th>
             {{swimLane.name}}
           </th>
           <tr *ngFor="let card of swimLane.cards">
             <td>
-              {{card.title}}
+              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
             </td>
+          </tr>
+          <tr>
+            <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
           </tr>
         </table>
       </td>
@@ -36,7 +42,6 @@
   </table>
   <input type="text" ([ngModel])="newSwimLane.name">
   <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
-
 
 </div>
 

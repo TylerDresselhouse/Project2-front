@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Board } from '../../models/board.model';
 import { Card } from '../../models/card.model';
 import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-swim-lanes',
@@ -20,16 +21,20 @@ export class SwimLanesComponent implements OnInit {
   swimLanes: SwimLane[];
   newSwimLane: SwimLane;
   card: Card;
+  swimLane: SwimLane;
   id;
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
-    private cardComponent: CardComponent ) { }
+    private cardComponent: CardComponent, private navService: NavbarService ) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
     this.id = this.route.snapshot.paramMap.get('id');
+    localStorage.setItem('currBoardId', this.id);
     this.swimLanes = this.getSwimLanes(0);
+    this.navService.showBoardMembers();
+    this.navService.showBurndown();
   }
 
   getSwimLanes(lane: number): SwimLane[] {
@@ -50,16 +55,22 @@ export class SwimLanesComponent implements OnInit {
   createSwimLane(): void {
     this.swimLaneService.createSwimLane(this.newSwimLane);
   }
-  
+
   openBurnDown() {
     const modalRef2 = this.modalService.open(BurndownchartComponent);
   }
 
-  open(card: Card) {
+  open(card: Card, slid) {
     const modalRef = this.modalService.open(CardComponent);
+    if (!card) {
+      card = new Card(0, 0, null, null, null);
+    }
     modalRef.componentInstance.title = card.title;
     modalRef.componentInstance.difficulty = card.difficulty;
     modalRef.componentInstance.description = card.description;
+    modalRef.componentInstance.id = card.id;
+    modalRef.componentInstance.slid = slid;
+    console.log('slid in swim-lane component: ' + slid);
   }
 
 }
