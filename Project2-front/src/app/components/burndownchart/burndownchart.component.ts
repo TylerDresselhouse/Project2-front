@@ -12,8 +12,8 @@ export class BurndownchartComponent implements OnInit {
   totalDifficulty: number;
   differenceDifficulty: number;
   lineChart = [];
-  xAxis: number[];
-  yAxis: number[];
+  xAxis = [];
+  yAxis = [];
   context: any;
   initialQuestion = true;
   showBurnDown = false;
@@ -24,7 +24,7 @@ export class BurndownchartComponent implements OnInit {
 
   ngOnInit() {
     this.context = this.elementRef.nativeElement.querySelector(`#canvas`);
-    this.totalDifficulty = 200;
+    this.totalDifficulty = 220;
   }
 
   openChart(weeks: number) {
@@ -41,23 +41,42 @@ export class BurndownchartComponent implements OnInit {
   }
 
   generateBurnDown() {
-    let i = 0;
-    while (i < this.weeks.length) {
-
-      i++;
-    }
+    this.differenceDifficulty = this.totalDifficulty;
+    this.weeks.forEach(week => {
+      this.differenceDifficulty = this.differenceDifficulty - week.sunday;
+      this.xAxis.push('Sun');
+      this.yAxis.push(this.differenceDifficulty);
+      this.differenceDifficulty = this.differenceDifficulty -  week.monday;
+      this.xAxis.push('Mon');
+      this.yAxis.push(this.differenceDifficulty);
+      this.differenceDifficulty = this.differenceDifficulty -  week.tuesday;
+      this.xAxis.push('Tues');
+      this.yAxis.push(this.differenceDifficulty);
+      this.differenceDifficulty = this.differenceDifficulty -  week.wendesday;
+      this.xAxis.push('Wend');
+      this.yAxis.push(this.differenceDifficulty);
+      this.differenceDifficulty = this.differenceDifficulty -  week.thursday;
+      this.xAxis.push('Thurs');
+      this.yAxis.push(this.differenceDifficulty);
+      this.differenceDifficulty = this.differenceDifficulty -  week.friday;
+      this.xAxis.push('Fri');
+      this.yAxis.push(this.differenceDifficulty);
+      this.differenceDifficulty = this.differenceDifficulty -  week.saturday;
+      this.xAxis.push('Sat');
+      this.yAxis.push(this.differenceDifficulty);
+    });
     this.lineChart = new Chart(this.context, {
       type: 'line',
       data: {
-        labels: ['dunno1', 'dunno2'],
+        labels: this.xAxis,
         datasets: [
           {
-            data: [3, 30],
+            data: this.xAxis,
             borderColor: '#3cba9f',
             fill: false
           },
           {
-            data: [3, 30],
+            data: this.yAxis,
             borderColor: '#ffcc00',
             fill: false
           },
