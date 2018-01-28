@@ -1,29 +1,31 @@
-<div card>
-  <div inner body>
-    <div>
-      <input [(ngModel)]="card.title" id="title" type="text" placeholder="Title">
-    </div>
-    <div>
-      <input [(ngModel)]="card.difficulty" id="difficulty" type="number" min=1 max=10 placeholder=1>
-    </div>
-    <br>
-    <br>
-    <div>
-      <input [(ngModel)]="card.description" id="description" type="text" placeholder="Description">
-    </div>
-      <ul *ngFor="let task of tasks">
-        <li >{{task.name}}</li>
-      </ul>
+<div class="modal-header">
+  <h4 class="modal-title"><input [(ngModel)]="card.title" id="title" type="text" placeholder="Title">
+  </h4>
+  Difficulty:
+  <input [(ngModel)]="card.difficulty" id="difficulty" type="number" min=1 max=10 placeholder=1>
+</div>
+<div class="modal-body">
 
-    <div>
-    <input [(ngModel)]="task.description" id="task" type="task">
-    </div> 
-    <div>
       <div>
-      <button (click)="createCard()">Save</button> 
-      </div>
+        <input [(ngModel)]="card.description" id="description" type="text" placeholder="Description">
+      <!-- </div>
+        <ul *ngFor="let task of tasks">
+          <li >{{task.name}}</li>
+        </ul>
+  
+      <div>
+      <input [(ngModel)]="task.description" id="task" type="task">
+      </div>  -->
+
+      <!-- received variable -->
+
   </div>
 </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="createCard()">Save</button>
+</div>
+
+
 
 <!-- <div>
   List of Cards:

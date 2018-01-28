@@ -13,7 +13,6 @@ import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
-import { InviteComponent } from './components/invite/invite.component';
 import { AlertComponent } from './components/alert/alert.component';
 
 // Services
@@ -21,13 +20,14 @@ import { BoardService } from './services/board.service';
 import { SwimLaneService } from './services/swim-lane.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CardService } from './services/card.service';
+import { InviteComponent } from './components/invite/invite.component';
 import { InviteService } from './services/invite.service';
 import { AlertService } from './services/alert.service';
-import { AngularBasicModalModule } from 'angular-basic-modal';
 import { TaskComponent } from './components/task/task.component';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
+import { NavbarService } from './services/navbar.service';
 
 
 
@@ -52,14 +52,13 @@ import {MatInputModule} from '@angular/material/input';
     FormsModule,
     HttpModule,
     HttpClientModule,
-    AngularBasicModalModule,
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
     MatInputModule
    ],
  
-  providers: [BoardService,TaskComponent, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService],
+  providers: [BoardService,TaskComponent, AuthenticationService, CardService, SwimLaneService, AlertService, InviteService,NavbarService],
 
   bootstrap: [AppComponent]
 })

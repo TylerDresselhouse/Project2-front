@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
       this.alertService.warn('Please enter a password');
       return;
     } else {
-      if ( this.authService.register(this.user) ) {
+      if ( this.authService.register(this.user) === true) {
         // if successful clear input fields
         this.user.firstName = '';
         this.user.lastName = '';

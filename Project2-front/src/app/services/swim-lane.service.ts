@@ -20,14 +20,24 @@ const httpOptions = {
 @Injectable()
 export class SwimLaneService {
 
+    id;
     private url = 'http://localhost:8080/api/v1/get/boards';
     private newSwimLaneUrl = '';
 
     constructor(private router: Router, private http: HttpClient) { }
 
-    getSwimLanes(board: number): SwimLane[] {
-        return swimLanes;   // CHANGE THIS TO GET THE SWIMLANES OF THE BOARD PARAMETER
-    }
+    // getSwimLanes(board: number): SwimLane[] {
+    //     this.id = JSON.parse(localStorage.getItem('id'));
+    //     console.log(this.id);
+    //     // return swimLanes;   // CHANGE THIS TO GET THE SWIMLANES OF THE BOARD PARAMETER
+    //     const boards: any[] = JSON.parse(localStorage.getItem('boards'));
+    //     console.log(boards);
+    //     for (let i = 0; i < boards.length; i++) {
+    //         if (boards[i] === this.id) {
+    //             return boards[i];
+    //         }
+    //     }
+    // }
 
     createSwimLane(newSwimLane: SwimLane): Observable<SwimLane> {
         return this.http.post<SwimLane>(this.newSwimLaneUrl, newSwimLane, httpOptions);

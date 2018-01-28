@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,25 +13,28 @@ const httpOptions = {
 
 @Injectable()
 export class BoardService {
-    private url = 'http://localhost:8080/api/v1/get/boards';
-    private newBoardsUrl = 'http://localhost:8080/api/v1/create/board';
+    private newBoardsUrl = environment.board.save;
 
     constructor(private http: HttpClient) { }
 
-    getBoards() {
-        return this.http.get<Board[]>(this.url).map(
+    getBoards(userId: number) {
+        const getBoardsUrl = environment.board.get(userId);
+        return this.http.get<Board[]>(getBoardsUrl).map(
             data => {
                 return data;
             },
             err => {
-                console.log('Error in getBoards in BoardService (This only executes when the first function is not successful')
+                console.log('Error in getBoards in BoardService (This only executes when the first function is not successful');
             }
         );
     }
 
-    createBoard(newBoard: Board) {
-        return this.http.post<Board>(this.newBoardsUrl, newBoard, httpOptions).subscribe(
-            data => console.log('successful return of data: ' + data),
+    createBoard(newBoard: Board, userId: number) {
+        const saveBoardUrl = environment.board.save(userId);
+        return this.http.post<Board>(saveBoardUrl, newBoard, httpOptions).map(
+            data => {
+                return data;
+            },
             err => console.log('error caught:' + err)
         );
     }

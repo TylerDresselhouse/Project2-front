@@ -1,10 +1,10 @@
 <h1>Welcome to home view!!!!</h1>
 <div class="BoardSelectorContainer">
-  <div *ngFor="let board of boards" class="BoardSelector">
+  <div *ngFor="let board of boards" class="BoardSelector" routerLink="/swim-lanes/{{board.id}}">
     <div>
       {{board.name}}
     </div>
   </div>
-  <input type="text" [(ngModel)]="newBoard.name">
-  <button type="button" class="btn btn-primary" (click)="createBoard()">New Board</button>
+  <input type="text" #title>
+  <button type="button" class="btn btn-primary" (click)="createBoard(title.value)">New Board</button>
 </div>

@@ -1,10 +1,12 @@
-input[type=checkbox].check:checked + label.strikethrough{
+/* .check[type=checkbox]:checked + label.strikethrough{
     text-decoration: line-through;
-}
+} */
 
-table {
+.strikethrough:checked + td + span{
+    text-decoration:line-through
+  }
 
-}
+
 
 
 /* #myselectform{

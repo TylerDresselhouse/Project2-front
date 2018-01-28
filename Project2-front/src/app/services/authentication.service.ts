@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AlertService } from './alert.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { environment } from '../../environments/environment.prod';
 
 const users = [
   new AsbUser(1, 'CTaylor23', 'password', 'Carter', 'Taylor'),
@@ -25,44 +26,48 @@ export class AuthenticationService {
     return this.loggedIn;
   } */
 
-  loginUrl = `http://localhost:8080/api/v1/login`;
-  registerUrl = `http://localhost:8080/api/v1/register`;
-
   public authenticatedUser: AsbUser;
 
   constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
   logout() {
     localStorage.removeItem('user');
-    //this.appComponent.isLoggedIn = false;
+    // this.appComponent.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 
   login(user) {
-    this.http.post<AsbUser>(this.loginUrl, user, httpOptions)
+    const loginUrl = environment.user.login();
+    this.http.post<AsbUser>(loginUrl, user, httpOptions)
       .subscribe(
         (data => this.authenticatedUser = data),
         (err => console.log('error: ', err)),
-        ( () => { if (this.authenticatedUser) {
-                    localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
-                    this.router.navigate(['home']);
-                    return true;
-                 } else { this.alertService.error('Invalid username/password');
-                          return false; }
+        ( () => {
+          if (this.authenticatedUser) {
+            localStorage.setItem('user', JSON.stringify(this.authenticatedUser));
+            this.router.navigate(['home']);
+            return true;
+          } else { this.alertService.error('Invalid username/password');
+                  return false; }
         })
         );
   }
 
   register(user): boolean {
-      this.http.post<AsbUser>(this.registerUrl, user, httpOptions)
+    const registerUrl = environment.user.register();
+      this.http.post<AsbUser>(registerUrl, user, httpOptions)
       .subscribe( newUser => { console.log(newUser);
-                                if (newUser) {
-                                  this.alertService.success('Successfully registered');
-                                  return true;
-                                } else {
-                                  this.alertService.error('That username already exists');
-                                }
-                              }
+        if (newUser) {
+            this.alertService.success('Successfully registered');
+            // clear input fields in register template
+            user.firstName = '';
+            user.lastName = '';
+            user.username = '';
+            user.password = '';
+        } else {
+            this.alertService.error('That username already exists');
+        }
+      }
                 );
       return false;
   }
