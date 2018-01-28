@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+// import {  } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -30,8 +31,8 @@ import {MatInputModule} from '@angular/material/input';
 import { NavbarService } from './services/navbar.service';
 import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
+import { ChartModule } from 'primeng/chart';
 import { BoardMembersComponent } from './components/board-members/board-members.component';
-
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BoardMembersComponent } from './components/board-members/board-members.
     HttpModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    ChartModule,
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
