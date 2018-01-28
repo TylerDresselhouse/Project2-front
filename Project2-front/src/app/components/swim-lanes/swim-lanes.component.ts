@@ -73,4 +73,8 @@ export class SwimLanesComponent implements OnInit {
     modalRef.componentInstance.slid = slid;
   }
 
+  delete(swimlane: SwimLane) {
+    console.log('An attempt to delete ' + swimlane.slName + ' has been made');
+  }
+
 }
