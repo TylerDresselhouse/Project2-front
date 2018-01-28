@@ -53,6 +53,20 @@ this.tasks = this.tasks.filter(t => t !== task);
   }
     );
 
+  }
+
+
+  checkedOffTask(task: Task): void{
+    this.tasks = this.tasks.filter(t => t !== task);
+    this.taskService.completedTask(this.task).subscribe(
+      data => {
+        this.task = data;
+        this.alertService.success('Task was successfully Deleted!');
+     
+  }
+);
+  }
+}
   //   for(let i = 0 ; i< this.tasks.length; i++){
   //     if( tid = this.tasks[i].id  ){
   //       this.task.id = tid;
@@ -87,8 +101,8 @@ this.tasks = this.tasks.filter(t => t !== task);
   //     // }
       
   //   );
-  }
+ 
 
-}
+
 
 // 

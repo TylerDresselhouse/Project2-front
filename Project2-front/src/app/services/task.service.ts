@@ -31,13 +31,13 @@ export class TaskService {
 
 
   listOfTasks(): Observable<Task[]> {
-    const cId = 1150 // dummy code
+    
     return this.http.get<Task[]>(this.taskUrl + cId);
 
   }
 
     addNewTask (task: Task): Observable <Task> {
-      const cId = 1150 
+     
         return this.http.post<Task>(this.creatTaskUrl + cId, task, httpOptions).map(
           data => {
             return data;
@@ -47,7 +47,7 @@ export class TaskService {
 
     deleteSpecificTask(task: Task): Observable <Task>{
       console.log(task);
-      return this.http.post<Task>(this.delTask , task, httpOptions ).map(
+      return this.http.post<Task>(this.delTask + cId, task, httpOptions ).map(
         
         data => {
           return data;
