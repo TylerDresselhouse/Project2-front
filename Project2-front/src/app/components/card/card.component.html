@@ -5,12 +5,17 @@
   <input value={{difficulty}} id="difficulty" type="number" min=1 max=10 placeholder=1>
 </div>
 <div class="modal-body">
-
       <div>
         <input value={{description}} id="description" type="text" placeholder="Description">
       </div>
+      <br><br>
+      <div>
+        <app-task></app-task>
+      </div>
+
       <div hidden>
           <input value={{id}} id="id" type="text">
+          <input value={{order}} id="order" type="text">
           <input value={{slid}} id="slid" type="text">
       </div>
 </div>

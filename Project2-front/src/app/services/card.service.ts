@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SwimLane } from '../models/swimlane.model';
 import { environment } from '../../environments/environment';
 import { AlertService } from './alert.service';
+import { Card } from '../models/card.model';
+
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,18 +20,18 @@ export class CardService {
 
   constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
-  createCard(newCard, slid) {
+  createCard(newCard: Card, slid) {
     const createCardUrl = environment.card.save(slid);
-    return this.http.post(createCardUrl, newCard, httpOptions).subscribe(
-        success => this.alertService.success('Card saved successfully!'),
-        error => this.alertService.error('Card failed to save!')
+    return this.http.post<Card>(createCardUrl, newCard, httpOptions).map(
+        data => {
+          return data;
+        }
     );
   }
 
-  deleteCard(cardId) {
-    console.log('cardId to delete in cardService: ' + cardId);
-    const deleteCardUrl = environment.card.delete(cardId);
-    return this.http.post(deleteCardUrl, httpOptions).subscribe(
+  deleteCard(card) {
+    const deleteCardUrl = environment.card.delete();
+    return this.http.post(deleteCardUrl, card, httpOptions).subscribe(
       success => this.alertService.success('Card deleted successfully!'),
       error => this.alertService.error('Card failed to delete!')
   );

@@ -65,7 +65,7 @@ import { BoardMembersComponent } from './components/board-members/board-members.
     NavbarService,
     NgbActiveModal,
     TaskComponent],
-  
+
   entryComponents: [
     CardComponent,
     BurndownchartComponent,

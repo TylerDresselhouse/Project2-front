@@ -5,18 +5,20 @@ import { Task } from '../../models/task.model';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { parse } from 'url';
+import { AlertService } from '../../services/alert.service';
 
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
-  providers: [CardService],
+  providers: [CardService, AlertService],
 })
 
 export class CardComponent implements OnInit {
 
   card: Card;
+  alertService: AlertService;
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService) {}
 
@@ -29,17 +31,23 @@ export class CardComponent implements OnInit {
       this.activeModal.close('Close click');
       console.log('card id in card component: ' + this.card.id);
       console.log('slid in card component: ' + slid);
-      this.cardService.createCard(this.card, slid);
+      this.cardService.createCard(this.card, slid).subscribe(
+        data => {
+          this.card = data;
+          this.alertService.success('Card saved successfully!');
+        },
+        error => this.alertService.error('Card failed to save!'));
     }
 
     deleteCard() {
-      const cardId = +(<HTMLInputElement>document.getElementById('id')).value;
+      this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
+      const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
       this.activeModal.close('Close click');
-      this.cardService.deleteCard(cardId);
+      this.cardService.deleteCard(this.card);
     }
 
     ngOnInit() {
-      this.card = new Card(0, 0, null, null, null);
+      this.card = new Card(0, 0, null, null, null, 0);
     }
 
 }

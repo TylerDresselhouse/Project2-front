@@ -26,7 +26,7 @@ export const environment = {
   card: {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`,
 
-    delete: (cardId: number) =>  `${context}delete/card/${cardId}`
+    delete: () =>  `${context}delete/card`
   },
 
   boardMembers: {
