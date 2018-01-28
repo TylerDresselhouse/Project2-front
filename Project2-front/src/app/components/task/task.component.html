@@ -1,30 +1,52 @@
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<table class="table table-hover">
+  
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td><input class="strikethrough" id="checkBox" type="checkbox"></td>
+        <td><span>{{task.description}}</span> </td>
+        <td> <button (click)="deleteTask(task)">delete</button></td>
+      </tr>
+    </tbody>
+  </table>
 
 
-<div>
-  <div>
+  <input #taskDescription />
+  <button (click)="addTask(taskDescription.value); taskDescription.value=''">Add</button> 
+
+
+
+
+<!-- <mat-selection-list >
+  <mat-list-option > 
+    {{task.description}}
+  </mat-list-option>
+  <button mat-button (click)="deleteTask()">delete</button>
+</mat-selection-list>
+
+
+
+<!-- <div>
+  <div class="card" style="width: 18rem;">
       <ul style="list-style: none;" class="task">
-          <li *ngFor="let task of tasks">
-            <div id="taskId" >
-              <input type='checkbox' >
-              <input  class="strikethrough" [(ngModel)]="task.tDescription" > 
+          <li *ngFor="let task of tasks" >
+            <div id="taskId" class="myTasks" class="list-group list-group-flush" >
+              <input type='checkbox' > 
               <select id='myselectform' name="selectform_0">
                 <option value="0"></option>
-                <option value="1">Update</option>
                 <option value="1">delete</option>
                 
                 </select>
             </div>
           </li>
           </ul>
-  </div>
- 
+  </div> -->
+<!--  
     <button (click)="addTask(taskDescription.value); taskDescription.value=''">Add</button>
     <input #taskDescription />
 
 
-</div>
+</div> -->
 
 
 
