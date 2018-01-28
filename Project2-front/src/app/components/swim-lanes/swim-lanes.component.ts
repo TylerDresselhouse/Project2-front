@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Board } from '../../models/board.model';
 import { Card } from '../../models/card.model';
 import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-swim-lanes',
@@ -25,12 +26,15 @@ export class SwimLanesComponent implements OnInit {
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
-    private cardComponent: CardComponent ) { }
+    private cardComponent: CardComponent, private navService: NavbarService ) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
     this.id = this.route.snapshot.paramMap.get('id');
+    localStorage.setItem('currBoardId', this.id);
     this.swimLanes = this.getSwimLanes(0);
+    this.navService.showBoardMembers();
+    this.navService.showBurndown();
   }
 
   getSwimLanes(lane: number): SwimLane[] {
