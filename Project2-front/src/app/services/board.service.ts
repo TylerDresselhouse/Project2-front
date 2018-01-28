@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
+import { AsbUser } from '../models/asbuser.model';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,6 +38,15 @@ export class BoardService {
             },
             err => console.log('error caught:' + err)
         );
+    }
+
+    getBoardMembers(boardId: number) {
+        const getBoardMembersUrl = environment.boardMembers.get(boardId);
+        return this.http.get<AsbUser[]>(getBoardMembersUrl)
+        .map( data => {
+            return data;
+        },
+            err => console.log('error caught:' + err));
     }
 }
 

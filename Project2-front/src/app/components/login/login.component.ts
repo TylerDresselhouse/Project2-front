@@ -31,8 +31,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.navService.hide();
+    this.navService.hideBoardMembers();
+    this.navService.hideBurndown();
     localStorage.removeItem('user');
     localStorage.removeItem('boards');
+    localStorage.removeItem('currBoardId');
     this.user = new AsbUser(null, null, null, null, null);
   }
 

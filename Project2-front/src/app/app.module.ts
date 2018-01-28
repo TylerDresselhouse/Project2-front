@@ -26,6 +26,7 @@ import { AlertService } from './services/alert.service';
 import { NavbarService } from './services/navbar.service';
 import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
+import { BoardMembersComponent } from './components/board-members/board-members.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { BurndownchartComponent } from './components/burndownchart/burndownchart
     RegisterComponent,
     InviteComponent,
     AlertComponent,
+    BoardMembersComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { BurndownchartComponent } from './components/burndownchart/burndownchart
 
   entryComponents: [
     CardComponent,
-    BurndownchartComponent
+    BurndownchartComponent,
+    BoardMembersComponent
   ],
   bootstrap: [AppComponent]
 })
