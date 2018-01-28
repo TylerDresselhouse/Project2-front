@@ -21,6 +21,7 @@ export class SwimLanesComponent implements OnInit {
   swimLanes: SwimLane[];
   newSwimLane: SwimLane;
   card: Card;
+  swimLane: SwimLane;
   id;
 
   constructor(private swimLaneService: SwimLaneService,
@@ -54,16 +55,22 @@ export class SwimLanesComponent implements OnInit {
   createSwimLane(): void {
     this.swimLaneService.createSwimLane(this.newSwimLane);
   }
-  
+
   openBurnDown() {
     const modalRef2 = this.modalService.open(BurndownchartComponent);
   }
 
-  open(card: Card) {
+  open(card: Card, slid) {
     const modalRef = this.modalService.open(CardComponent);
+    if (!card) {
+      card = new Card(0, 0, null, null, null);
+    }
     modalRef.componentInstance.title = card.title;
     modalRef.componentInstance.difficulty = card.difficulty;
     modalRef.componentInstance.description = card.description;
+    modalRef.componentInstance.id = card.id;
+    modalRef.componentInstance.slid = slid;
+    console.log('slid in swim-lane component: ' + slid);
   }
 
 }
