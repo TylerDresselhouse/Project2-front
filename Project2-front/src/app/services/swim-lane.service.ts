@@ -22,18 +22,6 @@ export class SwimLaneService {
 
     constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
-    // getSwimLanes(board: number): SwimLane[] {
-    //     this.id = JSON.parse(localStorage.getItem('id'));
-    //     console.log(this.id);
-    //     // return swimLanes;   // CHANGE THIS TO GET THE SWIMLANES OF THE BOARD PARAMETER
-    //     const boards: any[] = JSON.parse(localStorage.getItem('boards'));
-    //     console.log(boards);
-    //     for (let i = 0; i < boards.length; i++) {
-    //         if (boards[i] === this.id) {
-    //             return boards[i];
-    //         }
-    //     }
-    // }
 
     createSwimLane(newSwimLane, id): Observable<SwimLane> {
         this.newSwimLaneUrl = environment.swimLane.create(id);
@@ -42,8 +30,6 @@ export class SwimLaneService {
                 return data;
             },
             err => console.log('error caught:' + err));
-
-    }
 
     deleteSwimLane(swimLane: SwimLane, id: number): Observable<SwimLane> {
         console.log('Attempting to delete swim lane');
