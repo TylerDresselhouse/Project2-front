@@ -1,13 +1,13 @@
 import { Card } from './card.model';
 
 export class SwimLane {
-    slId: number;
-    slName: string;
+    id: number;
+    name: string;
     cards: Card[];
 
-    constructor(slId: number, slName: string, cards: Card[]) {
-        this.slId = slId;
-        this.slName = slName;
+    constructor(slId: number, name: string, cards: Card[]) {
+        this.id = slId;
+        this.name = name;
         this.cards = cards;
     }
 }
