@@ -35,15 +35,16 @@
         <!-- <div hidden>
           <input value={{newSwimLane.name}} id={{newSwimLane.id}} type="text">
         </div> -->
-        <input type="text" [(ngModel)]="newSwimLane.name">
-        <button type="button" class="btn btn-primary" (click)="createSwimLane()">Create New Swim Lane</button>
+        <div *ngIf="userBoardRole.createSwimLane">
+          <input type="text" [(ngModel)]="newSwimLane.name">
+          <button type="button" class="btn btn-primary" (click)="createSwimLane()">Create New Swim Lane</button>
+        </div>
       </td>
     </tr>
   </table>
-  <div *ngIf="userBoardRole.createSwimLane">
-    <input type="text" ([ngModel])="newSwimLane.name">
-    <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
-  </div>
+
+
+
 </div>
 
 <!-- Modal test button -->
