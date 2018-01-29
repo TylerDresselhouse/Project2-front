@@ -41,6 +41,7 @@ export class BurndownchartComponent implements OnInit {
   }
 
   generateBurnDown() {
+    this.showBurnDown = true;
     this.differenceDifficulty = this.totalDifficulty;
     this.weeks.forEach(week => {
       this.differenceDifficulty = this.differenceDifficulty - week.sunday;

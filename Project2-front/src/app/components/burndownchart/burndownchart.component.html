@@ -55,7 +55,9 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" value="Add table" (click)="generateBurnDown()">Generate BurnDown Chart</button>
+    <div *ngIf="!showBurnDown">
+      <button type="button" value="Add table" (click)="generateBurnDown()">Generate BurnDown Chart</button>
+    </div>
   </div>
 </div>
 <div class="modal-footer">
