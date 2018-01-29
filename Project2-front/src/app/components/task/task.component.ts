@@ -34,23 +34,25 @@ export class TaskComponent implements OnInit {
   getTasks(cId): void {
     console.log('received card id in getTasks: ' + cId);
     this.taskService.listOfTasks(cId).subscribe(data => {
-    this.tasks = data;
+      this.tasks = data;
     });
 
   }
 
-addTask(tDesc: string): void {
-  // this.task.description = tDesc;
- console.log(this.task);
- this.task = new Task(0, tDesc, false);
- const cId = +(<HTMLInputElement>document.getElementById('id')).value;
- console.log('cId from hidden html: ' + cId);
- this.taskService.addNewTask(this.task, cId).subscribe(
-  data => {
-    this.task = data;
-    console.log(data);
-    this.tasks.push(this.task);
-    this.alertService.success('Task was successfully added!');
+  addTask(tDesc: string): void {
+    // this.task.description = tDesc;
+    console.log(this.task);
+    this.task = new Task(0, tDesc, false);
+    const cId = +(<HTMLInputElement>document.getElementById('id')).value;
+    console.log('cId from hidden html: ' + cId);
+    this.taskService.addNewTask(this.task, cId).subscribe(
+      data => {
+        this.task = data;
+        console.log(data);
+        this.tasks.push(this.task);
+        this.alertService.success('Task was successfully added!');
+      }
+    );
   }
 
   deleteTask(task: Task): void {
