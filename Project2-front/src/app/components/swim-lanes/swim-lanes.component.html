@@ -1,5 +1,5 @@
 <div>
-  <span style="float: left;">
+  <span style="float: center;" align="center">
     List of Swim Lanes:
   </span>
   <span style="float: right;">
@@ -7,25 +7,30 @@
   </span>
 </div>
 
-<div>
+<div overflow-x="scroll" width="auto" white-space="nowrap">
   <table class="table" border="1px solid black">
     <tr>
       <td *ngFor="let swimLane of swimLanes">
         <div hidden>
           <input value={{swimLane.id}} id={{swimLane.name}} type="text">
         </div>
-        <table class="table-hover" border="1px solid black">
+        <table class="table-hover" border="1px solid black" style="min-width:350px;">
           <th>
-            {{swimLane.name}}
-            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button>
+            <span style="float: left;">
+            {{swimLane.name}}</span>
+            <span style="float: right;">
+            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button></span>
           </th>
           <tr *ngFor="let card of swimLane.cards">
-            <td>
-              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
+            <td style="min-width:400px" (click)="open(card, swimLane.id)" style="cursor: pointer;" align="center">
+              {{card.title}}
             </td>
+            <!-- <td style="min-width:400px">
+              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
+            </td> -->
           </tr>
           <tr *ngIf="userBoardRole.createCard">
-            <td>
+            <td style="min-width:400px" align="center">
               <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
             </td>
           </tr>
@@ -36,18 +41,17 @@
           <input value={{newSwimLane.name}} id={{newSwimLane.id}} type="text">
         </div> -->
         <div *ngIf="userBoardRole.createSwimLane">
-          <input type="text" [(ngModel)]="newSwimLane.name">
+          <input type="text" [(ngModel)]="newSwimLane.name" maxlength="20">
           <button type="button" class="btn btn-primary" (click)="createSwimLane()">Create New Swim Lane</button>
         </div>
       </td>
     </tr>
   </table>
 
-
+  <!-- I don't know what I'm doing -->
+  <!-- <add-todo (add)="updateSwimLane($event)"></add-todo> -->
 
 </div>
-
-<!-- Modal test button -->
 
 <button align="left" class="btn btn-lg btn-outline-primary" (click)="open()">Demo modal</button>
 <button *ngIf="userBoardRole.inviteUser" class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>

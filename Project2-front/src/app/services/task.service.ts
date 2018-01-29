@@ -31,7 +31,11 @@ export class TaskService {
 
 
   listOfTasks(cId): Observable<Task[]> {
-    return this.http.get<Task[]>(this.taskUrl + cId);
+    return this.http.get<Task[]>(this.taskUrl + cId).map(
+      data => {
+        return data;
+      }
+    );
 
   }
 
@@ -43,9 +47,9 @@ export class TaskService {
         err => console.log('error caught:' + err));
     }
 
-    deleteSpecificTask(task: Task): Observable <Task> {
+    deleteSpecificTask(task: Task, cId): Observable <Task> {
       console.log(task);
-      return this.http.post<Task>(this.delTask , task, httpOptions ).map(
+      return this.http.post<Task>(this.delTask + cId, task, httpOptions ).map(
 
         data => {
           return data;
