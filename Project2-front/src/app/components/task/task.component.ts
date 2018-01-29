@@ -42,6 +42,7 @@ addTask(tDesc: string): void {
  console.log(this.task);
  this.task = new Task(0, tDesc, false);
  const cId = +(<HTMLInputElement>document.getElementById('id')).value;
+ console.log('cId from hidden html: ' + cId);
  this.taskService.addNewTask(this.task, cId).subscribe(
   data => {
     this.task = data;
