@@ -33,7 +33,9 @@ export class SwimLanesComponent implements OnInit {
   taskComponent: TaskComponent;
   boardName: String;
   currUser: AsbUser;
-  userBoardRole = new UserBoardRole(0, '',false,false,false,false,false);
+  userBoardRole = new UserBoardRole(null, 'Custom Role',
+  false, false, false, false, false, false,
+  false, false, false );
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
