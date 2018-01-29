@@ -10,6 +10,9 @@ import { Card } from '../../models/card.model';
 import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
 import { NavbarService } from '../../services/navbar.service';
 import { AlertService } from '../../services/alert.service';
+import { PermissionsService } from '../../services/permissions.service';
+import { UserBoardRole } from '../../models/boarduserrole.model';
+import { AsbUser } from '../../models/asbuser.model';
 import { TaskComponent } from '../task/task.component';
 import { CardService } from '../../services/card.service';
 
@@ -28,23 +31,29 @@ export class SwimLanesComponent implements OnInit {
   swimLane: SwimLane;
   id: number;
   taskComponent: TaskComponent;
-  id;
+  boardName: String;
+  currUser: AsbUser;
+  userBoardRole = new UserBoardRole(0, '',false,false,false,false,false);
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
-    private cardComponent: CardComponent, private navService: NavbarService, private alertService: AlertService ) { }
+    private cardComponent: CardComponent, private navService: NavbarService, private alertService: AlertService, 
+    private permissionService: PermissionsService ) { }
 
     @Input() swimLaneIn: SwimLane;
 
   ngOnInit() {
     this.authService.checkCredentials();
+    this.navService.show();
     this.id = JSON.parse(this.route.snapshot.paramMap.get('id'));
     localStorage.setItem('currBoardId', JSON.stringify(this.id));
     this.swimLanes = this.getSwimLanes(0);
     this.newSwimLane = new SwimLane(null, null, null);
     this.navService.showBoardMembers();
     this.navService.showBurndown();
+    this.getUserBoardRole(this.id);
   }
+
 
   getSwimLanes(lane: number): SwimLane[] {
     // this.id = JSON.parse(localStorage.getItem('id'));
@@ -53,6 +62,7 @@ export class SwimLanesComponent implements OnInit {
     console.log(boards);
     for (let i = 0; i < boards.length; i++) {
         if (boards[i].id === this.id) {
+          this.boardName = boards[i].name;
           console.log('SUCCESS ON ' + boards[i].id);
             return boards[i].swimLanes;
         } else {
@@ -100,6 +110,14 @@ export class SwimLanesComponent implements OnInit {
         this.swimLaneIn = data;
         this.alertService.success('Swim Lane successfully deleted!');
       }
+    );
+  }
+
+  getUserBoardRole(boardId) {
+    this.currUser = JSON.parse(localStorage.getItem('user'));
+    this.permissionService.getPermissions(this.currUser.id, boardId).subscribe(
+      data => { this.userBoardRole = data; },
+      err => console.log('Error getting user role')
     );
   }
 

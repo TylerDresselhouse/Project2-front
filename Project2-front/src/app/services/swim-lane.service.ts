@@ -22,7 +22,6 @@ export class SwimLaneService {
 
     constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
-
     createSwimLane(newSwimLane, id): Observable<SwimLane> {
         this.newSwimLaneUrl = environment.swimLane.create(id);
         return this.http.post<SwimLane>(this.newSwimLaneUrl, newSwimLane, httpOptions).map(
@@ -39,9 +38,6 @@ export class SwimLaneService {
                 return data;
             },
             err => console.log('error caught:' + err));
-
-          // success => this.alertService.success('Swim Lane deleted successfully!'),
-          // error => this.alertService.error('Swim Lane failed to delete!')
     }
 }
 
