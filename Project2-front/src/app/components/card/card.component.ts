@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { Task } from '../../models/task.model';
@@ -10,6 +10,7 @@ import { TaskService } from '../../services/task.service';
 import { TaskComponent } from '../task/task.component';
 import { SwimLane } from '../../models/swimlane.model';
 import { SwimLanesComponent } from '../swim-lanes/swim-lanes.component';
+// import { EventEmitter } from '@angular/core/src/event_emitter';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { SwimLanesComponent } from '../swim-lanes/swim-lanes.component';
 export class CardComponent implements OnInit {
 
   card: Card;
-  swimLanes: SwimLanesComponent;
+  // @Output() updateSwimLane = new EventEmitter<Card>();
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
     private taskService: TaskService)  { }
@@ -36,8 +37,9 @@ export class CardComponent implements OnInit {
     this.card.difficulty = +(<HTMLInputElement>document.getElementById('difficulty')).value;
     this.card.description = (<HTMLInputElement>document.getElementById('description')).value;
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
+    console.log("card: " + this.card.id + ' ' + this.card.description + this.card.difficulty + this.card.title + this.card.tasks);
     this.taskService.listOfTasks(this.card.id).subscribe(data => {
-      this.card.tasks = data;
+    this.card.tasks = data;
     });
     for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
       this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
@@ -52,9 +54,19 @@ export class CardComponent implements OnInit {
       },
       error => this.alertService.error('Card failed to save!'));
 
-      const swimLaneRef = this.swimLanes.updateSwimLane(this.card, slid);
+      // this.updateSwimLane.emit(this.card);
+
+      // this.swimLanes.updateSwimLane(this.card, slid);
+      localStorage.setItem('currCardId', String(this.card.id));
+      localStorage.setItem('currCardTitle', String(this.card.title));
+      localStorage.setItem('currCardDifficulty', String(this.card.difficulty));
+      localStorage.setItem('currCardDescription', String(this.card.description));
+
+
+
 
   }
+
 
   deleteCard() {
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;

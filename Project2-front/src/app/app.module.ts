@@ -30,6 +30,7 @@ import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 import { BoardMembersComponent } from './components/board-members/board-members.component';
 import { TaskService } from './services/task.service';
+import { CardproxyComponent } from './cardproxy/cardproxy.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TaskService } from './services/task.service';
     InviteComponent,
     BoardMembersComponent,
     TaskComponent,
-    AlertComponent
+    AlertComponent,
+    CardproxyComponent
   ],
   imports: [
     BrowserModule,

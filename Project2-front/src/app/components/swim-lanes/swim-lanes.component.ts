@@ -16,7 +16,7 @@ import { CardService } from '../../services/card.service';
   selector: 'app-swim-lanes',
   templateUrl: './swim-lanes.component.html',
   styleUrls: ['./swim-lanes.component.css'],
-  providers: [NgbModal, CardComponent, TaskComponent, CardService],
+  providers: [NgbModal, TaskComponent, CardService],
 })
 export class SwimLanesComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class SwimLanesComponent implements OnInit {
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
-    private cardComponent: CardComponent, private navService: NavbarService ) { }
+    private navService: NavbarService ) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
@@ -78,6 +78,9 @@ export class SwimLanesComponent implements OnInit {
     modalRef.componentInstance.slid = slid;
     const cardId = card.id;
     localStorage.setItem('currCardId', String(cardId));
+    modalRef.componentInstance.result.then(
+      this.updateSwimLane()
+    );
 
   }
 
@@ -87,17 +90,31 @@ export class SwimLanesComponent implements OnInit {
     this.swimLaneService.deleteSwimLane(this.swimLane);
   }
 
-  updateSwimLane(card, slid) {
+  // myEmitter(card) {
+  //   this.card
+  // }
+
+  updateSwimLane() {
     console.log("AAAAAAAAAHHHHHHHHHHHH");
-    for (let i = 0; i < this.swimLanes.length; i++) {
-      if (this.swimLanes[i].id === slid) {
-          for (let j = 0; j < this.swimLanes[i].cards.length; j++) {
-            if (this.swimLanes[i].cards[j].id === card.id) {
-                this.swimLanes[i].cards[j] = card;
-            }
-          }
-      }
-    }
+    this.card.id = +localStorage.getItem('currCardId');
+    this.card.title = localStorage.getItem('currCardTitle');
+    this.card.difficulty = +localStorage.getItem('currCardDifficulty');
+    this.card.description = localStorage.getItem('currCardTitle');
+
+
+
+    console.log("card in emitter receiver swimlane: " + this.card.id + this.card.title + this.card.description);
+
+
+    // for (let i = 0; i < this.swimLanes.length; i++) {
+    //   if (this.swimLanes[i].id === slid) {
+    //       for (let j = 0; j < this.swimLanes[i].cards.length; j++) {
+    //         if (this.swimLanes[i].cards[j].id === card.id) {
+    //             this.swimLanes[i].cards[j] = card;
+    //         }
+    //       }
+    //   }
+    // }
   }
 
 }
