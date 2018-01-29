@@ -31,6 +31,7 @@ export class SwimLanesComponent implements OnInit {
   swimLane: SwimLane;
   id: number;
   taskComponent: TaskComponent;
+  selectedSwimlane: SwimLane;
   boardName: String;
   currUser: AsbUser;
   userBoardRole = new UserBoardRole(0, '',false,false,false,false,false);
@@ -119,6 +120,19 @@ export class SwimLanesComponent implements OnInit {
       data => { this.userBoardRole = data; },
       err => console.log('Error getting user role')
     );
+  }
+
+  updateSwimLane(card, slid) {
+    console.log("AAAAAAAAAHHHHHHHHHHHH");
+    for (let i = 0; i < this.swimLanes.length; i++) {
+      if (this.swimLanes[i].id === slid) {
+          for (let j = 0; j < this.swimLanes[i].cards.length; j++) {
+            if (this.swimLanes[i].cards[j].id === card.id) {
+                this.swimLanes[i].cards[j] = card;
+            }
+          }
+      }
+    }
   }
 
 }

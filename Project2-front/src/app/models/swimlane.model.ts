@@ -5,8 +5,8 @@ export class SwimLane {
     name: string;
     cards: Card[];
 
-    constructor(slId: number, name: string, cards: Card[]) {
-        this.id = slId;
+    constructor(id: number, name: string, cards: Card[]) {
+        this.id = id;
         this.name = name;
         this.cards = cards;
     }
