@@ -17,7 +17,7 @@
         <table class="table-hover" border="1px solid black">
           <th>
             {{swimLane.name}}
-            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane.id)">Delete Lane</button>
+            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button>
           </th>
           <tr *ngFor="let card of swimLane.cards">
             <td>
@@ -32,7 +32,10 @@
         </table>
       </td>
       <td>
-        <input type="text" ([ngModel])="newSwimLane.name">
+        <!-- <div hidden>
+          <input value={{newSwimLane.name}} id={{newSwimLane.id}} type="text">
+        </div> -->
+        <input type="text" [(ngModel)]="newSwimLane.name">
         <button type="button" class="btn btn-primary" (click)="createSwimLane()">Create New Swim Lane</button>
       </td>
     </tr>
