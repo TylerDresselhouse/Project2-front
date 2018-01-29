@@ -29,6 +29,7 @@ export class SwimLaneService {
                 return data;
             },
             err => console.log('error caught:' + err));
+    }
 
     deleteSwimLane(swimLane: SwimLane, id: number): Observable<SwimLane> {
         console.log('Attempting to delete swim lane');
