@@ -16,7 +16,9 @@ export const environment = {
 
     register: () => `${context}register`,
 
-    get: (username: String) => `${context}get/user/${username}`
+    get: (username: String) => `${context}get/user/${username}`,
+
+    getRole: (userId: number, boardId: number) => `${context}get/BoardUserRole/${userId}&${boardId}`
   },
 
   card: {
