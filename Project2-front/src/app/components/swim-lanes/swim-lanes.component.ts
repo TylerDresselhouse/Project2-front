@@ -9,6 +9,9 @@ import { Board } from '../../models/board.model';
 import { Card } from '../../models/card.model';
 import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
 import { NavbarService } from '../../services/navbar.service';
+import { PermissionsService } from '../../services/permissions.service';
+import { UserBoardRole } from '../../models/boarduserrole.model';
+import { AsbUser } from '../../models/asbuser.model';
 import { TaskComponent } from '../task/task.component';
 import { CardService } from '../../services/card.service';
 
@@ -27,18 +30,23 @@ export class SwimLanesComponent implements OnInit {
   swimLane: SwimLane;
   taskComponent: TaskComponent;
   id;
+  boardName: String;
+  currUser: AsbUser;
+  userBoardRole = new UserBoardRole(0, '',false,false,false,false,false);
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
-    private cardComponent: CardComponent, private navService: NavbarService ) { }
+    private cardComponent: CardComponent, private navService: NavbarService, private permissionService: PermissionsService) { }
 
   ngOnInit() {
     this.authService.checkCredentials();
+    this.navService.show();
+    this.navService.showBoardMembers();
+    this.navService.showBurndown();
     this.id = this.route.snapshot.paramMap.get('id');
     localStorage.setItem('currBoardId', this.id);
     this.swimLanes = this.getSwimLanes(0);
-    this.navService.showBoardMembers();
-    this.navService.showBurndown();
+    this.getUserBoardRole(this.id);
   }
 
   getSwimLanes(lane: number): SwimLane[] {
@@ -48,6 +56,7 @@ export class SwimLanesComponent implements OnInit {
     console.log(boards);
     for (let i = 0; i < boards.length; i++) {
         if (boards[i].id == this.id) {
+          this.boardName = boards[i].name;
           console.log('SUCCESS ON ' + boards[i].id);
             return boards[i].swimLanes;
         } else {
@@ -84,6 +93,14 @@ export class SwimLanesComponent implements OnInit {
     console.log('An attempt to delete ' + sid + ' has been made');
     this.swimLane.slId = sid;
     this.swimLaneService.deleteSwimLane(this.swimLane);
+  }
+
+  getUserBoardRole(boardId) {
+    this.currUser = JSON.parse(localStorage.getItem('user'));
+    this.permissionService.getPermissions(this.currUser.id, boardId).subscribe(
+      data => { this.userBoardRole = data; },
+      err => console.log('Error getting user role')
+    );
   }
 
 }

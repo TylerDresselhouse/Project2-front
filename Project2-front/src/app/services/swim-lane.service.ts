@@ -22,16 +22,24 @@ export class SwimLaneService {
 
     constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
-    createSwimLane(newSwimLane: SwimLane): Observable<SwimLane> {
-        return this.http.post<SwimLane>(this.newSwimLaneUrl, newSwimLane, httpOptions);
+    createSwimLane(newSwimLane, id): Observable<SwimLane> {
+        this.newSwimLaneUrl = environment.swimLane.create(id);
+        return this.http.post<SwimLane>(this.newSwimLaneUrl, newSwimLane, httpOptions).map(
+            data => {
+                return data;
+            },
+            err => console.log('error caught:' + err));
+
     }
 
-    deleteSwimLane(swimLane) {
-        const deleteSwimLaneUrl = environment.card.delete();
-        return this.http.post(deleteSwimLaneUrl, swimLane, httpOptions).subscribe(
-          success => this.alertService.success('Swim Lane deleted successfully!'),
-          error => this.alertService.error('Swim Lane failed to delete!')
-        );
+    deleteSwimLane(swimLane: SwimLane, id: number): Observable<SwimLane> {
+        console.log('Attempting to delete swim lane');
+        const deleteSwimLaneUrl = environment.swimLane.delete(id);
+        return this.http.post<SwimLane>(deleteSwimLaneUrl, swimLane, httpOptions).map(
+            data => {
+                return data;
+            },
+            err => console.log('error caught:' + err));
     }
 }
 
