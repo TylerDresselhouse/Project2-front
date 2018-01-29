@@ -80,10 +80,10 @@ export class SwimLanesComponent implements OnInit {
 
   }
 
-  delete(sid: number) {
-    console.log('An attempt to delete ' + sid + ' has been made');
-    this.swimLane.slId = sid;
-    this.swimLaneService.deleteSwimLane(this.swimLane);
+  delete(swimlane: SwimLane) {
+    console.log(swimlane);
+    //this.swimLane.slId = sid;
+    //this.swimLaneService.deleteSwimLane(this.swimLane);
   }
 
 }
