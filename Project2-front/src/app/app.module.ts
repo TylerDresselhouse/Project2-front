@@ -29,6 +29,7 @@ import { NavbarService } from './services/navbar.service';
 import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 import { BoardMembersComponent } from './components/board-members/board-members.component';
+import { TaskService } from './services/task.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,9 @@ import { BoardMembersComponent } from './components/board-members/board-members.
     InviteService,
     NavbarService,
     NgbActiveModal,
-    TaskComponent],
+    TaskComponent,
+    TaskService,
+  ],
 
   entryComponents: [
     CardComponent,

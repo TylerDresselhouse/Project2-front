@@ -27,6 +27,7 @@ export class SwimLanesComponent implements OnInit {
   swimLane: SwimLane;
   taskComponent: TaskComponent;
   id;
+  selectedSwimlane: SwimLane;
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
@@ -82,8 +83,21 @@ export class SwimLanesComponent implements OnInit {
 
   delete(sid: number) {
     console.log('An attempt to delete ' + sid + ' has been made');
-    this.swimLane.slId = sid;
+    this.swimLane.id = sid;
     this.swimLaneService.deleteSwimLane(this.swimLane);
+  }
+
+  updateSwimLane(card, slid) {
+    console.log("AAAAAAAAAHHHHHHHHHHHH");
+    for (let i = 0; i < this.swimLanes.length; i++) {
+      if (this.swimLanes[i].id === slid) {
+          for (let j = 0; j < this.swimLanes[i].cards.length; j++) {
+            if (this.swimLanes[i].cards[j].id === card.id) {
+                this.swimLanes[i].cards[j] = card;
+            }
+          }
+      }
+    }
   }
 
 }
