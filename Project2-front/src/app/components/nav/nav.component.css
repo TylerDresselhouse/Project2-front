@@ -1,0 +1,12 @@
+.nav {
+    font-weight: bold;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #5b9bd5;
+}
+
+a {
+    color: #f4b183;
+}
