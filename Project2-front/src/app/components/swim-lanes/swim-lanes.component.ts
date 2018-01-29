@@ -12,19 +12,23 @@ import { NavbarService } from '../../services/navbar.service';
 import { PermissionsService } from '../../services/permissions.service';
 import { UserBoardRole } from '../../models/boarduserrole.model';
 import { AsbUser } from '../../models/asbuser.model';
+import { TaskComponent } from '../task/task.component';
+import { CardService } from '../../services/card.service';
 
 @Component({
   selector: 'app-swim-lanes',
   templateUrl: './swim-lanes.component.html',
   styleUrls: ['./swim-lanes.component.css'],
-  providers: [NgbModal, CardComponent],
+  providers: [NgbModal, CardComponent, TaskComponent, CardService],
 })
 export class SwimLanesComponent implements OnInit {
 
   swimLanes: SwimLane[];
   newSwimLane: SwimLane;
   card: Card;
+  cardService: CardService;
   swimLane: SwimLane;
+  taskComponent: TaskComponent;
   id;
   boardName: String;
   currUser: AsbUser;
@@ -80,10 +84,15 @@ export class SwimLanesComponent implements OnInit {
     modalRef.componentInstance.id = card.id;
     modalRef.componentInstance.order = card.order;
     modalRef.componentInstance.slid = slid;
+    const cardId = card.id;
+    localStorage.setItem('currCardId', String(cardId));
+
   }
 
-  delete(swimlane: SwimLane) {
-    console.log('An attempt to delete ' + swimlane.slName + ' has been made');
+  delete(sid: number) {
+    console.log('An attempt to delete ' + sid + ' has been made');
+    this.swimLane.slId = sid;
+    this.swimLaneService.deleteSwimLane(this.swimLane);
   }
 
   getUserBoardRole(boardId) {
