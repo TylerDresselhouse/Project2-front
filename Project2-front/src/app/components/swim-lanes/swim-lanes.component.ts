@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SwimLaneService } from '../../services/swim-lane.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { SwimLane } from '../../models/swimlane.model';
@@ -9,6 +9,7 @@ import { Board } from '../../models/board.model';
 import { Card } from '../../models/card.model';
 import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
 import { NavbarService } from '../../services/navbar.service';
+import { AlertService } from '../../services/alert.service';
 import { PermissionsService } from '../../services/permissions.service';
 import { UserBoardRole } from '../../models/boarduserrole.model';
 import { AsbUser } from '../../models/asbuser.model';
@@ -28,26 +29,31 @@ export class SwimLanesComponent implements OnInit {
   card: Card;
   cardService: CardService;
   swimLane: SwimLane;
+  id: number;
   taskComponent: TaskComponent;
-  id;
   boardName: String;
   currUser: AsbUser;
   userBoardRole = new UserBoardRole(0, '',false,false,false,false,false);
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
-    private cardComponent: CardComponent, private navService: NavbarService, private permissionService: PermissionsService) { }
+    private cardComponent: CardComponent, private navService: NavbarService, private alertService: AlertService, 
+    private permissionService: PermissionsService ) { }
+
+    @Input() swimLaneIn: SwimLane;
 
   ngOnInit() {
     this.authService.checkCredentials();
     this.navService.show();
+    this.id = JSON.parse(this.route.snapshot.paramMap.get('id'));
+    localStorage.setItem('currBoardId', JSON.stringify(this.id));
+    this.swimLanes = this.getSwimLanes(0);
+    this.newSwimLane = new SwimLane(null, null, null);
     this.navService.showBoardMembers();
     this.navService.showBurndown();
-    this.id = this.route.snapshot.paramMap.get('id');
-    localStorage.setItem('currBoardId', this.id);
-    this.swimLanes = this.getSwimLanes(0);
     this.getUserBoardRole(this.id);
   }
+
 
   getSwimLanes(lane: number): SwimLane[] {
     // this.id = JSON.parse(localStorage.getItem('id'));
@@ -55,7 +61,7 @@ export class SwimLanesComponent implements OnInit {
     const boards: Board[] = JSON.parse(localStorage.getItem('boards'));
     console.log(boards);
     for (let i = 0; i < boards.length; i++) {
-        if (boards[i].id == this.id) {
+        if (boards[i].id === this.id) {
           this.boardName = boards[i].name;
           console.log('SUCCESS ON ' + boards[i].id);
             return boards[i].swimLanes;
@@ -66,7 +72,14 @@ export class SwimLanesComponent implements OnInit {
   }
 
   createSwimLane(): void {
-    this.swimLaneService.createSwimLane(this.newSwimLane);
+    const newLane = new SwimLane(null, this.newSwimLane.name, []);
+    this.swimLaneService.createSwimLane(newLane, this.id).subscribe(
+      data => {
+        this.swimLaneIn = data;
+        this.swimLanes.push(this.swimLaneIn);
+        this.alertService.success('Swim Lane successfully added!');
+      }
+    );
   }
 
   openBurnDown() {
@@ -89,10 +102,15 @@ export class SwimLanesComponent implements OnInit {
 
   }
 
-  delete(sid: number) {
-    console.log('An attempt to delete ' + sid + ' has been made');
-    this.swimLane.slId = sid;
-    this.swimLaneService.deleteSwimLane(this.swimLane);
+  delete(swimLane: SwimLane): void {
+    console.log('An attempt to delete ' + JSON.stringify(swimLane) + ' has been made');
+    this.swimLanes = this.swimLanes.filter(s => s !== swimLane);
+    this.swimLaneService.deleteSwimLane(swimLane, this.id).subscribe(
+      data => {
+        this.swimLaneIn = data;
+        this.alertService.success('Swim Lane successfully deleted!');
+      }
+    );
   }
 
   getUserBoardRole(boardId) {

@@ -31,6 +31,12 @@ export const environment = {
     delete: () =>  `${context}delete/card`
   },
 
+  swimLane: {
+    create: (boardId: number) => `${context}createSwimLane/${boardId}`,
+
+    delete: (boardId: number) => `${context}delete/swimlane/${boardId}`
+  },
+
   boardMembers: {
     get: (boardId: number) => `${context}get/users/${boardId}`
   }
