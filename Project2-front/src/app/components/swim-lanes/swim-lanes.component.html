@@ -24,8 +24,10 @@
               <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
             </td>
           </tr>
-          <tr>
-            <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
+          <tr *ngIf="userBoardRole.createCard">
+            <td>
+              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
+            </td>
           </tr>
         </table>
       </td>
@@ -38,9 +40,13 @@
       </td>
     </tr>
   </table>
+  <div *ngIf="userBoardRole.createSwimLane">
+    <input type="text" ([ngModel])="newSwimLane.name">
+    <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
+  </div>
 </div>
 
 <!-- Modal test button -->
 
 <button align="left" class="btn btn-lg btn-outline-primary" (click)="open()">Demo modal</button>
-<button align="right" class="btn btn-primary" routerLink="/invite/{{id}}">Invite</button>
+<button *ngIf="userBoardRole.inviteUser" class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>

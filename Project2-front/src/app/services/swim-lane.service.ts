@@ -22,19 +22,6 @@ export class SwimLaneService {
 
     constructor(private router: Router, private http: HttpClient, private alertService: AlertService) { }
 
-    // getSwimLanes(board: number): SwimLane[] {
-    //     this.id = JSON.parse(localStorage.getItem('id'));
-    //     console.log(this.id);
-    //     // return swimLanes;   // CHANGE THIS TO GET THE SWIMLANES OF THE BOARD PARAMETER
-    //     const boards: any[] = JSON.parse(localStorage.getItem('boards'));
-    //     console.log(boards);
-    //     for (let i = 0; i < boards.length; i++) {
-    //         if (boards[i] === this.id) {
-    //             return boards[i];
-    //         }
-    //     }
-    // }
-
     createSwimLane(newSwimLane, id): Observable<SwimLane> {
         this.newSwimLaneUrl = environment.swimLane.create(id);
         return this.http.post<SwimLane>(this.newSwimLaneUrl, newSwimLane, httpOptions).map(
@@ -53,9 +40,6 @@ export class SwimLaneService {
                 return data;
             },
             err => console.log('error caught:' + err));
-
-          // success => this.alertService.success('Swim Lane deleted successfully!'),
-          // error => this.alertService.error('Swim Lane failed to delete!')
     }
 }
 
