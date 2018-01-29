@@ -33,22 +33,23 @@
               <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
             </td>
           </tr>
-          <tr>
+          <tr *ngIf="userBoardRole.createCard">
             <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
           </tr>
         </table>
       </td>
     </tr>
   </table>
-  <input type="text" ([ngModel])="newSwimLane.name">
-  <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
-
+  <div *ngIf="userBoardRole.createSwimLane">
+    <input type="text" ([ngModel])="newSwimLane.name">
+    <button type="button" class="btn btn-primary" (click)="createSwimLane()">New Swim Lane</button>
+  </div>
 </div>
 
 <!-- Modal test button -->
 
 <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
 <br>
-<button class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
+<button *ngIf="userBoardRole.inviteUser" class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
 <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart Modal</button>
 

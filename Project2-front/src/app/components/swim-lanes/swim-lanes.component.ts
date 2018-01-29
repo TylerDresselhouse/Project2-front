@@ -27,8 +27,8 @@ export class SwimLanesComponent implements OnInit {
   swimLane: SwimLane;
   id;
   boardName: String;
-  userBoardRole: UserBoardRole;
   currUser: AsbUser;
+  userBoardRole = new UserBoardRole(0, '',false,false,false,false,false);
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
@@ -89,7 +89,7 @@ export class SwimLanesComponent implements OnInit {
   getUserBoardRole(boardId) {
     this.currUser = JSON.parse(localStorage.getItem('user'));
     this.permissionService.getPermissions(this.currUser.id, boardId).subscribe(
-      data => { this.userBoardRole = data; console.log(this.userBoardRole); },
+      data => { this.userBoardRole = data; },
       err => console.log('Error getting user role')
     );
   }
