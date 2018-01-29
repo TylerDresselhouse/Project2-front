@@ -2,12 +2,7 @@
 <nav class="nav nav-pills nav-justified">
   <a class="nav-item nav-link active" routerLink="/home">Home</a>
   <a *ngIf="navService.boardMembers" class="nav-item nav-link" style="cursor:pointer" (click)="openBoardMembers()">Show Members</a>
-  <a *ngIf="navService.burndown" class="nav-item nav-link" style="cursor:pointer">Burndown Chart</a>
+  <a *ngIf="navService.burndown" class="nav-item nav-link active" style="cursor:pointer">Burndown Chart</a>
   <a class="nav-item nav-link" routerLink="/login">Logout</a>
 </nav>
 </div>
-<!-- <nav class="nav nav-pills nav-justified" *ngIf="isLoggedIn">
-  <a class="nav-item nav-link active" routerLink="/home">Home</a>
-  <a class="nav-item nav-link" routerLink="/invite">Invite</a>
-  <a class="nav-item nav-link" routerLink="/login">Logout</a>
-</nav> -->

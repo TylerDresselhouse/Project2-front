@@ -20,13 +20,21 @@ export const environment = {
 
     register: () => `${context}register`,
 
-    get: (username: String) => `${context}get/user/${username}`
+    get: (username: String) => `${context}get/user/${username}`,
+
+    getRole: (userId: number, boardId: number) => `${context}get/BoardUserRole/${userId}&${boardId}`
   },
 
   card: {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`,
 
     delete: () =>  `${context}delete/card`
+  },
+
+  swimLane: {
+    create: (boardId: number) => `${context}createSwimLane/${boardId}`,
+
+    delete: (boardId: number) => `${context}delete/swimlane/${boardId}`
   },
 
   boardMembers: {

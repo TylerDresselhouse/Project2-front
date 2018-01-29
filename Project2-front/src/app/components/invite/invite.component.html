@@ -1,4 +1,4 @@
-<h2>Invite Members to Board #{{boardId}}</h2>
+<h2>Invite Members to {{boardName}}</h2>
 <div *ngIf="!userFound">
 <h4>Search by username</h4>
 <input #username type="text">
@@ -6,11 +6,11 @@
 </div>
 <div *ngIf="userFound">
     <h4>Choose User Permissions for {{invitedUser.username}}</h4>
-    <input #createC type="checkbox">Create Cards<br>
-    <input #moveC type="checkbox" >Move Cards<br>
-    <input #editC type="checkbox">Edit Cards<br>
-    <input #inviteU type="checkbox" >Invite Users<br>
-    <input #createS type="checkbox" >Create Swimlanes<br>
+    <input #createC type="checkbox" > Create Cards<br>
+    <input #moveC type="checkbox" > Move Cards<br>
+    <input #editC type="checkbox"> Edit Cards<br>
+    <input #inviteU type="checkbox" > Invite Users<br>
+    <input #createS type="checkbox" > Create Swimlanes<br>
     <button type="button" class="btn btn-primary" 
         (click)="inviteUser(createC.checked,moveC.checked,
             editC.checked,inviteU.checked,createS.checked)">Invite</button>
