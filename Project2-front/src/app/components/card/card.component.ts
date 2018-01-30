@@ -28,9 +28,9 @@ export class CardComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
     private taskService: TaskService, private permissionsService: PermissionsService)  { }
 
-  trackByFn(index, task) {
-    return task.id;
-  }
+  // trackByFn(index, task) {
+  //   return task;
+  // }
 
   createCard() {
     this.card.title = (<HTMLInputElement>document.getElementById('title')).value;
@@ -44,24 +44,12 @@ export class CardComponent implements OnInit {
         this.alertService.success('Card saved successfully!');
       },
       error => this.alertService.error('Card failed to save!'));
-
-      for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
-        this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
-      }
+ 
+      // for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
+      //   this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
+      //   console.log('Tasks in card component: ' + this.card.tasks[i]);
+      // }
       this.activeModal.close(this.card);
-  }
-
-    const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
-    this.activeModal.close('Close click');
-    this.cardService.createCard(this.card, slid).subscribe(
-      data => {
-        this.card = data;
-        this.alertService.success('Card saved successfully!');
-      },
-      error => this.alertService.error('Card failed to save!'));
-
-      const swimLaneRef = this.swimLanes.updateSwimLane(this.card, slid);
-
   }
 
   deleteCard() {
