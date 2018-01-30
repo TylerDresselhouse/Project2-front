@@ -2,17 +2,19 @@
 <table class="table table-hover">
   
     <tbody>
-      <tr *ngFor="let task of tasks; trackBy:trackByFn">
+      <tr *ngFor="let task of tasks;">
         <td><input class="strikethrough" id="checkBox" type="checkbox"></td>
         <td><span>{{task.description}}</span> </td>
-        <td> <button (click)="deleteTask(task)">delete</button></td>
+        <td> <button *ngIf="permissionsService.currentUserBoardRole.deleteTask"
+                (click)="deleteTask(task)">delete</button></td>
       </tr>
     </tbody>
   </table>
 
 
   <input #taskDescription />
-  <button (click)="addTask(taskDescription.value); taskDescription.value=''">Add</button> 
+  <button *ngIf="permissionsService.currentUserBoardRole.createTask" 
+    (click)="addTask(taskDescription.value); taskDescription.value=''">Add</button> 
 
 
 

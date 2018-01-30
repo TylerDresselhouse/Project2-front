@@ -4,7 +4,7 @@ input[type="checkbox"]{
   height:16px;
   border:1px solid #aaa;
   border-radius:2px;
-  background:#ebebeb;
+  background:#869cc2;
   position:relative;
   display:inline-block;
   overflow:hidden;
@@ -25,12 +25,12 @@ input[type="checkbox"]:after{
   transition: left 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 input[type="checkbox"]:checked{
-  background:#a6c7ff;
-  border-color:#8daee5;
+  background:#f4b183;
+  border-color:#f4b183;
 }
 input[type="checkbox"]:checked:after{
   left:23px;
-  border-color:#8daee5;
+  border-color:#f4b183;
 }
 
 input[type="checkbox"]:hover:not(:checked):not(:disabled):after,
@@ -45,4 +45,9 @@ input[type="checkbox"]:focus:checked:not(:disabled):after{
 
 input[type="checkbox"]:disabled{
   opacity:0.5;
+}
+
+button {
+  background-color: #5b9bd5;
+  border-color: #5b9bd5;
 }

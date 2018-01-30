@@ -6,6 +6,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { parse } from 'url';
 import { AlertService } from '../../services/alert.service';
+import { PermissionsService } from '../../services/permissions.service';
 import { TaskService } from '../../services/task.service';
 import { TaskComponent } from '../task/task.component';
 import { SwimLane } from '../../models/swimlane.model';
@@ -25,35 +26,30 @@ export class CardComponent implements OnInit {
   swimLanes: SwimLanesComponent;
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
-    private taskService: TaskService)  { }
+    private taskService: TaskService, private permissionsService: PermissionsService)  { }
 
-  trackByFn(index, task) {
-    return task.id;
-  }
+  // trackByFn(index, task) {
+  //   return task;
+  // }
 
   createCard() {
     this.card.title = (<HTMLInputElement>document.getElementById('title')).value;
     this.card.difficulty = +(<HTMLInputElement>document.getElementById('difficulty')).value;
     this.card.description = (<HTMLInputElement>document.getElementById('description')).value;
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
-    this.taskService.listOfTasks(this.card.id).subscribe(data => {
-      this.card.tasks = data;
-    });
-    for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
-      this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
-    }
-
     const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
-    this.activeModal.close('Close click');
     this.cardService.createCard(this.card, slid).subscribe(
       data => {
         this.card = data;
         this.alertService.success('Card saved successfully!');
       },
       error => this.alertService.error('Card failed to save!'));
-
-      const swimLaneRef = this.swimLanes.updateSwimLane(this.card, slid);
-
+ 
+      // for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
+      //   this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
+      //   console.log('Tasks in card component: ' + this.card.tasks[i]);
+      // }
+      this.activeModal.close(this.card);
   }
 
   deleteCard() {
