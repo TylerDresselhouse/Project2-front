@@ -2,7 +2,7 @@
 <table class="table table-hover">
   
     <tbody>
-      <tr *ngFor="let task of tasks; trackBy:trackByFn">
+      <tr *ngFor="let task of tasks;">
         <td><input class="strikethrough" id="checkBox" type="checkbox"></td>
         <td><span>{{task.description}}</span> </td>
         <td> <button (click)="deleteTask(task)">delete</button></td>
