@@ -78,14 +78,18 @@ export class SwimLanesComponent implements OnInit {
   }
 
   createSwimLane(): void {
-    const newLane = new SwimLane(null, this.newSwimLane.name, []);
-    this.swimLaneService.createSwimLane(newLane, this.id).subscribe(
-      data => {
-        this.swimLaneIn = data;
-        this.swimLanes.push(this.swimLaneIn);
-        this.alertService.success('Swim Lane successfully added!');
-      }
-    );
+    if (this.newSwimLane.name.length > 0) {
+      const newLane = new SwimLane(null, this.newSwimLane.name, []);
+      this.swimLaneService.createSwimLane(newLane, this.id).subscribe(
+        data => {
+          this.swimLaneIn = data;
+          this.swimLanes.push(this.swimLaneIn);
+          this.alertService.success('Swim Lane successfully added!');
+        }
+      );
+    } else {
+      this.alertService.error('Cannot have empty name!');
+    }
   }
 
   openBurnDown() {
