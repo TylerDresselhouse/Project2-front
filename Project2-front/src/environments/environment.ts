@@ -28,7 +28,8 @@ export const environment = {
   card: {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`,
 
-    delete: () =>  `${context}delete/card`
+    delete: (swimLaneId: number) =>  `${context}delete/card/${swimLaneId}`,
+
   },
 
   swimLane: {
