@@ -28,6 +28,7 @@ import { NavbarService } from './services/navbar.service';
 import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 import { BoardMembersComponent } from './components/board-members/board-members.component';
+import { TaskService } from './services/task.service';
 import { PermissionsService } from './services/permissions.service';
 
 @NgModule({
@@ -65,6 +66,7 @@ import { PermissionsService } from './services/permissions.service';
     NavbarService,
     NgbActiveModal,
     TaskComponent,
+    TaskService,
     PermissionsService],
 
   entryComponents: [
