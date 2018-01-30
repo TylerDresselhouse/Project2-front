@@ -53,9 +53,10 @@ export class InviteComponent implements OnInit {
         }}, err => this.alertService.error('Invalid Input'));
   }
 
-  inviteUser(createC, moveC, editC, inviteU, createS) {
+  inviteUser(createC, editC, deleteC, inviteU, removeU, createS, deleteS, createT, deleteT) {
     const role = new UserBoardRole(null, 'Custom Role',
-      createC, moveC, editC, inviteU, createS);
+      createC, editC, deleteC, inviteU, removeU, createS,
+      deleteS, createT, deleteT );
     this.invService.addUserToBoard(this.invitedUser.id, this.boardId , role)
       .subscribe(data => { console.log(data);
         if (data != null) {

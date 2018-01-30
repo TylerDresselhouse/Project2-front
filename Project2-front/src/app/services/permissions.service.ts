@@ -10,6 +10,10 @@ const httpOptions = {
 @Injectable()
 export class PermissionsService {
 
+  currentUserBoardRole = new UserBoardRole(null, 'Custom Role',
+  false, false, false, false, false, false,
+  false, false, false );
+
   constructor(private http: HttpClient) { }
 
   getPermissions(userId: number, boardId) {
