@@ -9,7 +9,7 @@
     <div>{{moduleAlertMsg}}</div>
   </div>
   <div *ngIf="!initialQuestion">Enter the values completed on the days they where completed below
-    <div>Board Total difficulty is: {{totalDifficulty}}
+    <div>Board Total difficulty is: <input type="number" [(ngModel)]="totalDifficulty"/>
     </div>
   </div>
 </div>
@@ -18,7 +18,6 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Sun</th>
           <th scope="col">Mon</th>
           <th scope="col">Tues</th>
@@ -30,7 +29,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let week of weeks; let i = index">
-          <td>#{{i + 1}}</td>
           <td>
             <input class="form-control form-control-sm" type="number" [(ngModel)]="weeks[i].sunday" />
           </td>
@@ -55,7 +53,9 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" value="Add table" (click)="generateBurnDown()">Generate BurnDown Chart</button>
+    <div *ngIf="!showBurnDown">
+      <button type="button" value="Add table" (click)="generateBurnDown()">Generate BurnDown Chart</button>
+    </div>
   </div>
 </div>
 <div class="modal-footer">
