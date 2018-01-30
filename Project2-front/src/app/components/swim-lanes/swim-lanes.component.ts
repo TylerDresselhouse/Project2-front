@@ -37,8 +37,8 @@ export class SwimLanesComponent implements OnInit {
   boardName: String;
   currUser: AsbUser;
   userBoardRole = new UserBoardRole(null, 'Custom Role',
-  false, false, false, false, false, false,
-  false, false, false );
+    false, false, false, false, false, false,
+    false, false, false);
 
   constructor(private swimLaneService: SwimLaneService,
     private authService: AuthenticationService, private route: ActivatedRoute, private modalService: NgbModal,
@@ -78,14 +78,18 @@ export class SwimLanesComponent implements OnInit {
   }
 
   createSwimLane(): void {
-    const newLane = new SwimLane(null, this.newSwimLane.name, []);
-    this.swimLaneService.createSwimLane(newLane, this.id).subscribe(
-      data => {
-        this.swimLaneIn = data;
-        this.swimLanes.push(this.swimLaneIn);
-        this.alertService.success('Swim Lane successfully added!');
-      }
-    );
+    if (this.newSwimLane.name.length > 0) {
+      const newLane = new SwimLane(null, this.newSwimLane.name, []);
+      this.swimLaneService.createSwimLane(newLane, this.id).subscribe(
+        data => {
+          this.swimLaneIn = data;
+          this.swimLanes.push(this.swimLaneIn);
+          this.alertService.success('Swim Lane successfully added!');
+        }
+      );
+    } else {
+      this.alertService.error('Cannot have empty name!');
+    }
   }
 
   openBurnDown() {
@@ -112,14 +116,24 @@ export class SwimLanesComponent implements OnInit {
       (data) => {
         this.card = data;
 
-        for (let i = 0; i < this.swimLanes.length; i++) {
-          if (this.swimLanes[i].id === slid) {
-            for (let j = 0; j < this.swimLanes[i].cards.length; j++) {
-              if (this.swimLanes[i].cards[j].id === this.card.id) {
-                this.boards[this.boardIndex].swimLanes[i].cards[j] = this.card;
-                break;
-              }
-            } break;
+        if (this.card.title == null) {
+          for (let i = 0; i < this.swimLanes.length; i++) {
+            if (this.swimLanes[i].id === slid) {
+              this.boards[this.boardIndex].swimLanes[i].cards = this.boards[this.boardIndex].
+              swimLanes[i].cards.filter(t => t !== this.card);
+              console.log(this.boards[this.boardIndex].swimLanes[i].cards);
+            }
+          }
+        } else {
+          for (let i = 0; i < this.swimLanes.length; i++) {
+            if (this.swimLanes[i].id === slid) {
+              for (let j = 0; j < this.swimLanes[i].cards.length; j++) {
+                if (this.swimLanes[i].cards[j].id === this.card.id) {
+                  this.boards[this.boardIndex].swimLanes[i].cards[j] = this.card;
+                  break;
+                }
+              } break;
+            }
           }
         }
       });
@@ -139,11 +153,11 @@ export class SwimLanesComponent implements OnInit {
         for (let i = 0; i < this.swimLanes.length; i++) {
           if (this.swimLanes[i].id === slid) {
             this.boards[this.boardIndex].swimLanes[i].cards.push(this.card);
-            }
           }
+        }
       });
 
-      localStorage.setItem('boards', JSON.stringify(this.boards));
+    localStorage.setItem('boards', JSON.stringify(this.boards));
 
   }
 

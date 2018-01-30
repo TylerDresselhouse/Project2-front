@@ -1,6 +1,6 @@
   @media (max-width: 720px) {
     .col-sm-auto {
-      margin: auto;
+      width: auto;
     }
   }
   @media (max-width: 1024px) {

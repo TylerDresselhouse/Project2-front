@@ -24,7 +24,7 @@ export class BurndownchartComponent implements OnInit {
 
   ngOnInit() {
     this.context = this.elementRef.nativeElement.querySelector(`#canvas`);
-    this.totalDifficulty = 220;
+    this.totalDifficulty = 100;
   }
 
   openChart(weeks: number) {
@@ -41,6 +41,7 @@ export class BurndownchartComponent implements OnInit {
   }
 
   generateBurnDown() {
+    this.showBurnDown = true;
     this.differenceDifficulty = this.totalDifficulty;
     this.weeks.forEach(week => {
       this.differenceDifficulty = this.differenceDifficulty - week.sunday;
@@ -72,12 +73,12 @@ export class BurndownchartComponent implements OnInit {
         datasets: [
           {
             data: this.xAxis,
-            borderColor: '#3cba9f',
+            borderColor: '#5b9bd5',
             fill: false
           },
           {
             data: this.yAxis,
-            borderColor: '#ffcc00',
+            borderColor: '#5b9bd5',
             fill: false
           },
         ]
