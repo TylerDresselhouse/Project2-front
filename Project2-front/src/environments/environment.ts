@@ -39,5 +39,17 @@ export const environment = {
 
   boardMembers: {
     get: (boardId: number) => `${context}get/users/${boardId}`
+  },
+
+  task: {
+    getTasks: (cdId: number) => `${context}get/tasks/${cdId}`,
+
+    delete: (cId: number) => `${context}delete/task/${cId}`,
+
+    create:  (cId: number) => `${context}createTask/${cId}`,
+    
+    completeTask:() => `${context}checkTask/`
   }
+
+
 };
