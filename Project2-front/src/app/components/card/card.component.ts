@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { Task } from '../../models/task.model';
@@ -10,7 +10,6 @@ import { TaskService } from '../../services/task.service';
 import { TaskComponent } from '../task/task.component';
 import { SwimLane } from '../../models/swimlane.model';
 import { SwimLanesComponent } from '../swim-lanes/swim-lanes.component';
-// import { EventEmitter } from '@angular/core/src/event_emitter';
 
 
 @Component({
@@ -23,7 +22,6 @@ import { SwimLanesComponent } from '../swim-lanes/swim-lanes.component';
 export class CardComponent implements OnInit {
 
   card: Card;
-  // @Output() updateSwimLane = new EventEmitter<Card>();
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
     private taskService: TaskService)  { }
