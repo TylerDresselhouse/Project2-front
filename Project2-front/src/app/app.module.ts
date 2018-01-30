@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { PrivateComponent } from './components/private/private.component';
 import { SwimLanesComponent } from './components/swim-lanes/swim-lanes.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,7 +34,6 @@ import { PermissionsService } from './services/permissions.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    PrivateComponent,
     SwimLanesComponent,
     BurndownchartComponent,
     CardComponent,
