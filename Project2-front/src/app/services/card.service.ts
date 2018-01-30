@@ -29,6 +29,15 @@ export class CardService {
     );
   }
 
+  updateCard(card: Card, slid) {
+    const updateCardUrl = environment.card.save(slid);
+    return this.http.post<Card>(updateCardUrl, card, httpOptions).map(
+        data => {
+          return data;
+        }
+    );
+  }
+
   deleteCard(card) {
     const deleteCardUrl = environment.card.delete();
     return this.http.post(deleteCardUrl, card, httpOptions).subscribe(

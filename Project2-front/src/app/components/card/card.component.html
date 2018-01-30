@@ -1,13 +1,12 @@
-<div modal>
 <div class="modal-header">
-  <h4 class="modal-title"><input value={{title}} id="title" type="text" placeholder="Title">
+  <h4 class="modal-title"><input value={{title}} id="title" type="text" maxlength="20" placeholder="Title">
   </h4>
   Difficulty:
-  <input value={{difficulty}} id="difficulty" type="number" min=1 max=10 placeholder=1>
+  <input value={{difficulty}} id="difficulty" type="number" min="1" max="10" placeholder=1>
 </div>
 <div class="modal-body">
       <div>
-        <input value={{description}} id="description" type="text" placeholder="Description">
+        <input value={{description}} id="description" type="text" maxlength="144" placeholder="Description">
       </div>
       <br><br>
       <div>
