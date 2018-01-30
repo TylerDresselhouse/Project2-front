@@ -37,12 +37,19 @@ export class CardComponent implements OnInit {
     this.card.difficulty = +(<HTMLInputElement>document.getElementById('difficulty')).value;
     this.card.description = (<HTMLInputElement>document.getElementById('description')).value;
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
-    this.taskService.listOfTasks(this.card.id).subscribe(data => {
-      this.card.tasks = data;
-    });
-    for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
-      this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
-    }
+    const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
+    this.cardService.createCard(this.card, slid).subscribe(
+      data => {
+        this.card = data;
+        this.alertService.success('Card saved successfully!');
+      },
+      error => this.alertService.error('Card failed to save!'));
+
+      for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
+        this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
+      }
+      this.activeModal.close(this.card);
+  }
 
     const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
     this.activeModal.close('Close click');

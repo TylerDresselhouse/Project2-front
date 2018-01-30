@@ -31,7 +31,7 @@
           </tr>
           <tr *ngIf="userBoardRole.createCard">
             <td style="min-width:400px" align="center">
-              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)">New Card</button>
+              <button class="btn btn-lg btn-outline-primary" (click)="openNew(swimLane.id)">New Card</button>
             </td>
           </tr>
         </table>
@@ -48,10 +48,6 @@
     </tr>
   </table>
 
-  <!-- I don't know what I'm doing -->
-  <!-- <add-todo (add)="updateSwimLane($event)"></add-todo> -->
-
 </div>
 
-<button align="left" class="btn btn-lg btn-outline-primary" (click)="open()">Demo modal</button>
 <button *ngIf="userBoardRole.inviteUser" class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
