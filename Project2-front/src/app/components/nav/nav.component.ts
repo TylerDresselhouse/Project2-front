@@ -5,6 +5,7 @@ import { NavbarService } from '../../services/navbar.service';
 import { BoardMembersComponent } from '../board-members/board-members.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { ActivatedRoute } from '@angular/router';
+import { BurndownchartComponent } from '../burndownchart/burndownchart.component';
 
 @Component({
   selector: 'app-nav',
@@ -23,6 +24,10 @@ export class NavComponent implements OnInit {
 
   openBoardMembers() {
     const modalRef = this.modalService.open(BoardMembersComponent);
+  }
+
+  openBurnDown() {
+    const modalRef2 = this.modalService.open(BurndownchartComponent);
   }
 
 }

@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
           console.log('The input is: ' + title);
           this.newBoard = data;
           this.boards.push(this.newBoard);
+          localStorage.setItem('boards', JSON.stringify(this.boards));
           this.alertService.success('Board was successfully added!');
         },
         err => {

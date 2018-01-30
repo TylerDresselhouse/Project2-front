@@ -5,6 +5,7 @@ import { AlertService } from '../../services/alert.service';
 import { CardComponent } from '../card/card.component';
 import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
+import { PermissionsService } from '../../services/permissions.service';
 
 
 @Component({
@@ -15,8 +16,8 @@ import { CardService } from '../../services/card.service';
 })
 export class TaskComponent implements OnInit {
 
-  constructor(private taskService: TaskService,
-    private alertService: AlertService) { }
+constructor(private taskService: TaskService, private alertService: AlertService,
+  private permissionsService: PermissionsService) { }
 
   @Input() task: Task;
 
@@ -33,7 +34,7 @@ export class TaskComponent implements OnInit {
 
   getTasks(cId): void {
     console.log('received card id in getTasks: ' + cId);
-    this.taskService.listOfTasks(cId).subscribe(data => {
+    this.taskService.listOfTasks(cId).map(data => {
       this.tasks = data;
     });
 

@@ -7,11 +7,16 @@
 <div *ngIf="userFound">
     <h4>Choose User Permissions for {{invitedUser.username}}</h4>
     <input #createC type="checkbox" > Create Cards<br>
-    <input #moveC type="checkbox" > Move Cards<br>
     <input #editC type="checkbox"> Edit Cards<br>
+    <input #deleteC type="checkbox"> Delete Cards<br>
     <input #inviteU type="checkbox" > Invite Users<br>
+    <input #removeU type="checkbox" > Remove Users<br>
     <input #createS type="checkbox" > Create Swimlanes<br>
-    <button type="button" class="btn btn-primary" 
-        (click)="inviteUser(createC.checked,moveC.checked,
-            editC.checked,inviteU.checked,createS.checked)">Invite</button>
+    <input #deleteS type="checkbox" > Delete Swimlanes<br>
+    <input #createT type="checkbox" > Create Tasks<br>
+    <input #deleteT type="checkbox" > Delete Tasks<br><br>
+    <button type="button" class="btn btn-primary btn-lg" 
+        (click)="inviteUser(createC.checked, editC.checked, deleteC.checked, 
+        inviteU.checked, removeU.checked, createS.checked, deleteS.checked, 
+        createT.checked, deleteT.checked)">Invite</button>
 </div>
