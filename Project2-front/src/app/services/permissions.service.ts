@@ -21,6 +21,7 @@ export class PermissionsService {
     return this.http.get<UserBoardRole>(getUserBoardRole)
     .map(
       (data => {
+        this.currentUserBoardRole = data;
         return data; }),
       (err => console.log('error: ', err))
       );

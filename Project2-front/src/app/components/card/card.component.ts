@@ -6,6 +6,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { parse } from 'url';
 import { AlertService } from '../../services/alert.service';
+import { PermissionsService } from '../../services/permissions.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CardComponent implements OnInit {
   card: Card;
   alertService: AlertService;
 
-  constructor(public activeModal: NgbActiveModal, private cardService: CardService) {}
+  constructor(public activeModal: NgbActiveModal, private cardService: CardService,
+    private permissionsService: PermissionsService) {}
 
     createCard() {
       this.card.title = (<HTMLInputElement>document.getElementById('title')).value;

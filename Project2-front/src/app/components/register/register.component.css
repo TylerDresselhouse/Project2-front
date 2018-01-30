@@ -1,4 +1,10 @@
-button {
+.btn-orange {
+    color: #fff;
     background-color: #f4b183;
-    border-color: #f4b183;
-}
+    border-color: #f4b183; /*set the color you want here*/
+ }
+ .btn-orange:hover {
+    color: #fff;
+    background-color: #e98949;
+    border-color: #e98949; /*set the color you want here*/
+ }

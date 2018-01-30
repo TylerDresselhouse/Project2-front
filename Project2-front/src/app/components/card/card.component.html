@@ -20,6 +20,6 @@
       </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="createCard()">Save</button>
-  <button type="button" class="btn btn-outline-dark" (click)="deleteCard()">Delete</button>
+  <button *ngIf="permissionsService.currentUserBoardRole.editCard"type="button" class="btn btn-outline-dark" (click)="createCard()">Save</button>
+  <button *ngIf="permissionsService.currentUserBoardRole.deleteCard" type="button" class="btn btn-outline-dark" (click)="deleteCard()">Delete</button>
 </div>

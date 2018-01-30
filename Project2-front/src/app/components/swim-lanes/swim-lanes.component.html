@@ -2,9 +2,9 @@
   <span style="float: left;">
     List of Swim Lanes:
   </span>
-  <span style="float: right;">
+  <!-- <span style="float: right;">
     <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart</button>
-  </span>
+  </span> -->
 </div>
 
 <div>
@@ -17,7 +17,7 @@
         <table class="table-hover" border="1px solid black">
           <th>
             {{swimLane.name}}
-            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button>
+            <button *ngIf="userBoardRole.deleteSwimLane" class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button>
           </th>
           <tr *ngFor="let card of swimLane.cards">
             <td>
