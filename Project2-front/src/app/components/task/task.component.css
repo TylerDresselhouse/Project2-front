@@ -2,8 +2,8 @@
     text-decoration: line-through;
 } */
 
-.strikethrough:checked + td + span{
-    text-decoration:line-through
+ .checked {
+    text-decoration: line-through;
   }
 
 
