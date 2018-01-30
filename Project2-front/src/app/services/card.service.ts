@@ -38,8 +38,8 @@ export class CardService {
     );
   }
 
-  deleteCard(card) {
-    const deleteCardUrl = environment.card.delete();
+  deleteCard(card, slid) {
+    const deleteCardUrl = environment.card.delete(slid);
     return this.http.post(deleteCardUrl, card, httpOptions).subscribe(
       success => this.alertService.success('Card deleted successfully!'),
       error => this.alertService.error('Card failed to delete!')

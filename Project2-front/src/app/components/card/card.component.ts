@@ -66,7 +66,7 @@ export class CardComponent implements OnInit {
       this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
       const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
       this.activeModal.close(this.card);
-      this.cardService.deleteCard(this.card);
+      this.cardService.deleteCard(this.card, slid);
     }
 
     ngOnInit() {
