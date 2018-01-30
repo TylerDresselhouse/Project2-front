@@ -117,10 +117,8 @@ export class SwimLanesComponent implements OnInit {
         this.card = data;
 
         if (this.card.title == null) {
-          console.log("attempting card delete in swimlane");
           for (let i = 0; i < this.swimLanes.length; i++) {
             if (this.swimLanes[i].id === slid) {
-              console.log('idk');
               this.boards[this.boardIndex].swimLanes[i].cards = this.boards[this.boardIndex].
               swimLanes[i].cards.filter(t => t !== this.card);
               console.log(this.boards[this.boardIndex].swimLanes[i].cards);

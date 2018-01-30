@@ -28,10 +28,6 @@ export class CardComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
     private taskService: TaskService, private permissionsService: PermissionsService) { }
 
-  // trackByFn(index, task) {
-  //   return task;
-  // }
-
   createCard() {
     this.card.title = (<HTMLInputElement>document.getElementById('title')).value;
     this.card.difficulty = +(<HTMLInputElement>document.getElementById('difficulty')).value;
@@ -46,10 +42,6 @@ export class CardComponent implements OnInit {
         },
         error => this.alertService.error('Card failed to save!'));
 
-      // for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
-      //   this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
-      //   console.log('Tasks in card component: ' + this.card.tasks[i]);
-      // }
       this.activeModal.close(this.card);
     } else if (this.card.title.length === 0 && this.card.difficulty !== 0) {
       this.alertService.error('This card needs a title!');
