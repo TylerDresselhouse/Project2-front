@@ -33,7 +33,7 @@ export class TaskComponent implements OnInit {
 
   getTasks(cId): void {
     console.log('received card id in getTasks: ' + cId);
-    this.taskService.listOfTasks(cId).subscribe(data => {
+    this.taskService.listOfTasks(cId).map(data => {
       this.tasks = data;
     });
 

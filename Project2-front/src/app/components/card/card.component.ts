@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { Task } from '../../models/task.model';
@@ -22,7 +22,6 @@ import { SwimLanesComponent } from '../swim-lanes/swim-lanes.component';
 export class CardComponent implements OnInit {
 
   card: Card;
-  swimLanes: SwimLanesComponent;
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
     private taskService: TaskService)  { }
@@ -36,15 +35,7 @@ export class CardComponent implements OnInit {
     this.card.difficulty = +(<HTMLInputElement>document.getElementById('difficulty')).value;
     this.card.description = (<HTMLInputElement>document.getElementById('description')).value;
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
-    this.taskService.listOfTasks(this.card.id).subscribe(data => {
-      this.card.tasks = data;
-    });
-    for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
-      this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
-    }
-
     const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
-    this.activeModal.close('Close click');
     this.cardService.createCard(this.card, slid).subscribe(
       data => {
         this.card = data;
@@ -52,9 +43,12 @@ export class CardComponent implements OnInit {
       },
       error => this.alertService.error('Card failed to save!'));
 
-      const swimLaneRef = this.swimLanes.updateSwimLane(this.card, slid);
-
+      for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
+        this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
+      }
+      this.activeModal.close(this.card);
   }
+
 
   deleteCard() {
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
