@@ -31,7 +31,6 @@ export class TaskService {
 
 
   listOfTasks(cId): Observable<Task[]> {
-    console.log('cid in task service: ' + cId);
     return this.http.get<Task[]>(this.taskUrl + cId).map(
       data => {
         return data;

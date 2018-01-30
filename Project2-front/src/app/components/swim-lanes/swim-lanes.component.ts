@@ -166,5 +166,4 @@ export class SwimLanesComponent implements OnInit {
     );
   }
 
-
 }

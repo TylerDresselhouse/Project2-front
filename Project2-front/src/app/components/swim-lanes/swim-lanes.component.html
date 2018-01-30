@@ -2,9 +2,9 @@
   <span style="float: center;" align="center">
     List of Swim Lanes:
   </span>
-  <span style="float: right;">
+  <!-- <span style="float: right;">
     <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart</button>
-  </span>
+  </span> -->
 </div>
 
 <div overflow-x="scroll" width="auto" white-space="nowrap">
@@ -19,7 +19,7 @@
             <span style="float: left;">
             {{swimLane.name}}</span>
             <span style="float: right;">
-            <button class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button></span>
+              <button *ngIf="userBoardRole.deleteSwimLane" class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button></span>
           </th>
           <tr *ngFor="let card of swimLane.cards">
             <td style="min-width:400px" (click)="open(card, swimLane.id)" style="cursor: pointer;" align="center">
@@ -50,5 +50,4 @@
 
 </div>
 
-<button align="left" class="btn btn-lg btn-outline-primary" (click)="open()">Demo modal</button>
 <button *ngIf="userBoardRole.inviteUser" class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
