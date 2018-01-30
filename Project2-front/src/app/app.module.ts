@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import {  } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -30,7 +29,7 @@ import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 import { BoardMembersComponent } from './components/board-members/board-members.component';
 import { TaskService } from './services/task.service';
-import { CardproxyComponent } from './cardproxy/cardproxy.component';
+import { PermissionsService } from './services/permissions.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +46,6 @@ import { CardproxyComponent } from './cardproxy/cardproxy.component';
     BoardMembersComponent,
     TaskComponent,
     AlertComponent,
-    CardproxyComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +67,7 @@ import { CardproxyComponent } from './cardproxy/cardproxy.component';
     NgbActiveModal,
     TaskComponent,
     TaskService,
-  ],
+    PermissionsService],
 
   entryComponents: [
     CardComponent,

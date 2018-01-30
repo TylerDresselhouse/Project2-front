@@ -33,8 +33,8 @@ export class TaskComponent implements OnInit {
 
   getTasks(cId): void {
     console.log('received card id in getTasks: ' + cId);
-    this.taskService.listOfTasks(cId).subscribe(data => {
-    this.tasks = data;
+    this.taskService.listOfTasks(cId).map(data => {
+      this.tasks = data;
     });
 
   }
@@ -44,6 +44,7 @@ export class TaskComponent implements OnInit {
     console.log(this.task);
     this.task = new Task(0, tDesc, false);
     const cId = +(<HTMLInputElement>document.getElementById('id')).value;
+    console.log('cId from hidden html: ' + cId);
     this.taskService.addNewTask(this.task, cId).subscribe(
       data => {
         this.task = data;

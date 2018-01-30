@@ -1,18 +1,13 @@
   @media (max-width: 720px) {
-    .module {
-      font-size: 10px;
-      max-height: 75px; }
+    .col-sm-auto {
+      margin: auto;
+    }
   }
   @media (max-width: 1024px) {
-    .grid {
-      margin: 0;
-    }
-    .module {
-      min-width: 60px;
-    }
+
   }
   .BoardSelector {
-    background-color: #007bff;
+    background-color: #5b9bd5;
     /* padding: 1em; */
     border-radius: 100%;
     text-align: center;
@@ -30,4 +25,24 @@
 
   button {
     margin: auto;
+    background-color: #5b9bd5;
+    border-color: #5b9bd5;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .image-container {
+    margin: auto;
+  }
+
+  .home-container {
+    width: 75%;
+  }
+
+  a {
+    color: #f4b183;
+  }
+
+  input {
+    margin-top: 1em;
   }
