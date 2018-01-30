@@ -25,19 +25,20 @@ export class TaskService {
     private taskUrl = 'http://localhost:8009/api/v1/get/tasks/';
     private delTask = 'http://localhost:8009/api/v1/delete/task/';
     private creatTaskUrl = 'http://localhost:8009/api/v1/createTask/';
-    private checkedUrl = 'http://localhost:8009/api/v1/checkTask/'
+    private checkedUrl = 'http://localhost:8009/api/v1/checkTask/';
   // this is a service-in-service where the hero service is ue=sing the message service
   constructor(private http: HttpClient) { }
 
 
-  listOfTasks(): Observable<Task[]> {
-    
-    return this.http.get<Task[]>(this.taskUrl + cId);
-
+  listOfTasks(cId): Observable<Task[]> {
+    return this.http.get<Task[]>(this.taskUrl + cId).map(
+      data => {
+        return data;
+        }  
+      );
   }
 
-    addNewTask (task: Task): Observable <Task> {
-     
+    addNewTask (task: Task, cId): Observable <Task> {
         return this.http.post<Task>(this.creatTaskUrl + cId, task, httpOptions).map(
           data => {
             return data;
@@ -45,7 +46,7 @@ export class TaskService {
         err => console.log('error caught:' + err));
     }
 
-    deleteSpecificTask(task: Task): Observable <Task>{
+    deleteSpecificTask(task: Task, cId): Observable <Task> {
       console.log(task);
       return this.http.post<Task>(this.delTask + cId, task, httpOptions ).map(
         
@@ -53,17 +54,18 @@ export class TaskService {
           return data;
       },
       err => console.log('error caught:' + err));
-     
+
     }
 
     completedTask( task: Task):  Observable <Task> {
+      console.log(task)
       return this.http.post<Task>(this.checkedUrl , task, httpOptions ).map(
-        
+
         data => {
           return data;
       },
       err => console.log('error caught:' + err));
-     
+
     }
 
   }
