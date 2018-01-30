@@ -30,13 +30,12 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
 
-  listOfTasks(cId): Observable<Task[]> {
+  listOfTasks(cId) {
     return this.http.get<Task[]>(this.taskUrl + cId).map(
       data => {
         return data;
-      }
-    );
-
+        }  
+      );
   }
 
     addNewTask (task: Task, cId): Observable <Task> {
@@ -50,7 +49,6 @@ export class TaskService {
     deleteSpecificTask(task: Task, cId): Observable <Task> {
       console.log(task);
       return this.http.post<Task>(this.delTask + cId, task, httpOptions ).map(
-
         data => {
           return data;
       },
@@ -59,6 +57,7 @@ export class TaskService {
     }
 
     completedTask( task: Task):  Observable <Task> {
+      console.log(task)
       return this.http.post<Task>(this.checkedUrl , task, httpOptions ).map(
 
         data => {
