@@ -3,9 +3,9 @@
   
         <tbody>
           <tr *ngFor="let task of tasks">
-              <div *ngIf="task.completed"><td><input  data-md-icheck (change)="checkedOffTask($event)"  [(ngModel)]="task.completed" type="checkbox" checked/></td></div>
-              <div *ngIf="!task.completed"><td><input  data-md-icheck (change)="checkedOffTask($event)"  [(ngModel)]="task.completed" type="checkbox" /></td></div>    
-            <td><span [ngClass]= "{'checked': task.completed}" >{{task.description}}</span> </td>
+              <div *ngIf="task.completed"><td><input  data-md-icheck (change)="checkedOffTask($event)"  [(ngModel)]="task.completed" type="checkbox" checked/></td><td><span class= "checked " >{{task.description}}</span> </td></div>
+              <div *ngIf="!task.completed"><td><input  data-md-icheck (change)="checkedOffTask($event)"  [(ngModel)]="task.completed" type="checkbox" /></td><td><span  >{{task.description}}</span> </td></div>    
+            
             <td> <button (click)="deleteTask(task)">delete</button></td>
           </tr>
         </tbody>

@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import {  } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,7 +28,8 @@ import { NavbarService } from './services/navbar.service';
 import { NgbModal, NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BurndownchartComponent } from './components/burndownchart/burndownchart.component';
 import { BoardMembersComponent } from './components/board-members/board-members.component';
-import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { TaskService } from './services/task.service';
+import { PermissionsService } from './services/permissions.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
     InviteComponent,
     BoardMembersComponent,
     TaskComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +53,6 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
     FormsModule,
     HttpModule,
     HttpClientModule,
-    DragulaModule,
     NgbModule.forRoot(),
    ],
 
@@ -66,7 +65,9 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
     InviteService,
     NavbarService,
     NgbActiveModal,
-    TaskComponent],
+    TaskComponent,
+    TaskService,
+    PermissionsService],
 
   entryComponents: [
     CardComponent,

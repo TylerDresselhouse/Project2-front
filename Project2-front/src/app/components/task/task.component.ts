@@ -5,7 +5,7 @@ import { AlertService } from '../../services/alert.service';
 import { CardComponent } from '../card/card.component';
 import { Card } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
-import { Observable } from 'rxjs/Observable';
+import { PermissionsService } from '../../services/permissions.service';
 
 
 @Component({
@@ -16,15 +16,16 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TaskComponent implements OnInit {
 
-constructor(private taskService: TaskService,
-  private alertService: AlertService) { }
+constructor(private taskService: TaskService, private alertService: AlertService,
+  private permissionsService: PermissionsService) { }
 
-@Input() task: Task;
+  @Input() task: Task;
 
-cardService: CardService;
-tasks: Task[] = [];
+  cardService: CardService;
+  tasks: Task[] = [];
 
   ngOnInit() {
+    this.tasks = new Array<Task>();
     const cId = +localStorage.getItem('currCardId');
     console.log('ngOnInit received cId:' + cId);
   this.getTasks(cId);
@@ -36,37 +37,42 @@ tasks: Task[] = [];
     console.log('received card id in getTasks: ' + cId);
     this.taskService.listOfTasks(cId).subscribe(data => { 
       this.tasks = data; 
-      
       console.log(data);
      }
     );
 
   }
 
-addTask(tDesc: string): void {
-  // this.task.description = tDesc;
- console.log(this.task);
- this.task = new Task(0, tDesc, false);
- const cId = +(<HTMLInputElement>document.getElementById('id')).value;
- this.taskService.addNewTask(this.task, cId).subscribe(
-  data => {
-    this.task = data;
-    console.log(data);
-    this.tasks.push(this.task);
-    this.alertService.success('Task was successfully added!');
-  }
-);
-}
-
-  deleteTask(task: Task ): void {
+  addTask(tDesc: string): void {
+    // this.task.description = tDesc;
+    console.log(this.task);
+    this.task = new Task(0, tDesc, false);
     const cId = +(<HTMLInputElement>document.getElementById('id')).value;
-    console.log(task);
-    // this.tasks = this.tasks.filter(t => t !== task);
-    this.taskService.deleteSpecificTask(this.task, cId ).subscribe(
+    console.log('cId from hidden html: ' + cId);
+    this.taskService.addNewTask(this.task, cId).subscribe(
       data => {
         this.task = data;
-        this.alertService.success('Task was successfully Deleted!');
+        console.log(data);
+        if(this.tasks !== null){
+          this.tasks.push(data);
+        } else {
+          this.tasks = [data];
+        }
+       
+        this.alertService.success('Task was successfully added!');
+      }
+    );
   }
+
+  deleteTask(task: Task): void {
+    const cId = +(<HTMLInputElement>document.getElementById('id')).value;
+    this.tasks = this.tasks.filter(t => t !== task);
+    this.taskService.deleteSpecificTask(task, cId).subscribe(
+      data => {
+        console.log(data);
+        this.task = data;
+        this.alertService.success('Task was successfully Deleted!');
+      }
     );
 
   }
@@ -76,7 +82,9 @@ addTask(tDesc: string): void {
    
     if(e.target.checked){
         this.task.completed = true;
-  
+    }else  {
+        this.task.completed = false;
+    }
       console.log(this.task.completed)
       console.log(this.task);
       this.taskService.completedTask(this.task).subscribe(
@@ -89,7 +97,7 @@ addTask(tDesc: string): void {
   }
     }
 
-        }
+        
        
    
   

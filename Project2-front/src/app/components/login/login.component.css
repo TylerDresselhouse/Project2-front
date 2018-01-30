@@ -1,0 +1,21 @@
+.btn-orange {
+    color: #fff;
+    background-color: #f4b183;
+    border-color: #f4b183; /*set the color you want here*/
+ }
+ .btn-orange:hover {
+    color: #fff;
+    background-color: #e98949;
+    border-color: #e98949; /*set the color you want here*/
+ }
+
+ .btn-lightblue {
+    color: #fff;
+    background-color: #5b9bd5;
+    border-color: #5b9bd5; /*set the color you want here*/
+ }
+ .btn-lightblue:hover {
+    color: #fff;
+    background-color: #1378d6;
+    border-color: #1378d6; /*set the color you want here*/
+ }
