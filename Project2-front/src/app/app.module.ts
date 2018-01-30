@@ -45,7 +45,7 @@ import { PermissionsService } from './services/permissions.service';
     InviteComponent,
     BoardMembersComponent,
     TaskComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
