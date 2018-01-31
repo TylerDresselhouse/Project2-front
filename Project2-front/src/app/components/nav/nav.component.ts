@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
   public boardId: number;
 
   constructor(private authenticationService: AuthenticationService,
-    private navService: NavbarService, private modalService: NgbModal, private route: ActivatedRoute) { }
+    public navService: NavbarService, private modalService: NgbModal, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
