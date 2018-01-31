@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Task} from '../models/task.model';
 
-
+import { environment } from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -22,24 +22,20 @@ headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 @Injectable()
 export class TaskService {
 
-    private taskUrl = 'http://localhost:8009/api/v1/get/tasks/';
-    private delTask = 'http://localhost:8009/api/v1/delete/task/';
-    private creatTaskUrl = 'http://localhost:8009/api/v1/createTask/';
-    private checkedUrl = 'http://localhost:8009/api/v1/checkTask/';
   // this is a service-in-service where the hero service is ue=sing the message service
   constructor(private http: HttpClient) { }
 
 
   listOfTasks(cId) {
-    return this.http.get<Task[]>(this.taskUrl + cId).map(
+    return this.http.get<Task[]>(environment.task.get(cId)).map(
       data => {
         return data;
-        }  
+        }
       );
   }
 
     addNewTask (task: Task, cId): Observable <Task> {
-        return this.http.post<Task>(this.creatTaskUrl + cId, task, httpOptions).map(
+        return this.http.post<Task>(environment.task.create(cId), task, httpOptions).map(
           data => {
             return data;
         },
@@ -48,7 +44,7 @@ export class TaskService {
 
     deleteSpecificTask(task: Task, cId): Observable <Task> {
       console.log(task);
-      return this.http.post<Task>(this.delTask + cId, task, httpOptions ).map(
+      return this.http.post<Task>(environment.task.delete(cId), task, httpOptions ).map(
         data => {
           return data;
       },
@@ -57,8 +53,8 @@ export class TaskService {
     }
 
     completedTask( task: Task):  Observable <Task> {
-      console.log(task)
-      return this.http.post<Task>(this.checkedUrl , task, httpOptions ).map(
+      console.log(task);
+      return this.http.post<Task>(environment.task.check(), task, httpOptions ).map(
 
         data => {
           return data;

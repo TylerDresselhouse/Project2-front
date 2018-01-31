@@ -2,7 +2,7 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-const context = 'http://localhost:8009/api/v1/';
+const context = 'http://localhost:8009/';
 export const environment = {
   production: false,
   context: context,
@@ -29,7 +29,6 @@ export const environment = {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`,
 
     delete: (swimLaneId: number) =>  `${context}delete/card/${swimLaneId}`,
-
   },
 
   swimLane: {
@@ -43,14 +42,10 @@ export const environment = {
   },
 
   task: {
-    getTasks: (cdId: number) => `${context}get/tasks/${cdId}`,
-
+    get: (cId: number) => `${context}get/tasks/${cId}`,
     delete: (cId: number) => `${context}delete/task/${cId}`,
+    create: (cId: number) => `${context}createTask/${cId}`,
+    check: () => `${context}checkTask/`
 
-    create:  (cId: number) => `${context}createTask/${cId}`,
-    
-    completeTask:() => `${context}checkTask/`
   }
-
-
 };
