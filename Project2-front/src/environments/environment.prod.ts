@@ -1,4 +1,4 @@
-const context = 'http://localhost:8009/api/v1/';
+const context = 'http://localhost:8009/';
 export const environment = {
   production: true,
   context: context,
@@ -25,5 +25,15 @@ export const environment = {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`,
 
     delete: () =>  `${context}delete/card`
+  },
+
+  swimLane: {
+    create: (boardId: number) => `${context}createSwimLane/${boardId}`,
+
+    delete: (boardId: number) => `${context}delete/swimlane/${boardId}`
+  },
+
+  boardMembers: {
+    get: (boardId: number) => `${context}get/users/${boardId}`
   }
 };

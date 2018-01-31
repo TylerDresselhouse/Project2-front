@@ -24,9 +24,15 @@ export class CardComponent implements OnInit {
 
   card: Card;
   swimLanes: SwimLanesComponent;
+  title: String;
+  difficulty: number;
+  description: String;
+  id: number;
+  order: number;
+  slid: number;
 
   constructor(public activeModal: NgbActiveModal, private cardService: CardService, private alertService: AlertService,
-    private taskService: TaskService, private permissionsService: PermissionsService)  { }
+    private taskService: TaskService, public permissionsService: PermissionsService)  { }
 
   // trackByFn(index, task) {
   //   return task;

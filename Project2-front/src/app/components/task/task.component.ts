@@ -17,7 +17,7 @@ import { PermissionsService } from '../../services/permissions.service';
 export class TaskComponent implements OnInit {
 
 constructor(private taskService: TaskService, private alertService: AlertService,
-  private permissionsService: PermissionsService) { }
+  public permissionsService: PermissionsService) { }
 
   @Input() task: Task;
 
