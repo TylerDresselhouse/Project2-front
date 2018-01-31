@@ -44,29 +44,35 @@ export class CardComponent implements OnInit {
     this.card.description = (<HTMLInputElement>document.getElementById('description')).value;
     this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
     const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
-    this.cardService.createCard(this.card, slid).subscribe(
-      data => {
-        this.card = data;
-        this.alertService.success('Card saved successfully!');
-      },
-      error => this.alertService.error('Card failed to save!'));
- 
-      // for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
-      //   this.card.tasks[i] = this.trackByFn(i, this.card.tasks);
-      //   console.log('Tasks in card component: ' + this.card.tasks[i]);
-      // }
+    if (this.card.title.length !== 0 && this.card.difficulty !== 0) {
+      this.cardService.createCard(this.card, slid).subscribe(
+        data => {
+          this.card = data;
+          this.alertService.success('Card saved successfully!');
+        },
+        error => this.alertService.error('Card failed to save!'));
+
       this.activeModal.close(this.card);
+    } else if (this.card.title.length === 0 && this.card.difficulty !== 0) {
+      this.alertService.error('This card needs a title!');
+    } else if (this.card.title.length !== 0 && this.card.difficulty === 0) {
+      this.alertService.error('This card needs a difficulty level!');
+    } else if (this.card.title.length === 0 && this.card.difficulty === 0) {
+      this.alertService.error('This card needs a title and a difficulty level!');
+    } else {
+      this.alertService.error('I\'m a teapot!');
+    }
   }
 
-  deleteCard() {
-    this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
-    const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
-    this.activeModal.close('Close click');
-    this.cardService.deleteCard(this.card);
-  }
+    deleteCard() {
+      this.card.id = +(<HTMLInputElement>document.getElementById('id')).value;
+      const slid = +(<HTMLInputElement>document.getElementById('slid')).value;
+      this.activeModal.close(this.card);
+      this.cardService.deleteCard(this.card, slid);
+    }
 
-  ngOnInit() {
-    this.card = new Card(0, 0, null, null, null, 0);
-  }
+    ngOnInit() {
+      this.card = new Card(0, 0, null, null, null, 0);
+    }
 
-}
+  }

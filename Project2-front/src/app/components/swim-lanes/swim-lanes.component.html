@@ -1,52 +1,68 @@
-<div>
-  <span style="float: center;" align="center">
-    List of Swim Lanes:
-  </span>
+<div align = "center">
+    <font size="6">List of Swim Lanes:</font>
+  <!-- <span style="float: center;">
+  </span> -->
   <!-- <span style="float: right;">
     <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart</button>
   </span> -->
 </div>
 
-<div class="asdf">
-  <table class="table" border="1px solid black">
-    <tr>
-      <td *ngFor="let swimLane of swimLanes">
-        <div hidden>
-          <input value={{swimLane.id}} id={{swimLane.name}} type="text">
-        </div>
-        <table class="table-hover" border="1px solid black" style="min-width:350px;">
-          <th>
-            <span style="float: left;">
-            {{swimLane.name}}</span>
-            <span style="float: right;">
-              <button *ngIf="userBoardRole.deleteSwimLane" class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button></span>
-          </th>
-          <tr *ngFor="let card of swimLane.cards">
-            <td style="min-width:400px" (click)="open(card, swimLane.id)" style="cursor: pointer;" align="center">
-              {{card.title}}
-            </td>
-            <!-- <td style="min-width:400px">
-              <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
-            </td> -->
-          </tr>
-          <tr *ngIf="userBoardRole.createCard">
-            <td style="min-width:400px" align="center">
-              <button class="btn btn-lg btn-outline-primary" (click)="openNew(swimLane.id)">New Card</button>
-            </td>
-          </tr>
-        </table>
-      </td>
-      <td>
-        <!-- <div hidden>
-          <input value={{newSwimLane.name}} id={{newSwimLane.id}} type="text">
-        </div> -->
-        <div *ngIf="userBoardRole.createSwimLane">
-          <input type="text" [(ngModel)]="newSwimLane.name" maxlength="20">
-          <button type="button" class="btn btn-primary" (click)="createSwimLane()">Create New Swim Lane</button>
-        </div>
-      </td>
-    </tr>
-  </table>
+<div class="container">
+    <div align = "center">
+        <font size="6">List of Swim Lanes:</font>
+      <!-- <span style="float: center;">
+    
+      </span> -->
+      <!-- <span style="float: right;">
+        <button class="btn btn-lg btn-outline-secondary" (click)="openBurnDown()">Burn Down Chart</button>
+      </span> -->
+    </div>
+    
+    <div class="asdf">
+      <table class="table" border="1px solid black">
+        <tr>
+          <td *ngFor="let swimLane of swimLanes">
+            <div hidden>
+              <input value={{swimLane.id}} id={{swimLane.name}} type="text">
+            </div>
+            <table class="table-hover" border="1px solid black" style="min-width:350px;">
+              <th>
+                <span style="float: left;">
+                {{swimLane.name}}</span>
+                <span style="float: right;">
+                  <button *ngIf="userBoardRole.deleteSwimLane" class="btn btn-lg btn-outline-primary" (click)="delete(swimLane)">Delete Lane</button></span>
+              </th>
+              <tr *ngFor="let card of swimLane.cards">
+                <td style="min-width:400px" (click)="open(card, swimLane.id)" style="cursor: pointer;" align="center">
+                  {{card.title}}
+                </td>
+                <!-- <td style="min-width:400px">
+                  <button class="btn btn-lg btn-outline-primary" (click)="open(card, swimLane.id)"> {{card.title}}</button>
+                </td> -->
+              </tr>
+              <tr *ngIf="userBoardRole.createCard">
+                <td style="min-width:400px" align="center">
+                  <button class="btn btn-lg btn-outline-primary" (click)="openNew(swimLane.id)">New Card</button>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <!-- <div hidden>
+              <input value={{newSwimLane.name}} id={{newSwimLane.id}} type="text">
+            </div> -->
+            <div *ngIf="userBoardRole.createSwimLane">
+              <input type="text" [(ngModel)]="newSwimLane.name" maxlength="20">
+              <button type="button" class="btn btn-primary" (click)="createSwimLane()">Create New Swim Lane</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    
+    </div>
+    
+    <button *ngIf="userBoardRole.inviteUser" class="btn btn-primary" routerLink="/invite/{{id}}">Invite Members</button>
+    
 
 </div>
 <br>

@@ -3,6 +3,7 @@ export const environment = {
   production: true,
   context: context,
 
+
   board: {
     save: (userId: number) => `${context}create/board/${userId}`,
 
@@ -24,7 +25,7 @@ export const environment = {
   card: {
     save: (swimLaneId: number) => `${context}createCard/${swimLaneId}`,
 
-    delete: () =>  `${context}delete/card`
+    delete: (swimLaneId: number) =>  `${context}delete/card/${swimLaneId}`,
   },
 
   swimLane: {
@@ -35,5 +36,13 @@ export const environment = {
 
   boardMembers: {
     get: (boardId: number) => `${context}get/users/${boardId}`
+  },
+
+  task: {
+    get: (cId: number) => `${context}get/tasks/${cId}`,
+    delete: (cId: number) => `${context}delete/task/${cId}`,
+    create: (cId: number) => `${context}createTask/${cId}`,
+    check: () => `${context}checkTask/`
+
   }
 };
